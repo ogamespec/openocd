@@ -1862,7 +1862,10 @@ static int gdb_breakpoint_watchpoint_packet(struct connection *connection,
 /* print out a string and allocate more space as needed,
  * mainly used for XML at this point
  */
-static __attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6))) void xml_printf(int *retval,
+#ifdef __GNUC__
+static __attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6))) 
+#endif
+void xml_printf(int *retval,
 		char **xml, int *pos, int *size, const char *fmt, ...)
 {
 	if (*retval != ERROR_OK)
@@ -3022,7 +3025,10 @@ static int gdb_query_packet(struct connection *connection,
 }
 
 static bool gdb_handle_vcont_packet(struct connection *connection, const char *packet,
-	__attribute__((unused)) int packet_size)
+#ifdef __GNUC__
+	__attribute__((unused)) 
+#endif
+	int packet_size)
 {
 	struct gdb_connection *gdb_connection = connection->priv;
 	struct target *target = get_available_target_from_connection(connection);

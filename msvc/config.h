@@ -1,5 +1,6 @@
 #include <inttypes.h>
 #include <stdbool.h>
+#include <fcntl.h>
 
 #if defined(_MSC_VER)
 #include <BaseTsd.h>
