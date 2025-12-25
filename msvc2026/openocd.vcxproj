@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\helper\base64.c" />
+    <ClCompile Include="..\src\helper\binarybuffer.c" />
+    <ClCompile Include="..\src\helper\command.c" />
+    <ClCompile Include="..\src\helper\configuration.c" />
+    <ClCompile Include="..\src\helper\crc32.c" />
+    <ClCompile Include="..\src\helper\fileio.c" />
+    <ClCompile Include="..\src\helper\jep106.c" />
+    <ClCompile Include="..\src\helper\jim-nvp.c" />
+    <ClCompile Include="..\src\helper\log.c" />
+    <ClCompile Include="..\src\helper\nvp.c" />
+    <ClCompile Include="..\src\helper\options.c" />
+    <ClCompile Include="..\src\helper\replacements.c" />
+    <ClCompile Include="..\src\helper\time_support.c" />
+    <ClCompile Include="..\src\helper\time_support_common.c" />
+    <ClCompile Include="..\src\helper\types.c" />
+    <ClCompile Include="..\src\helper\util.c" />
+    <ClCompile Include="..\src\jtag\adapter.c" />
+    <ClCompile Include="..\src\jtag\commands.c" />
+    <ClCompile Include="..\src\jtag\core.c" />
+    <ClCompile Include="..\src\jtag\interface.c" />
+    <ClCompile Include="..\src\jtag\interfaces.c" />
+    <ClCompile Include="..\src\jtag\swim.c" />
+    <ClCompile Include="..\src\jtag\jtag_tcl.c" />
+    <ClCompile Include="..\src\main.c" />
+    <ClCompile Include="..\src\openocd.c" />
+    <ClCompile Include="..\src\pld\certus.c" />
+    <ClCompile Include="..\src\pld\ecp2_3.c" />
+    <ClCompile Include="..\src\pld\ecp5.c" />
+    <ClCompile Include="..\src\pld\efinix.c" />
+    <ClCompile Include="..\src\pld\gatemate.c" />
+    <ClCompile Include="..\src\pld\gowin.c" />
+    <ClCompile Include="..\src\pld\intel.c" />
+    <ClCompile Include="..\src\pld\lattice.c" />
+    <ClCompile Include="..\src\pld\lattice_bit.c" />
+    <ClCompile Include="..\src\pld\pld.c" />
+    <ClCompile Include="..\src\pld\raw_bit.c" />
+    <ClCompile Include="..\src\pld\virtex2.c" />
+    <ClCompile Include="..\src\pld\xilinx_bit.c" />
+    <ClCompile Include="..\src\rtos\chibios.c" />
+    <ClCompile Include="..\src\rtos\chromium-ec.c" />
+    <ClCompile Include="..\src\rtos\ecos.c" />
+    <ClCompile Include="..\src\rtos\embkernel.c" />
+    <ClCompile Include="..\src\rtos\freertos.c" />
+    <ClCompile Include="..\src\rtos\hwthread.c" />
+    <ClCompile Include="..\src\rtos\linux.c" />
+    <ClCompile Include="..\src\rtos\mqx.c" />
+    <ClCompile Include="..\src\rtos\nuttx.c" />
+    <ClCompile Include="..\src\rtos\riot.c" />
+    <ClCompile Include="..\src\rtos\rtkernel.c" />
+    <ClCompile Include="..\src\rtos\rtos.c" />
+    <ClCompile Include="..\src\rtos\rtos_chibios_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_ecos_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_embkernel_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_mqx_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_nuttx_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_riot_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_standard_stackings.c" />
+    <ClCompile Include="..\src\rtos\rtos_ucos_iii_stackings.c" />
+    <ClCompile Include="..\src\rtos\threadx.c" />
+    <ClCompile Include="..\src\rtos\ucos_iii.c" />
+    <ClCompile Include="..\src\rtos\zephyr.c" />
+    <ClCompile Include="..\src\rtt\rtt.c" />
+    <ClCompile Include="..\src\rtt\tcl.c" />
+    <ClCompile Include="..\src\server\gdb_server.c" />
+    <ClCompile Include="..\src\server\ipdbg.c" />
+    <ClCompile Include="..\src\server\rtt_server.c" />
+    <ClCompile Include="..\src\server\server.c" />
+    <ClCompile Include="..\src\server\tcl_server.c" />
+    <ClCompile Include="..\src\server\telnet_server.c" />
+    <ClCompile Include="..\src\svf\svf.c" />
+    <ClCompile Include="..\src\target\a64_disassembler.c" />
+    <ClCompile Include="..\src\target\aarch64.c" />
+    <ClCompile Include="..\src\target\adi_v5_dapdirect.c" />
+    <ClCompile Include="..\src\target\adi_v5_jtag.c" />
+    <ClCompile Include="..\src\target\adi_v5_swd.c" />
+    <ClCompile Include="..\src\target\algorithm.c" />
+    <ClCompile Include="..\src\target\arc.c" />
+    <ClCompile Include="..\src\target\arc_cmd.c" />
+    <ClCompile Include="..\src\target\arc_jtag.c" />
+    <ClCompile Include="..\src\target\arc_mem.c" />
+    <ClCompile Include="..\src\target\arm11.c" />
+    <ClCompile Include="..\src\target\arm11_dbgtap.c" />
+    <ClCompile Include="..\src\target\arm720t.c" />
+    <ClCompile Include="..\src\target\arm7tdmi.c" />
+    <ClCompile Include="..\src\target\arm7_9_common.c" />
+    <ClCompile Include="..\src\target\arm920t.c" />
+    <ClCompile Include="..\src\target\arm926ejs.c" />
+    <ClCompile Include="..\src\target\arm946e.c" />
+    <ClCompile Include="..\src\target\arm966e.c" />
+    <ClCompile Include="..\src\target\arm9tdmi.c" />
+    <ClCompile Include="..\src\target\armv4_5.c" />
+    <ClCompile Include="..\src\target\armv4_5_cache.c" />
+    <ClCompile Include="..\src\target\armv4_5_mmu.c" />
+    <ClCompile Include="..\src\target\armv7a.c" />
+    <ClCompile Include="..\src\target\armv7a_cache.c" />
+    <ClCompile Include="..\src\target\armv7a_cache_l2x.c" />
+    <ClCompile Include="..\src\target\armv7a_mmu.c" />
+    <ClCompile Include="..\src\target\armv7m.c" />
+    <ClCompile Include="..\src\target\armv7m_cache.c" />
+    <ClCompile Include="..\src\target\armv7m_trace.c" />
+    <ClCompile Include="..\src\target\armv8.c" />
+    <ClCompile Include="..\src\target\armv8_cache.c" />
+    <ClCompile Include="..\src\target\armv8_dpm.c" />
+    <ClCompile Include="..\src\target\armv8_opcodes.c" />
+    <ClCompile Include="..\src\target\arm_adi_v5.c" />
+    <ClCompile Include="..\src\target\arm_cti.c" />
+    <ClCompile Include="..\src\target\arm_dap.c" />
+    <ClCompile Include="..\src\target\arm_disassembler.c" />
+    <ClCompile Include="..\src\target\arm_dpm.c" />
+    <ClCompile Include="..\src\target\arm_jtag.c" />
+    <ClCompile Include="..\src\target\arm_semihosting.c" />
+    <ClCompile Include="..\src\target\arm_simulator.c" />
+    <ClCompile Include="..\src\target\arm_tpiu_swo.c" />
+    <ClCompile Include="..\src\target\avr32_ap7k.c" />
+    <ClCompile Include="..\src\target\avr32_jtag.c" />
+    <ClCompile Include="..\src\target\avr32_mem.c" />
+    <ClCompile Include="..\src\target\avr32_regs.c" />
+    <ClCompile Include="..\src\target\avrt.c" />
+    <ClCompile Include="..\src\target\breakpoints.c" />
+    <ClCompile Include="..\src\target\cortex_a.c" />
+    <ClCompile Include="..\src\target\cortex_m.c" />
+    <ClCompile Include="..\src\target\dsp563xx.c" />
+    <ClCompile Include="..\src\target\dsp563xx_once.c" />
+    <ClCompile Include="..\src\target\dsp5680xx.c" />
+    <ClCompile Include="..\src\target\embeddedice.c" />
+    <ClCompile Include="..\src\target\esirisc.c" />
+    <ClCompile Include="..\src\target\esirisc_jtag.c" />
+    <ClCompile Include="..\src\target\esirisc_trace.c" />
+    <ClCompile Include="..\src\target\etb.c" />
+    <ClCompile Include="..\src\target\etm.c" />
+    <ClCompile Include="..\src\target\etm_dummy.c" />
+    <ClCompile Include="..\src\target\fa526.c" />
+    <ClCompile Include="..\src\target\feroceon.c" />
+    <ClCompile Include="..\src\target\hla_target.c" />
+    <ClCompile Include="..\src\target\image.c" />
+    <ClCompile Include="..\src\target\lakemont.c" />
+    <ClCompile Include="..\src\target\ls1_sap.c" />
+    <ClCompile Include="..\src\target\mem_ap.c" />
+    <ClCompile Include="..\src\target\mips32.c" />
+    <ClCompile Include="..\src\target\mips32_dmaacc.c" />
+    <ClCompile Include="..\src\target\mips32_pracc.c" />
+    <ClCompile Include="..\src\target\mips64.c" />
+    <ClCompile Include="..\src\target\mips64_pracc.c" />
+    <ClCompile Include="..\src\target\mips_ejtag.c" />
+    <ClCompile Include="..\src\target\mips_m4k.c" />
+    <ClCompile Include="..\src\target\mips_mips64.c" />
+    <ClCompile Include="..\src\target\quark_d20xx.c" />
+    <ClCompile Include="..\src\target\quark_x10xx.c" />
+    <ClCompile Include="..\src\target\register.c" />
+    <ClCompile Include="..\src\target\target_rtt.c" />
+    <ClCompile Include="..\src\target\semihosting_common.c" />
+    <ClCompile Include="..\src\target\smp.c" />
+    <ClCompile Include="..\src\target\stm8.c" />
+    <ClCompile Include="..\src\target\target.c" />
+    <ClCompile Include="..\src\target\target_request.c" />
+    <ClCompile Include="..\src\target\testee.c" />
+    <ClCompile Include="..\src\target\trace.c" />
+    <ClCompile Include="..\src\target\x86_32_common.c" />
+    <ClCompile Include="..\src\target\xscale.c" />
+    <ClCompile Include="..\src\transport\transport.c" />
+    <ClCompile Include="..\src\xsvf\xsvf.c" />
+    <ClCompile Include="getopt.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\helper\align.h" />
+    <ClInclude Include="..\src\helper\base64.h" />
+    <ClInclude Include="..\src\helper\binarybuffer.h" />
+    <ClInclude Include="..\src\helper\bitfield.h" />
+    <ClInclude Include="..\src\helper\bits.h" />
+    <ClInclude Include="..\src\helper\command.h" />
+    <ClInclude Include="..\src\helper\compiler.h" />
+    <ClInclude Include="..\src\helper\configuration.h" />
+    <ClInclude Include="..\src\helper\crc32.h" />
+    <ClInclude Include="..\src\helper\fileio.h" />
+    <ClInclude Include="..\src\helper\jep106.h" />
+    <ClInclude Include="..\src\helper\jim-nvp.h" />
+    <ClInclude Include="..\src\helper\list.h" />
+    <ClInclude Include="..\src\helper\log.h" />
+    <ClInclude Include="..\src\helper\nvp.h" />
+    <ClInclude Include="..\src\helper\replacements.h" />
+    <ClInclude Include="..\src\helper\string_choices.h" />
+    <ClInclude Include="..\src\helper\system.h" />
+    <ClInclude Include="..\src\helper\time_support.h" />
+    <ClInclude Include="..\src\helper\types.h" />
+    <ClInclude Include="..\src\helper\util.h" />
+    <ClInclude Include="..\src\jtag\adapter.h" />
+    <ClInclude Include="..\src\jtag\commands.h" />
+    <ClInclude Include="..\src\jtag\interface.h" />
+    <ClInclude Include="..\src\jtag\interfaces.h" />
+    <ClInclude Include="..\src\jtag\jtag.h" />
+    <ClInclude Include="..\src\jtag\minidriver.h" />
+    <ClInclude Include="..\src\jtag\swd.h" />
+    <ClInclude Include="..\src\jtag\swim.h" />
+    <ClInclude Include="..\src\jtag\tcl.h" />
+    <ClInclude Include="..\src\openocd.h" />
+    <ClInclude Include="..\src\pld\certus.h" />
+    <ClInclude Include="..\src\pld\ecp2_3.h" />
+    <ClInclude Include="..\src\pld\ecp5.h" />
+    <ClInclude Include="..\src\pld\lattice.h" />
+    <ClInclude Include="..\src\pld\lattice_bit.h" />
+    <ClInclude Include="..\src\pld\lattice_cmd.h" />
+    <ClInclude Include="..\src\pld\pld.h" />
+    <ClInclude Include="..\src\pld\raw_bit.h" />
+    <ClInclude Include="..\src\pld\virtex2.h" />
+    <ClInclude Include="..\src\pld\xilinx_bit.h" />
+    <ClInclude Include="..\src\rtos\linux_header.h" />
+    <ClInclude Include="..\src\rtos\rtos.h" />
+    <ClInclude Include="..\src\rtos\rtos_chibios_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_ecos_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_embkernel_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_mqx_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_nuttx_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_riot_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_standard_stackings.h" />
+    <ClInclude Include="..\src\rtos\rtos_ucos_iii_stackings.h" />
+    <ClInclude Include="..\src\rtt\rtt.h" />
+    <ClInclude Include="..\src\server\gdb_server.h" />
+    <ClInclude Include="..\src\server\ipdbg.h" />
+    <ClInclude Include="..\src\server\rtt_server.h" />
+    <ClInclude Include="..\src\server\server.h" />
+    <ClInclude Include="..\src\server\tcl_server.h" />
+    <ClInclude Include="..\src\server\telnet_server.h" />
+    <ClInclude Include="..\src\svf\svf.h" />
+    <ClInclude Include="..\src\target\a64_disassembler.h" />
+    <ClInclude Include="..\src\target\aarch64.h" />
+    <ClInclude Include="..\src\target\algorithm.h" />
+    <ClInclude Include="..\src\target\arc.h" />
+    <ClInclude Include="..\src\target\arc_cmd.h" />
+    <ClInclude Include="..\src\target\arc_jtag.h" />
+    <ClInclude Include="..\src\target\arc_mem.h" />
+    <ClInclude Include="..\src\target\arm.h" />
+    <ClInclude Include="..\src\target\arm11.h" />
+    <ClInclude Include="..\src\target\arm11_dbgtap.h" />
+    <ClInclude Include="..\src\target\arm720t.h" />
+    <ClInclude Include="..\src\target\arm7tdmi.h" />
+    <ClInclude Include="..\src\target\arm7_9_common.h" />
+    <ClInclude Include="..\src\target\arm920t.h" />
+    <ClInclude Include="..\src\target\arm926ejs.h" />
+    <ClInclude Include="..\src\target\arm946e.h" />
+    <ClInclude Include="..\src\target\arm966e.h" />
+    <ClInclude Include="..\src\target\arm9tdmi.h" />
+    <ClInclude Include="..\src\target\armv4_5.h" />
+    <ClInclude Include="..\src\target\armv4_5_cache.h" />
+    <ClInclude Include="..\src\target\armv4_5_mmu.h" />
+    <ClInclude Include="..\src\target\armv7a.h" />
+    <ClInclude Include="..\src\target\armv7a_cache.h" />
+    <ClInclude Include="..\src\target\armv7a_cache_l2x.h" />
+    <ClInclude Include="..\src\target\armv7a_mmu.h" />
+    <ClInclude Include="..\src\target\armv7m.h" />
+    <ClInclude Include="..\src\target\armv7m_cache.h" />
+    <ClInclude Include="..\src\target\armv7m_trace.h" />
+    <ClInclude Include="..\src\target\armv8.h" />
+    <ClInclude Include="..\src\target\armv8_cache.h" />
+    <ClInclude Include="..\src\target\armv8_dpm.h" />
+    <ClInclude Include="..\src\target\armv8_opcodes.h" />
+    <ClInclude Include="..\src\target\arm_adi_v5.h" />
+    <ClInclude Include="..\src\target\arm_coresight.h" />
+    <ClInclude Include="..\src\target\arm_cti.h" />
+    <ClInclude Include="..\src\target\arm_disassembler.h" />
+    <ClInclude Include="..\src\target\arm_dpm.h" />
+    <ClInclude Include="..\src\target\arm_jtag.h" />
+    <ClInclude Include="..\src\target\arm_opcodes.h" />
+    <ClInclude Include="..\src\target\arm_semihosting.h" />
+    <ClInclude Include="..\src\target\arm_simulator.h" />
+    <ClInclude Include="..\src\target\arm_tpiu_swo.h" />
+    <ClInclude Include="..\src\target\avr32_ap7k.h" />
+    <ClInclude Include="..\src\target\avr32_jtag.h" />
+    <ClInclude Include="..\src\target\avr32_mem.h" />
+    <ClInclude Include="..\src\target\avr32_regs.h" />
+    <ClInclude Include="..\src\target\avrt.h" />
+    <ClInclude Include="..\src\target\breakpoints.h" />
+    <ClInclude Include="..\src\target\cortex_a.h" />
+    <ClInclude Include="..\src\target\cortex_m.h" />
+    <ClInclude Include="..\src\target\dsp563xx.h" />
+    <ClInclude Include="..\src\target\dsp563xx_once.h" />
+    <ClInclude Include="..\src\target\dsp5680xx.h" />
+    <ClInclude Include="..\src\target\embeddedice.h" />
+    <ClInclude Include="..\src\target\esirisc.h" />
+    <ClInclude Include="..\src\target\esirisc_jtag.h" />
+    <ClInclude Include="..\src\target\esirisc_regs.h" />
+    <ClInclude Include="..\src\target\esirisc_trace.h" />
+    <ClInclude Include="..\src\target\etb.h" />
+    <ClInclude Include="..\src\target\etm.h" />
+    <ClInclude Include="..\src\target\etm_dummy.h" />
+    <ClInclude Include="..\src\target\image.h" />
+    <ClInclude Include="..\src\target\lakemont.h" />
+    <ClInclude Include="..\src\target\mips32.h" />
+    <ClInclude Include="..\src\target\mips32_dmaacc.h" />
+    <ClInclude Include="..\src\target\mips32_pracc.h" />
+    <ClInclude Include="..\src\target\mips64.h" />
+    <ClInclude Include="..\src\target\mips64_pracc.h" />
+    <ClInclude Include="..\src\target\mips_cpu.h" />
+    <ClInclude Include="..\src\target\mips_ejtag.h" />
+    <ClInclude Include="..\src\target\mips_m4k.h" />
+    <ClInclude Include="..\src\target\mips_mips64.h" />
+    <ClInclude Include="..\src\target\register.h" />
+    <ClInclude Include="..\src\target\rtt.h" />
+    <ClInclude Include="..\src\target\semihosting_common.h" />
+    <ClInclude Include="..\src\target\smp.h" />
+    <ClInclude Include="..\src\target\target.h" />
+    <ClInclude Include="..\src\target\target_request.h" />
+    <ClInclude Include="..\src\target\target_type.h" />
+    <ClInclude Include="..\src\target\trace.h" />
+    <ClInclude Include="..\src\target\x86_32_common.h" />
+    <ClInclude Include="..\src\target\xscale.h" />
+    <ClInclude Include="..\src\transport\transport.h" />
+    <ClInclude Include="..\src\xsvf\xsvf.h" />
+    <ClInclude Include="config.h" />
+    <ClInclude Include="getopt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="jimtcl.vcxproj">
+      <Project>{ccaaf75c-ed43-467d-9946-bd6c8883e558}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\helper\jep106.inc" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{44034baf-5e7b-4296-9eb4-6c58af5c780d}</ProjectGuid>
+    <RootNamespace>openocd</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp23</LanguageStandard>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

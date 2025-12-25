@@ -1,0 +1,977 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{22939c16-c790-47d7-b3aa-ee13a9c146cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\flash">
+      <UniqueIdentifier>{54d4fb61-4386-4b0e-9d25-3021d4dfce7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\flash\nand">
+      <UniqueIdentifier>{cc5173ac-b2a4-4dfe-a274-02d114fe564b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\flash\nor">
+      <UniqueIdentifier>{2a961961-69ed-4870-a892-f0ea3dae162e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\helper">
+      <UniqueIdentifier>{099da3e8-1ea6-415d-ae84-cd535ece5f97}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\jtag">
+      <UniqueIdentifier>{1afdec80-a5d3-4923-8cf6-b3353228f979}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\pld">
+      <UniqueIdentifier>{c1721028-9c29-45ce-8f6d-4960ee505b9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rtos">
+      <UniqueIdentifier>{3a280c59-d6f0-43ef-8698-ee4d2a31a6e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\rtt">
+      <UniqueIdentifier>{23870417-3020-4245-9ca9-e8821bca0e6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\server">
+      <UniqueIdentifier>{970d307e-c969-40f9-8db6-41adcb146072}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\svf">
+      <UniqueIdentifier>{44bfd4bb-8023-4575-9748-d0635dd8e651}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\target">
+      <UniqueIdentifier>{7d1e2bed-1f54-4076-8d69-6c0859d95e39}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\transport">
+      <UniqueIdentifier>{5b426a46-4765-43b3-8c48-fd30a04dca77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\xsvf">
+      <UniqueIdentifier>{b010eea1-6636-4d6b-81e3-1909baae274a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\openocd.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\xsvf\xsvf.c">
+      <Filter>src\xsvf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\base64.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\binarybuffer.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\command.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\configuration.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\crc32.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\fileio.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\jep106.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\jim-nvp.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\log.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\nvp.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\options.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\replacements.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\time_support.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\time_support_common.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\util.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\adapter.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\commands.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\core.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\interface.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\interfaces.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\swim.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\jtag_tcl.c">
+      <Filter>src\jtag</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\transport\transport.c">
+      <Filter>src\transport</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\a64_disassembler.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\aarch64.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_dapdirect.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_jtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_swd.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\algorithm.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_cmd.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_jtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_mem.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_adi_v5.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_cti.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_dap.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_disassembler.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_dpm.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_jtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_semihosting.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_simulator.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_tpiu_swo.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm7_9_common.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm7tdmi.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm9tdmi.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm11.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm11_dbgtap.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm720t.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm920t.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm926ejs.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm946e.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm966e.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5_cache.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5_mmu.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_cache.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_cache_l2x.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_mmu.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m_cache.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m_trace.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_cache.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_dpm.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_opcodes.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_ap7k.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_jtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_mem.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_regs.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avrt.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\breakpoints.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\cortex_a.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\cortex_m.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp563xx.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp563xx_once.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp5680xx.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\embeddedice.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc_jtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc_trace.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etb.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etm.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etm_dummy.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\fa526.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\feroceon.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\hla_target.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\image.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\lakemont.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\ls1_sap.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mem_ap.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_ejtag.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_m4k.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_mips64.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32_dmaacc.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32_pracc.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips64.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips64_pracc.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\quark_d20xx.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\quark_x10xx.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\register.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target_rtt.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\semihosting_common.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\smp.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\stm8.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target_request.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\testee.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\trace.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\x86_32_common.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xscale.c">
+      <Filter>src\target</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\svf\svf.c">
+      <Filter>src\svf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\gdb_server.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\ipdbg.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\rtt_server.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\server.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\tcl_server.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\server\telnet_server.c">
+      <Filter>src\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtt\rtt.c">
+      <Filter>src\rtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtt\tcl.c">
+      <Filter>src\rtt</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\chibios.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\chromium-ec.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\ecos.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\embkernel.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\freertos.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\hwthread.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\linux.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\mqx.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\nuttx.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\riot.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtkernel.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_chibios_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_ecos_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_embkernel_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_mqx_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_nuttx_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_riot_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_standard_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\rtos_ucos_iii_stackings.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\threadx.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\ucos_iii.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\rtos\zephyr.c">
+      <Filter>src\rtos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\certus.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\ecp2_3.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\ecp5.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\efinix.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\gatemate.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\gowin.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\intel.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\lattice.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\lattice_bit.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\pld.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\raw_bit.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\virtex2.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pld\xilinx_bit.c">
+      <Filter>src\pld</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\helper\types.c">
+      <Filter>src\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="getopt.c">
+      <Filter>src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\openocd.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\xsvf\xsvf.h">
+      <Filter>src\xsvf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\align.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\base64.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\binarybuffer.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\bitfield.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\bits.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\command.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\compiler.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\configuration.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\crc32.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\fileio.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\jep106.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\jim-nvp.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\list.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\log.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\nvp.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\replacements.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\string_choices.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\system.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\time_support.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\types.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\helper\util.h">
+      <Filter>src\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\adapter.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\commands.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\interface.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\interfaces.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\jtag.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\minidriver.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\swd.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\swim.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\tcl.h">
+      <Filter>src\jtag</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\transport\transport.h">
+      <Filter>src\transport</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\a64_disassembler.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\aarch64.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\algorithm.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_cmd.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_jtag.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_mem.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_adi_v5.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_coresight.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_cti.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_disassembler.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_dpm.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_jtag.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_opcodes.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_semihosting.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_simulator.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_tpiu_swo.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm7_9_common.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm7tdmi.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm9tdmi.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm11.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm11_dbgtap.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm720t.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm920t.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm926ejs.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm946e.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm966e.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5_cache.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5_mmu.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_cache.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_cache_l2x.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_mmu.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m_cache.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m_trace.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_cache.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_dpm.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_opcodes.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_ap7k.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_jtag.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_mem.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_regs.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avrt.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\breakpoints.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\cortex_a.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\cortex_m.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp563xx.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp563xx_once.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp5680xx.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\embeddedice.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_jtag.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_regs.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_trace.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etb.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etm.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etm_dummy.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\image.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\lakemont.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_cpu.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_ejtag.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_m4k.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_mips64.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32_dmaacc.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32_pracc.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips64.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips64_pracc.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\register.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\rtt.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\semihosting_common.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\smp.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target_request.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target_type.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\trace.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\x86_32_common.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xscale.h">
+      <Filter>src\target</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\svf\svf.h">
+      <Filter>src\svf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\gdb_server.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\ipdbg.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\rtt_server.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\server.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\tcl_server.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\server\telnet_server.h">
+      <Filter>src\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtt\rtt.h">
+      <Filter>src\rtt</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\linux_header.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_chibios_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_ecos_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_embkernel_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_mqx_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_nuttx_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_riot_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_standard_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\rtos\rtos_ucos_iii_stackings.h">
+      <Filter>src\rtos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\certus.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\ecp2_3.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\ecp5.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\lattice.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\lattice_bit.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\lattice_cmd.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\pld.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\raw_bit.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\virtex2.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pld\xilinx_bit.h">
+      <Filter>src\pld</Filter>
+    </ClInclude>
+    <ClInclude Include="config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="getopt.h">
+      <Filter>src</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\helper\jep106.inc">
+      <Filter>src\helper</Filter>
+    </None>
+  </ItemGroup>
+</Project>
