@@ -66,7 +66,7 @@ static char *find_exe_path(void)
 		exepath = malloc(MAX_PATH);
 		if (!exepath)
 			break;
-		GetModuleFileName(NULL, exepath, MAX_PATH);
+		GetModuleFileNameA(NULL, exepath, MAX_PATH);
 
 		/* Convert path separators to UNIX style, should work on Windows also. */
 		for (char *p = exepath; *p; p++) {

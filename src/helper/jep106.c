@@ -12,7 +12,7 @@
 #include "jep106.h"
 #include "log.h"
 
-static const char * const jep106[][126] = {
+static const char * const jep106[17][126] = {
 #include "jep106.inc"
 };
 
