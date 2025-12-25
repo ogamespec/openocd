@@ -389,7 +389,7 @@ static void flip_u8(uint8_t *out, const uint8_t *in, int len)
 static bool need_bit_reverse(const uint8_t *buffer)
 {
 	const size_t L = 20;
-	uint8_t reference[L];
+	uint8_t reference[20];
 	memset(reference, 0xFF, 16);
 	reference[16] = 0x55;
 	reference[17] = 0x99;

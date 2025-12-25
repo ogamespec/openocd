@@ -1,5 +1,5 @@
-#include <inttypes.h>
-#include <stdbool.h>
+#define HAVE_INTTYPES_H
+#define HAVE_STDBOOL_H
 
 #if defined(_MSC_VER)
 #include <BaseTsd.h>
