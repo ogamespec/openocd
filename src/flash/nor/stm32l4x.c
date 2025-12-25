@@ -1472,7 +1472,7 @@ static int stm32l4_protect_same_bank(struct flash_bank *bank, enum stm32_bank_id
 
 	/* we have at most 'n_wrp' WRP areas
 	 * add one range if the user is trying to protect a fifth range */
-	struct range ranges[n_wrp + 1];
+	struct range *ranges = malloc ((n_wrp + 1) * sizeof(struct range));
 	unsigned int ranges_count = 0;
 
 	bitmap_to_ranges(pages, bank->num_sectors, ranges, &ranges_count);
@@ -1495,6 +1495,7 @@ static int stm32l4_protect_same_bank(struct flash_bank *bank, enum stm32_bank_id
 
 	/* check the ranges_count after the user request */
 	bitmap_to_ranges(pages, bank->num_sectors, ranges, &ranges_count);
+	UNDECLARE_BITMAP(pages);
 
 	/* pretty-print the requested areas for protection */
 	if (ranges_count > 0) {
@@ -1505,6 +1506,7 @@ static int stm32l4_protect_same_bank(struct flash_bank *bank, enum stm32_bank_id
 		LOG_DEBUG("requested areas for protection: none");
 
 	if (ranges_count > n_wrp) {
+		free(ranges);
 		LOG_ERROR("cannot set the requested protection "
 				"(only %u write protection areas are available)" , n_wrp);
 		return ERROR_FAIL;
@@ -1523,7 +1525,9 @@ static int stm32l4_protect_same_bank(struct flash_bank *bank, enum stm32_bank_id
 	}
 
 	/* finally write WRPxy registers */
-	return stm32l4_write_all_wrpxy(bank, wrpxy, n_wrp);
+	ret = stm32l4_write_all_wrpxy(bank, wrpxy, n_wrp);
+	free(ranges);
+	return ret;
 }
 
 static int stm32l4_protect(struct flash_bank *bank, int set, unsigned int first, unsigned int last)
@@ -2691,10 +2695,11 @@ COMMAND_HANDLER(stm32l4_handle_wrp_info_command)
 	}
 
 	/* we have at most 'n_wrp' WRP areas */
-	struct range ranges[n_wrp];
+	struct range *ranges = malloc(n_wrp * sizeof(struct range));
 	unsigned int ranges_count = 0;
 
 	bitmap_to_ranges(pages, bank->num_sectors, ranges, &ranges_count);
+	UNDECLARE_BITMAP(pages);
 
 	if (ranges_count > 0) {
 		/* pretty-print the protected ranges */
@@ -2703,6 +2708,7 @@ COMMAND_HANDLER(stm32l4_handle_wrp_info_command)
 		free(ranges_str);
 	} else
 		command_print(CMD, "no protected areas");
+	free(ranges);
 
 	return ERROR_OK;
 }

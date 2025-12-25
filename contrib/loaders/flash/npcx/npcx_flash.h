@@ -148,13 +148,15 @@
 #define NPCX_MASK_CMD_WR_4BYTE           (0xC0 | 0x20 | 0x10 | 0x04)
 
 /* Flash loader parameters */
-struct __attribute__((__packed__)) npcx_flash_params {
+#pragma pack(push,1)
+struct npcx_flash_params {
 	uint32_t fiu_ver; /* Flash controller unit version */
 	uint32_t addr; /* Address in flash */
 	uint32_t len;  /* Number of bytes */
 	uint32_t cmd;  /* Command */
 	uint32_t sync; /* Handshake signal */
 };
+#pragma pack(pop)
 
 /* Flash trigger signal */
 enum npcx_flash_handshake {
