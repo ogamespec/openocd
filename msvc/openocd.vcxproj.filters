@@ -528,6 +528,9 @@
     <ClCompile Include="..\src\helper\types.c">
       <Filter>src\helper</Filter>
     </ClCompile>
+    <ClCompile Include="getopt.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\openocd.h">
@@ -960,6 +963,9 @@
       <Filter>src\pld</Filter>
     </ClInclude>
     <ClInclude Include="config.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="getopt.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>

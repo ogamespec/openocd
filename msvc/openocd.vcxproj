@@ -180,6 +180,7 @@
     <ClCompile Include="..\src\target\xscale.c" />
     <ClCompile Include="..\src\transport\transport.c" />
     <ClCompile Include="..\src\xsvf\xsvf.c" />
+    <ClCompile Include="getopt.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\helper\align.h" />
@@ -326,6 +327,7 @@
     <ClInclude Include="..\src\transport\transport.h" />
     <ClInclude Include="..\src\xsvf\xsvf.h" />
     <ClInclude Include="config.h" />
+    <ClInclude Include="getopt.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="jimtcl.vcxproj">
