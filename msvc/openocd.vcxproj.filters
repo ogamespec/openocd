@@ -973,8 +973,5 @@
     <None Include="..\src\helper\jep106.inc">
       <Filter>src\helper</Filter>
     </None>
-    <None Include="..\src\server\startup.tcl">
-      <Filter>src\server</Filter>
-    </None>
   </ItemGroup>
 </Project>

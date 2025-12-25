@@ -614,7 +614,7 @@ static void telnet_auto_complete(struct connection *connection)
 	/* optimize multiple spaces in the user command,
 	 * because info commands does not tolerate multiple spaces */
 	size_t optimized_spaces = 0;
-	char query[usr_cmd_len + 1];
+	char *query = malloc (usr_cmd_len + 1);
 	for (size_t i = 0; i < usr_cmd_len; i++) {
 		if ((i < usr_cmd_len - 1) && isspace(t_con->line[usr_cmd_pos + i])
 				&& isspace(t_con->line[usr_cmd_pos + i + 1])) {
@@ -635,6 +635,8 @@ static void telnet_auto_complete(struct connection *connection)
 		query_cmd = alloc_printf("lsort [info vars {%s*}]", query);
 	else
 		query_cmd = alloc_printf("_telnet_autocomplete_helper {%s*}", query);
+
+	free(query);
 
 	if (!query_cmd) {
 		LOG_ERROR("Out of memory");

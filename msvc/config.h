@@ -1,4 +1,5 @@
 #include <inttypes.h>
+#include <stdbool.h>
 
 #if defined(_MSC_VER)
 #include <BaseTsd.h>
@@ -17,3 +18,5 @@ typedef SSIZE_T ssize_t;
 #define RELSTR " Release"
 #endif
 #define GITVERSION "0.12"
+
+#include <WinSock2.h>

@@ -4,3 +4,4 @@ jimtcl
 x64
 Win32
 !config.h
+!startup_tcl.inc
