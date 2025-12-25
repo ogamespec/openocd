@@ -335,8 +335,8 @@ static int dtmcs_scan_via_bscan(struct jtag_tap *tap, uint32_t out, uint32_t *in
 	uint8_t in_value[5] = {0};
 
 	buf_set_u32(out_value, 0, 32, out);
-	struct scan_field tunneled_ir[4] = {};
-	struct scan_field tunneled_dr[4] = {};
+	struct scan_field tunneled_ir[4] = {0};
+	struct scan_field tunneled_dr[4] = {0};
 
 	if (bscan_tunnel_type == BSCAN_TUNNEL_DATA_REGISTER) {
 		tunneled_ir[0].num_bits = 3;
@@ -700,9 +700,9 @@ static void free_wp_triggers_cache(struct target *target)
 
 	for (unsigned int i = 0; i < r->trigger_count; ++i) {
 		struct tdata1_cache *elem_1, *tmp_1;
-		list_for_each_entry_safe(elem_1, tmp_1, &r->wp_triggers_negative_cache[i], elem_tdata1) {
+		list_for_each_entry_safe(elem_1, struct tdata1_cache, tmp_1, struct tdata1_cache, &r->wp_triggers_negative_cache[i], elem_tdata1) {
 			struct tdata2_cache *elem_2, *tmp_2;
-			list_for_each_entry_safe(elem_2, tmp_2, &elem_1->tdata2_cache_head, elem_tdata2) {
+			list_for_each_entry_safe(elem_2, struct tdata2_cache, tmp_2, struct tdata2_cache, &elem_1->tdata2_cache_head, elem_tdata2) {
 				list_del(&elem_2->elem_tdata2);
 				free(elem_2);
 			}
@@ -739,17 +739,17 @@ static void riscv_deinit_target(struct target *target)
 	free(info->reserved_triggers);
 
 	range_list_t *entry, *tmp;
-	list_for_each_entry_safe(entry, tmp, &info->hide_csr, list) {
+	list_for_each_entry_safe(entry, range_list_t, tmp, range_list_t, &info->hide_csr, list) {
 		free(entry->name);
 		free(entry);
 	}
 
-	list_for_each_entry_safe(entry, tmp, &info->expose_csr, list) {
+	list_for_each_entry_safe(entry, range_list_t, tmp, range_list_t, &info->expose_csr, list) {
 		free(entry->name);
 		free(entry);
 	}
 
-	list_for_each_entry_safe(entry, tmp, &info->expose_custom, list) {
+	list_for_each_entry_safe(entry, range_list_t, tmp, range_list_t, &info->expose_custom, list) {
 		free(entry->name);
 		free(entry);
 	}
@@ -1000,7 +1000,7 @@ static void tdata2_cache_alloc(struct list_head *tdata2_cache_head, riscv_reg_t 
 struct tdata2_cache *tdata2_cache_search(struct list_head *tdata2_cache_head, riscv_reg_t find_tdata2)
 {
 	struct tdata2_cache *elem_2;
-	list_for_each_entry(elem_2, tdata2_cache_head, elem_tdata2) {
+	list_for_each_entry(elem_2, struct tdata2_cache, tdata2_cache_head, elem_tdata2) {
 		if (elem_2->tdata2 == find_tdata2)
 			return elem_2;
 	}
@@ -1010,7 +1010,7 @@ struct tdata2_cache *tdata2_cache_search(struct list_head *tdata2_cache_head, ri
 struct tdata1_cache *tdata1_cache_search(struct list_head *tdata1_cache_head, riscv_reg_t find_tdata1)
 {
 	struct tdata1_cache *elem_1;
-	list_for_each_entry(elem_1, tdata1_cache_head, elem_tdata1) {
+	list_for_each_entry(elem_1, struct tdata1_cache, tdata1_cache_head, elem_tdata1) {
 		if (elem_1->tdata1 == find_tdata1)
 			return elem_1;
 	}
@@ -1502,15 +1502,19 @@ static int write_by_given_size(struct target *target, target_addr_t address,
 
 	unsigned int offset_head = address % access_size;
 	unsigned int n_blocks = ((size + offset_head) <= access_size) ? 1 : 2;
-	uint8_t helper_buf[n_blocks * access_size];
+	uint8_t *helper_buf = malloc(n_blocks * access_size);
 
 	/* Read from memory */
-	if (target_read_memory(target, address - offset_head, access_size, n_blocks, helper_buf) != ERROR_OK)
+	if (target_read_memory(target, address - offset_head, access_size, n_blocks, helper_buf) != ERROR_OK) {
+		free(helper_buf);
 		return ERROR_FAIL;
+	}
 
 	/* Modify and write back */
 	memcpy(helper_buf + offset_head, buffer, size);
-	return target_write_memory(target, address - offset_head, access_size, n_blocks, helper_buf);
+	int retval = target_write_memory(target, address - offset_head, access_size, n_blocks, helper_buf);
+	free(helper_buf);
+	return retval;
 }
 
 /**
@@ -1529,14 +1533,17 @@ static int read_by_given_size(struct target *target, target_addr_t address,
 
 	unsigned int offset_head = address % access_size;
 	unsigned int n_blocks = ((size + offset_head) <= access_size) ? 1 : 2;
-	uint8_t helper_buf[n_blocks * access_size];
+	uint8_t *helper_buf = malloc(n_blocks * access_size);
 
 	/* Read from memory */
-	if (target_read_memory(target, address - offset_head, access_size, n_blocks, helper_buf) != ERROR_OK)
+	if (target_read_memory(target, address - offset_head, access_size, n_blocks, helper_buf) != ERROR_OK) {
+		free(helper_buf);
 		return ERROR_FAIL;
+	}
 
 	/* Pick the requested portion from the buffer */
 	memcpy(buffer, helper_buf + offset_head, size);
+	free(helper_buf);
 	return ERROR_OK;
 }
 
@@ -2374,7 +2381,7 @@ static int riscv_hit_watchpoint(struct target *target, struct watchpoint **hit_w
 	LOG_TARGET_DEBUG(target, "dpc is 0x%" PRIx64, dpc);
 
 	/* fetch the instruction at dpc */
-	uint8_t buffer[length];
+	uint8_t buffer[4];
 	if (target_read_buffer(target, dpc, length, buffer) != ERROR_OK) {
 		LOG_TARGET_ERROR(target, "Failed to read instruction at dpc 0x%" PRIx64,
 						 dpc);
@@ -2721,13 +2728,13 @@ int riscv_halt(struct target *target)
 	int result = ERROR_OK;
 	if (target->smp) {
 		struct target_list *tlist;
-		foreach_smp_target(tlist, target->smp_targets) {
+		foreach_smp_target(tlist, struct target_list, target->smp_targets) {
 			struct target *t = tlist->target;
 			if (halt_prep(t) != ERROR_OK)
 				result = ERROR_FAIL;
 		}
 
-		foreach_smp_target(tlist, target->smp_targets) {
+		foreach_smp_target(tlist, struct target_list, target->smp_targets) {
 			struct target *t = tlist->target;
 			struct riscv_info *i = riscv_info(t);
 			if (i->prepped) {
@@ -2736,7 +2743,7 @@ int riscv_halt(struct target *target)
 			}
 		}
 
-		foreach_smp_target(tlist, target->smp_targets) {
+		foreach_smp_target(tlist, struct target_list, target->smp_targets) {
 			struct target *t = tlist->target;
 			if (halt_finish(t) != ERROR_OK)
 				return ERROR_FAIL;
@@ -2945,7 +2952,7 @@ static int riscv_resume(struct target *target,
 				debug_execution ? "true" : "false");
 
 	struct target_list *tlist;
-	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, targets) {
+	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, struct target_list, targets) {
 		struct target *t = tlist->target;
 		LOG_TARGET_DEBUG(t, "target->state=%s", target_state_name(t));
 		if (t->state != TARGET_HALTED)
@@ -2955,7 +2962,7 @@ static int riscv_resume(struct target *target,
 			result = ERROR_FAIL;
 	}
 
-	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, targets) {
+	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, struct target_list, targets) {
 		struct target *t = tlist->target;
 		struct riscv_info *i = riscv_info(t);
 		if (i->prepped) {
@@ -2965,7 +2972,7 @@ static int riscv_resume(struct target *target,
 		}
 	}
 
-	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, targets) {
+	foreach_smp_target_direction(resume_order == RO_NORMAL, tlist, struct target_list, targets) {
 		struct target *t = tlist->target;
 		if (t->state == TARGET_HALTED) {
 			if (resume_finish(t, debug_execution) != ERROR_OK)
@@ -4042,7 +4049,7 @@ int riscv_openocd_poll(struct target *target)
 	unsigned int running = 0;
 	unsigned int cause_groups = 0;
 	struct target_list *entry;
-	foreach_smp_target(entry, targets) {
+	foreach_smp_target(entry, struct target_list, targets) {
 		struct target *t = entry->target;
 		struct riscv_info *info = riscv_info(t);
 
@@ -4104,7 +4111,7 @@ int riscv_openocd_poll(struct target *target)
 		 *    to get them back in sync. */
 
 		/* Detect if the harts are just in the process of halting due to a halt group */
-		foreach_smp_target(entry, targets)
+		foreach_smp_target(entry, struct target_list, targets)
 		{
 			struct target *t = entry->target;
 			if (t->state == TARGET_HALTED) {
@@ -4147,7 +4154,7 @@ int riscv_openocd_poll(struct target *target)
 	} else {
 		/* For targets that were discovered to be halted, call the
 		 * appropriate callback. */
-		foreach_smp_target(entry, targets)
+		foreach_smp_target(entry, struct target_list, targets)
 		{
 			struct target *t = entry->target;
 			struct riscv_info *info = riscv_info(t);
@@ -4164,7 +4171,7 @@ int riscv_openocd_poll(struct target *target)
 	 * layer. The reason it's outside the previous loop is that at this point
 	 * the state of every hart has settled, so any side effects happening in
 	 * tick() won't affect the delicate poll() code. */
-	foreach_smp_target(entry, targets) {
+	foreach_smp_target(entry, struct target_list, targets) {
 		struct target *t = entry->target;
 		struct riscv_info *info = riscv_info(t);
 		if (info->tick && info->tick(t) != ERROR_OK)
@@ -4172,7 +4179,7 @@ int riscv_openocd_poll(struct target *target)
 	}
 
 	/* Sample memory if any target is running. */
-	foreach_smp_target(entry, targets) {
+	foreach_smp_target(entry, struct target_list, targets) {
 		struct target *t = entry->target;
 		if (t->state == TARGET_RUNNING) {
 			sample_memory(target);
@@ -4486,7 +4493,7 @@ static int parse_reg_ranges_impl(struct list_head *ranges, char *args,
 
 		/* Check for overlap, name uniqueness. */
 		range_list_t *entry;
-		list_for_each_entry(entry, ranges, list) {
+		list_for_each_entry(entry, range_list_t, ranges, list) {
 			if (entry->low <= high && low <= entry->high) {
 				if (low == high)
 					LOG_WARNING("Duplicate %s register number - "

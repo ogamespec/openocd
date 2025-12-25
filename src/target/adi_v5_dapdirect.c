@@ -218,8 +218,11 @@ static struct transport dapdirect_swd_transport = {
 	.init = dapdirect_init,
 };
 
+#ifdef __GNUC__
 static void dapdirect_constructor(void) __attribute__((constructor));
-static void dapdirect_constructor(void)
+static 
+#endif
+void dapdirect_constructor(void)
 {
 	transport_register(&dapdirect_jtag_transport);
 	transport_register(&dapdirect_swd_transport);

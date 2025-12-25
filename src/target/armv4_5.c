@@ -578,9 +578,11 @@ static struct reg arm_gdb_dummy_fps_reg = {
 	.group = "fake_fpa",
 };
 
+#ifdef __GNUC__
 static void arm_gdb_dummy_init(void) __attribute__ ((constructor));
-
-static void arm_gdb_dummy_init(void)
+static 
+#endif
+void arm_gdb_dummy_init(void)
 {
 	register_init_dummy(&arm_gdb_dummy_fp_reg);
 	register_init_dummy(&arm_gdb_dummy_fps_reg);

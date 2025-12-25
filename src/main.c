@@ -25,11 +25,17 @@
 void hl_constructor(void);
 void jtag_constructor(void);
 void swim_constructor(void);
+void swd_constructor(void);
+void dapdirect_constructor(void);
+void arm_gdb_dummy_init(void);
 void init_ctors()
 {
 	hl_constructor();
 	jtag_constructor();
 	swim_constructor();
+	swd_constructor();
+	dapdirect_constructor();
+	arm_gdb_dummy_init();
 }
 #endif
 

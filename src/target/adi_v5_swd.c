@@ -761,8 +761,11 @@ static struct transport swd_transport = {
 	.init = swd_init,
 };
 
+#ifdef __GNUC__
 static void swd_constructor(void) __attribute__((constructor));
-static void swd_constructor(void)
+static 
+#endif
+void swd_constructor(void)
 {
 	transport_register(&swd_transport);
 }

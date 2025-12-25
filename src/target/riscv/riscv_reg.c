@@ -141,7 +141,7 @@ static void init_custom_csr_names(const struct target *target)
 	RISCV_INFO(info);
 	range_list_t *entry;
 
-	list_for_each_entry(entry, &info->expose_csr, list) {
+	list_for_each_entry(entry, range_list_t, &info->expose_csr, list) {
 		if (!entry->name)
 			continue;
 		assert(entry->low == entry->high);
@@ -556,7 +556,7 @@ static unsigned int gdb_regno_custom_number(const struct target *target, uint32_
 	unsigned int regno_start = GDB_REGNO_COUNT;
 	unsigned int start = 0;
 	unsigned int offset = 0;
-	list_for_each_entry(range, &info->expose_custom, list) {
+	list_for_each_entry(range, range_list_t, &info->expose_custom, list) {
 		start = range->low;
 		assert(regno >= regno_start);
 		offset = regno - regno_start;
@@ -643,7 +643,7 @@ static int init_custom_register_names(struct list_head *expose_custom,
 	unsigned int custom_regs_num = 0;
 	if (!list_empty(expose_custom)) {
 		range_list_t *entry;
-		list_for_each_entry(entry, expose_custom, list)
+		list_for_each_entry(entry, range_list_t, expose_custom, list)
 			custom_regs_num += entry->high - entry->low + 1;
 	}
 
@@ -659,7 +659,7 @@ static int init_custom_register_names(struct list_head *expose_custom,
 	char **reg_names = custom_register_names->reg_names;
 	range_list_t *range;
 	unsigned int next_custom_reg_index = 0;
-	list_for_each_entry(range, expose_custom, list) {
+	list_for_each_entry(range, range_list_t, expose_custom, list) {
 		for (unsigned int custom_number = range->low; custom_number <= range->high; ++custom_number) {
 			if (range->name)
 				reg_names[next_custom_reg_index] = init_reg_name(range->name);
@@ -710,7 +710,7 @@ int riscv_reg_impl_expose_csrs(const struct target *target)
 {
 	RISCV_INFO(info);
 	range_list_t *entry;
-	list_for_each_entry(entry, &info->expose_csr, list) {
+	list_for_each_entry(entry, range_list_t, &info->expose_csr, list) {
 		assert(entry->low <= entry->high);
 		assert(entry->high <= GDB_REGNO_CSR4095 - GDB_REGNO_CSR0);
 		const enum gdb_regno last_regno = GDB_REGNO_CSR0 + entry->high;
@@ -737,7 +737,7 @@ void riscv_reg_impl_hide_csrs(const struct target *target)
 {
 	RISCV_INFO(info);
 	range_list_t *entry;
-	list_for_each_entry(entry, &info->hide_csr, list) {
+	list_for_each_entry(entry, range_list_t, &info->hide_csr, list) {
 		assert(entry->high <= GDB_REGNO_CSR4095 - GDB_REGNO_CSR0);
 		const enum gdb_regno last_regno = GDB_REGNO_CSR0 + entry->high;
 		for (enum gdb_regno regno = GDB_REGNO_CSR0 + entry->low;

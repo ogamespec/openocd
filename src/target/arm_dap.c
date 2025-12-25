@@ -75,7 +75,7 @@ struct adiv5_dap *dap_instance_by_jim_obj(Jim_Interp *interp, Jim_Obj *o)
 
 	name = Jim_GetString(o, NULL);
 
-	list_for_each_entry(obj, &all_dap, lh) {
+	list_for_each_entry(obj, struct arm_dap_object, &all_dap, lh) {
 		if (!strcmp(name, obj->name)) {
 			found = true;
 			break;
@@ -95,7 +95,7 @@ static int dap_init_all(void)
 
 	LOG_DEBUG("Initializing all DAPs ...");
 
-	list_for_each_entry(obj, &all_dap, lh) {
+	list_for_each_entry(obj, struct arm_dap_object, &all_dap, lh) {
 		struct adiv5_dap *dap = &obj->dap;
 
 		/* with hla, dap is just a dummy */
@@ -162,7 +162,7 @@ int dap_cleanup_all(void)
 	struct arm_dap_object *obj, *tmp;
 	struct adiv5_dap *dap;
 
-	list_for_each_entry_safe(obj, tmp, &all_dap, lh) {
+	list_for_each_entry_safe(obj, struct arm_dap_object, tmp, struct arm_dap_object, &all_dap, lh) {
 		dap = &obj->dap;
 		for (unsigned int i = 0; i <= DP_APSEL_MAX; i++) {
 			if (dap->ap[i].refcount != 0)
@@ -298,7 +298,7 @@ static int dap_check_config(struct adiv5_dap *dap)
 	uint32_t targetsel = dap->multidrop_targetsel;
 	unsigned int non_multidrop_count = had_multidrop ? 0 : 1;
 
-	list_for_each_entry(obj, &all_dap, lh) {
+	list_for_each_entry(obj, struct arm_dap_object, &all_dap, lh) {
 		struct adiv5_dap *dap_it = &obj->dap;
 
 		if (transport_is_swd()) {
@@ -418,7 +418,7 @@ COMMAND_HANDLER(handle_dap_names)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
 	struct arm_dap_object *obj;
-	list_for_each_entry(obj, &all_dap, lh)
+	list_for_each_entry(obj, struct arm_dap_object, &all_dap, lh)
 		command_print(CMD, "%s", obj->name);
 
 	return ERROR_OK;

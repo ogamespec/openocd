@@ -15,8 +15,8 @@
 #define foreach_smp_target(pos, tpos, head) \
 	list_for_each_entry(pos, tpos, head, lh)
 
-#define foreach_smp_target_direction(forward, pos, head) \
-	list_for_each_entry_direction(forward, pos, head, lh)
+#define foreach_smp_target_direction(forward, pos, tpos, head) \
+	list_for_each_entry_direction(forward, pos, tpos, head, lh)
 
 extern const struct command_registration smp_command_handlers[];
 

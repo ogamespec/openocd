@@ -153,7 +153,7 @@ static int arm_tpiu_swo_poll_trace(void *priv)
 	}
 
 	if (obj->out_filename[0] == ':')
-		list_for_each_entry(c, &obj->connections, lh)
+		list_for_each_entry(c, struct arm_tpiu_swo_connection, &obj->connections, lh)
 			if (connection_write(c->connection, buf, size) != (int)size)
 				LOG_ERROR("Error writing to connection"); /* FIXME: which connection? */
 
@@ -210,7 +210,7 @@ int arm_tpiu_swo_cleanup_all(void)
 {
 	struct arm_tpiu_swo_object *obj, *tmp;
 
-	list_for_each_entry_safe(obj, tmp, &all_tpiu_swo, lh) {
+	list_for_each_entry_safe(obj, struct arm_tpiu_swo_object, tmp, struct arm_tpiu_swo_object, &all_tpiu_swo, lh) {
 		if (obj->enabled)
 			arm_tpiu_swo_handle_event(obj, TPIU_SWO_EVENT_PRE_DISABLE);
 
@@ -282,7 +282,7 @@ static int arm_tpiu_swo_service_connection_closed(struct connection *connection)
 	struct arm_tpiu_swo_object *obj = priv->obj;
 	struct arm_tpiu_swo_connection *c, *tmp;
 
-	list_for_each_entry_safe(c, tmp, &obj->connections, lh)
+	list_for_each_entry_safe(c, struct arm_tpiu_swo_connection, tmp, struct arm_tpiu_swo_connection, &obj->connections, lh)
 		if (c->connection == connection) {
 			list_del(&c->lh);
 			free(c);
@@ -1003,7 +1003,7 @@ COMMAND_HANDLER(handle_arm_tpiu_swo_names)
 	if (CMD_ARGC != 0)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(obj, &all_tpiu_swo, lh)
+	list_for_each_entry(obj, struct arm_tpiu_swo_object, &all_tpiu_swo, lh)
 		command_print(CMD, "%s", obj->name);
 
 	return ERROR_OK;
@@ -1017,7 +1017,7 @@ COMMAND_HANDLER(handle_arm_tpiu_swo_init)
 	if (CMD_ARGC != 0)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(obj, &all_tpiu_swo, lh) {
+	list_for_each_entry(obj, struct arm_tpiu_swo_object, &all_tpiu_swo, lh) {
 		if (!obj->deferred_enable)
 			continue;
 		LOG_DEBUG("%s: running enable during init", obj->name);
@@ -1043,7 +1043,7 @@ COMMAND_HANDLER(handle_tpiu_deprecated_config_command)
 	}
 
 	if (!list_empty(&all_tpiu_swo)) {
-		obj = list_first_entry(&all_tpiu_swo, typeof(*obj), lh);
+		obj = list_first_entry(&all_tpiu_swo, struct arm_tpiu_swo_object, lh);
 		LOG_INFO(MSG "Using %s", obj->name);
 	} else {
 		struct cortex_m_common *cm = target_to_cm(target);
@@ -1075,7 +1075,7 @@ COMMAND_HANDLER(handle_tpiu_deprecated_config_command)
 		if (retval != ERROR_OK)
 			return retval;
 
-		obj = list_first_entry(&all_tpiu_swo, typeof(*obj), lh);
+		obj = list_first_entry(&all_tpiu_swo, struct arm_tpiu_swo_object, lh);
 		if (set_recheck_ap_cur_target)
 			obj->recheck_ap_cur_target = true;
 	}

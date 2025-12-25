@@ -286,11 +286,11 @@ static int armv8_read_reg(struct armv8_common *armv8, int regnum, uint64_t *regv
 	if (!regval)
 		return ERROR_FAIL;
 
-	switch (regnum) {
-	case 0 ... 30:
+	if (regnum >= 0 && regnum <= 30) {
 		retval = dpm->instr_read_data_dcc_64(dpm,
-				ARMV8_MSR_GP(SYSTEM_DBG_DBGDTR_EL0, regnum), &value_64);
-		break;
+			ARMV8_MSR_GP(SYSTEM_DBG_DBGDTR_EL0, regnum), &value_64);
+	}
+	else switch (regnum) {
 	case ARMV8_SP:
 		retval = dpm->instr_read_data_r0_64(dpm,
 				ARMV8_MOVFSP_64(0), &value_64);
@@ -415,15 +415,15 @@ static int armv8_read_reg_simdfp_aarch64(struct armv8_common *armv8, int regnum,
 	int retval = ERROR_FAIL;
 	struct arm_dpm *dpm = &armv8->dpm;
 
-	switch (regnum) {
-	case ARMV8_V0 ... ARMV8_V31:
+	if (regnum >= ARMV8_V0 && regnum <= ARMV8_V31) {
 		retval = dpm->instr_read_data_r0_64(dpm,
-				ARMV8_MOV_GPR_VFP(0, (regnum - ARMV8_V0), 1), hvalue);
+			ARMV8_MOV_GPR_VFP(0, (regnum - ARMV8_V0), 1), hvalue);
 		if (retval != ERROR_OK)
 			return retval;
 		retval = dpm->instr_read_data_r0_64(dpm,
-				ARMV8_MOV_GPR_VFP(0, (regnum - ARMV8_V0), 0), lvalue);
-		break;
+			ARMV8_MOV_GPR_VFP(0, (regnum - ARMV8_V0), 0), lvalue);
+	}
+	else switch (regnum) {
 
 	default:
 		retval = ERROR_FAIL;
@@ -440,12 +440,12 @@ static int armv8_write_reg(struct armv8_common *armv8, int regnum, uint64_t valu
 	int retval;
 	uint32_t value;
 
-	switch (regnum) {
-	case 0 ... 30:
+	if (regnum >= 0 && regnum <= 30) {
 		retval = dpm->instr_write_data_dcc_64(dpm,
 			ARMV8_MRS(SYSTEM_DBG_DBGDTR_EL0, regnum),
 			value_64);
-		break;
+	}
+	else switch (regnum) {
 	case ARMV8_SP:
 		retval = dpm->instr_write_data_r0_64(dpm,
 			ARMV8_MOVTSP_64(0),
@@ -570,7 +570,38 @@ static int armv8_write_reg_simdfp_aarch64(struct armv8_common *armv8, int regnum
 	struct arm_dpm *dpm = &armv8->dpm;
 
 	switch (regnum) {
-	case ARMV8_V0 ... ARMV8_V31:
+	case ARMV8_V0:
+	case ARMV8_V1:
+	case ARMV8_V2:
+	case ARMV8_V3:
+	case ARMV8_V4:
+	case ARMV8_V5:
+	case ARMV8_V6:
+	case ARMV8_V7:
+	case ARMV8_V8:
+	case ARMV8_V9:
+	case ARMV8_V10:
+	case ARMV8_V11:
+	case ARMV8_V12:
+	case ARMV8_V13:
+	case ARMV8_V14:
+	case ARMV8_V15:
+	case ARMV8_V16:
+	case ARMV8_V17:
+	case ARMV8_V18:
+	case ARMV8_V19:
+	case ARMV8_V20:
+	case ARMV8_V21:
+	case ARMV8_V22:
+	case ARMV8_V23:
+	case ARMV8_V24:
+	case ARMV8_V25:
+	case ARMV8_V26:
+	case ARMV8_V27:
+	case ARMV8_V28:
+	case ARMV8_V29:
+	case ARMV8_V30:
+	case ARMV8_V31:
 		retval = dpm->instr_write_data_r0_64(dpm,
 				ARMV8_MOV_VFP_GPR((regnum - ARMV8_V0), 0, 1), hvalue);
 		if (retval != ERROR_OK)
@@ -597,7 +628,21 @@ static int armv8_read_reg32(struct armv8_common *armv8, int regnum, uint64_t *re
 		return ERROR_FAIL;
 
 	switch (regnum) {
-	case ARMV8_R0 ... ARMV8_R14:
+	case ARMV8_R0:
+	case ARMV8_R1:
+	case ARMV8_R2:
+	case ARMV8_R3:
+	case ARMV8_R4:
+	case ARMV8_R5:
+	case ARMV8_R6:
+	case ARMV8_R7:
+	case ARMV8_R8:
+	case ARMV8_R9:
+	case ARMV8_R10:
+	case ARMV8_R11:
+	case ARMV8_R12:
+	case ARMV8_R13:
+	case ARMV8_R14:
 		/* return via DCC:  "MCR p14, 0, Rnum, c0, c5, 0" */
 		retval = dpm->instr_read_data_dcc(dpm,
 			ARMV4_5_MCR(14, 0, regnum, 0, 5, 0),
@@ -686,7 +731,22 @@ static int armv8_read_reg_simdfp_aarch32(struct armv8_common *armv8, int regnum,
 	unsigned int num = (regnum - ARMV8_V0) << 1;
 
 	switch (regnum) {
-	case ARMV8_V0 ... ARMV8_V15:
+	case ARMV8_V0:
+	case ARMV8_V1:
+	case ARMV8_V2:
+	case ARMV8_V3:
+	case ARMV8_V4:
+	case ARMV8_V5:
+	case ARMV8_V6:
+	case ARMV8_V7:
+	case ARMV8_V8:
+	case ARMV8_V9:
+	case ARMV8_V10:
+	case ARMV8_V11:
+	case ARMV8_V12:
+	case ARMV8_V13:
+	case ARMV8_V14:
+	case ARMV8_V15:
 		/* we are going to write R1, mark it dirty */
 		reg_r1->dirty = true;
 		/* move from double word register to r0:r1: "vmov r0, r1, vm"
@@ -735,7 +795,21 @@ static int armv8_write_reg32(struct armv8_common *armv8, int regnum, uint64_t va
 	int retval;
 
 	switch (regnum) {
-	case ARMV8_R0 ... ARMV8_R14:
+	case ARMV8_R0:
+	case ARMV8_R1:
+	case ARMV8_R2:
+	case ARMV8_R3:
+	case ARMV8_R4:
+	case ARMV8_R5:
+	case ARMV8_R6:
+	case ARMV8_R7:
+	case ARMV8_R8:
+	case ARMV8_R9:
+	case ARMV8_R10:
+	case ARMV8_R11:
+	case ARMV8_R12:
+	case ARMV8_R13:
+	case ARMV8_R14:
 		/* load register from DCC:  "MRC p14, 0, Rnum, c0, c5, 0" */
 		retval = dpm->instr_write_data_dcc(dpm,
 				ARMV4_5_MRC(14, 0, regnum, 0, 5, 0), value);
@@ -820,7 +894,22 @@ static int armv8_write_reg_simdfp_aarch32(struct armv8_common *armv8, int regnum
 	unsigned int num = (regnum - ARMV8_V0) << 1;
 
 	switch (regnum) {
-	case ARMV8_V0 ... ARMV8_V15:
+	case ARMV8_V0:
+	case ARMV8_V1:
+	case ARMV8_V2:
+	case ARMV8_V3:
+	case ARMV8_V4:
+	case ARMV8_V5:
+	case ARMV8_V6:
+	case ARMV8_V7:
+	case ARMV8_V8:
+	case ARMV8_V9:
+	case ARMV8_V10:
+	case ARMV8_V11:
+	case ARMV8_V12:
+	case ARMV8_V13:
+	case ARMV8_V14:
+	case ARMV8_V15:
 		/* we are going to write R1, mark it dirty */
 		reg_r1->dirty = true;
 		value_r1 = lvalue >> 32;
