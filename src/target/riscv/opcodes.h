@@ -41,55 +41,73 @@ static uint32_t bit(uint32_t value, unsigned int b)
 	return (value >> b) & 1;
 }
 
+#ifdef __GNUC__
 static uint32_t inst_rd(uint32_t r) __attribute__ ((unused));
+#endif
 static uint32_t inst_rd(uint32_t r)
 {
 	return bits(r, 4, 0) << 7;
 }
 
+#ifdef __GNUC__
 static uint32_t inst_rs1(uint32_t r) __attribute__ ((unused));
+#endif
 static uint32_t inst_rs1(uint32_t r)
 {
 	return bits(r, 4, 0) << 15;
 }
 
+#ifdef __GNUC__
 static uint32_t inst_rs2(uint32_t r) __attribute__ ((unused));
+#endif
 static uint32_t inst_rs2(uint32_t r)
 {
 	return bits(r, 4, 0) << 20;
 }
 
+#ifdef __GNUC__
 static uint32_t imm_i(uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t imm_i(uint32_t imm)
 {
 	return bits(imm, 11, 0) << 20;
 }
 
+#ifdef __GNUC__
 static uint32_t imm_s(uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t imm_s(uint32_t imm)
 {
 	return (bits(imm, 4, 0) << 7) | (bits(imm, 11, 5) << 25);
 }
 
+#ifdef __GNUC__
 static uint32_t imm_b(uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t imm_b(uint32_t imm)
 {
 	return (bit(imm, 11) << 7) | (bits(imm, 4, 1) << 8) | (bits(imm, 10, 5) << 25) | (bit(imm, 12) << 31);
 }
 
+#ifdef __GNUC__
 static uint32_t imm_u(uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t imm_u(uint32_t imm)
 {
 	return bits(imm, 31, 12) << 12;
 }
 
+#ifdef __GNUC__
 static uint32_t imm_j(uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t imm_j(uint32_t imm)
 {
 	return (bits(imm, 19, 12) << 12) | (bit(imm, 11) << 20) | (bits(imm, 10, 1) << 21) | (bit(imm, 20) << 31);
 }
 
+#ifdef __GNUC__
 static uint32_t jal(unsigned int rd, int32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t jal(unsigned int rd, int32_t imm)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -99,7 +117,9 @@ static uint32_t jal(unsigned int rd, int32_t imm)
 	return imm_j((uint32_t)imm) | inst_rd(rd) | MATCH_JAL;
 }
 
+#ifdef __GNUC__
 static uint32_t csrsi(unsigned int csr, uint8_t imm) __attribute__ ((unused));
+#endif
 static uint32_t csrsi(unsigned int csr, uint8_t imm)
 {
 	assert(csr <= MAX_CSR_NUM);
@@ -108,7 +128,9 @@ static uint32_t csrsi(unsigned int csr, uint8_t imm)
 	return imm_i(csr) | inst_rs1(imm) | MATCH_CSRRSI;
 }
 
+#ifdef __GNUC__
 static uint32_t sw(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t sw(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_GPR_NUM);
@@ -118,7 +140,9 @@ static uint32_t sw(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_SW;
 }
 
+#ifdef __GNUC__
 static uint32_t sd(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t sd(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_GPR_NUM);
@@ -128,7 +152,9 @@ static uint32_t sd(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_SD;
 }
 
+#ifdef __GNUC__
 static uint32_t sh(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t sh(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_GPR_NUM);
@@ -138,7 +164,9 @@ static uint32_t sh(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_SH;
 }
 
+#ifdef __GNUC__
 static uint32_t sb(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t sb(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_GPR_NUM);
@@ -148,7 +176,9 @@ static uint32_t sb(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_SB;
 }
 
+#ifdef __GNUC__
 static uint32_t ld(unsigned int rd, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t ld(unsigned int rd, unsigned int base, int16_t offset)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -158,7 +188,9 @@ static uint32_t ld(unsigned int rd, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(rd) | MATCH_LD;
 }
 
+#ifdef __GNUC__
 static uint32_t lw(unsigned int rd, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t lw(unsigned int rd, unsigned int base, int16_t offset)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -168,7 +200,9 @@ static uint32_t lw(unsigned int rd, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(rd) | MATCH_LW;
 }
 
+#ifdef __GNUC__
 static uint32_t lh(unsigned int rd, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t lh(unsigned int rd, unsigned int base, int16_t offset)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -178,7 +212,9 @@ static uint32_t lh(unsigned int rd, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(rd) | MATCH_LH;
 }
 
+#ifdef __GNUC__
 static uint32_t lb(unsigned int rd, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t lb(unsigned int rd, unsigned int base, int16_t offset)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -188,7 +224,9 @@ static uint32_t lb(unsigned int rd, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(rd) | MATCH_LB;
 }
 
+#ifdef __GNUC__
 static uint32_t csrw(unsigned int source, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrw(unsigned int source, unsigned int csr)
 {
 	assert(source <= MAX_GPR_NUM);
@@ -197,7 +235,9 @@ static uint32_t csrw(unsigned int source, unsigned int csr)
 	return imm_i(csr) | inst_rs1(source) | MATCH_CSRRW;
 }
 
+#ifdef __GNUC__
 static uint32_t addi(unsigned int dest, unsigned int src, int16_t imm) __attribute__ ((unused));
+#endif
 static uint32_t addi(unsigned int dest, unsigned int src, int16_t imm)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -207,7 +247,9 @@ static uint32_t addi(unsigned int dest, unsigned int src, int16_t imm)
 	return imm_i((uint16_t)imm) | inst_rs1(src) | inst_rd(dest) | MATCH_ADDI;
 }
 
+#ifdef __GNUC__
 static uint32_t csrr(unsigned int rd, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrr(unsigned int rd, unsigned int csr)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -216,7 +258,9 @@ static uint32_t csrr(unsigned int rd, unsigned int csr)
 	return imm_i(csr) | inst_rd(rd) | MATCH_CSRRS;
 }
 
+#ifdef __GNUC__
 static uint32_t csrrs(unsigned int rd, unsigned int rs, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrrs(unsigned int rd, unsigned int rs, unsigned int csr)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -226,7 +270,9 @@ static uint32_t csrrs(unsigned int rd, unsigned int rs, unsigned int csr)
 	return imm_i(csr) | inst_rs1(rs) | inst_rd(rd) | MATCH_CSRRS;
 }
 
+#ifdef __GNUC__
 static uint32_t csrrw(unsigned int rd, unsigned int rs, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrrw(unsigned int rd, unsigned int rs, unsigned int csr)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -236,7 +282,9 @@ static uint32_t csrrw(unsigned int rd, unsigned int rs, unsigned int csr)
 	return imm_i(csr) | inst_rs1(rs) | inst_rd(rd) | MATCH_CSRRW;
 }
 
+#ifdef __GNUC__
 static uint32_t csrrci(unsigned int rd, uint8_t zimm, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrrci(unsigned int rd, uint8_t zimm, unsigned int csr)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -246,7 +294,9 @@ static uint32_t csrrci(unsigned int rd, uint8_t zimm, unsigned int csr)
 	return imm_i(csr) | inst_rs1(zimm) | inst_rd(rd) | MATCH_CSRRCI;
 }
 
+#ifdef __GNUC__
 static uint32_t csrrsi(unsigned int rd, uint8_t zimm, unsigned int csr) __attribute__ ((unused));
+#endif
 static uint32_t csrrsi(unsigned int rd, uint8_t zimm, unsigned int csr)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -256,7 +306,9 @@ static uint32_t csrrsi(unsigned int rd, uint8_t zimm, unsigned int csr)
 	return imm_i(csr) | inst_rs1(zimm) | inst_rd(rd) | MATCH_CSRRSI;
 }
 
+#ifdef __GNUC__
 static uint32_t fsw(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t fsw(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_FPR_NUM);
@@ -266,7 +318,9 @@ static uint32_t fsw(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_FSW;
 }
 
+#ifdef __GNUC__
 static uint32_t fsd(unsigned int src, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t fsd(unsigned int src, unsigned int base, int16_t offset)
 {
 	assert(src <= MAX_FPR_NUM);
@@ -276,7 +330,9 @@ static uint32_t fsd(unsigned int src, unsigned int base, int16_t offset)
 	return imm_s((uint16_t)offset) | inst_rs2(src) | inst_rs1(base) | MATCH_FSD;
 }
 
+#ifdef __GNUC__
 static uint32_t flw(unsigned int dest, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t flw(unsigned int dest, unsigned int base, int16_t offset)
 {
 	assert(dest <= MAX_FPR_NUM);
@@ -286,7 +342,9 @@ static uint32_t flw(unsigned int dest, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(dest) | MATCH_FLW;
 }
 
+#ifdef __GNUC__
 static uint32_t fld(unsigned int dest, unsigned int base, int16_t offset) __attribute__ ((unused));
+#endif
 static uint32_t fld(unsigned int dest, unsigned int base, int16_t offset)
 {
 	assert(dest <= MAX_FPR_NUM);
@@ -296,7 +354,9 @@ static uint32_t fld(unsigned int dest, unsigned int base, int16_t offset)
 	return imm_i((uint16_t)offset) | inst_rs1(base) | inst_rd(dest) | MATCH_FLD;
 }
 
+#ifdef __GNUC__
 static uint32_t fmv_x_w(unsigned int dest, unsigned int src) __attribute__ ((unused));
+#endif
 static uint32_t fmv_x_w(unsigned int dest, unsigned int src)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -305,7 +365,9 @@ static uint32_t fmv_x_w(unsigned int dest, unsigned int src)
 	return inst_rs1(src) | inst_rd(dest) | MATCH_FMV_X_W;
 }
 
+#ifdef __GNUC__
 static uint32_t fmv_x_d(unsigned int dest, unsigned int src) __attribute__ ((unused));
+#endif
 static uint32_t fmv_x_d(unsigned int dest, unsigned int src)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -314,7 +376,9 @@ static uint32_t fmv_x_d(unsigned int dest, unsigned int src)
 	return inst_rs1(src) | inst_rd(dest) | MATCH_FMV_X_D;
 }
 
+#ifdef __GNUC__
 static uint32_t fmv_w_x(unsigned int dest, unsigned int src) __attribute__ ((unused));
+#endif
 static uint32_t fmv_w_x(unsigned int dest, unsigned int src)
 {
 	assert(dest <= MAX_FPR_NUM);
@@ -323,7 +387,9 @@ static uint32_t fmv_w_x(unsigned int dest, unsigned int src)
 	return inst_rs1(src) | inst_rd(dest) | MATCH_FMV_W_X;
 }
 
+#ifdef __GNUC__
 static uint32_t fmv_d_x(unsigned int dest, unsigned int src) __attribute__ ((unused));
+#endif
 static uint32_t fmv_d_x(unsigned int dest, unsigned int src)
 {
 	assert(dest <= MAX_FPR_NUM);
@@ -332,27 +398,37 @@ static uint32_t fmv_d_x(unsigned int dest, unsigned int src)
 	return inst_rs1(src) | inst_rd(dest) | MATCH_FMV_D_X;
 }
 
+#ifdef __GNUC__
 static uint32_t ebreak(void) __attribute__ ((unused));
+#endif
 static uint32_t ebreak(void)
 {
 	return MATCH_EBREAK;
 }
+#ifdef __GNUC__
 static uint32_t ebreak_c(void) __attribute__ ((unused));
+#endif
 static uint32_t ebreak_c(void)
 {
 	return MATCH_C_EBREAK;
 }
 
+#ifdef __GNUC__
 static uint32_t wfi(void) __attribute__ ((unused));
+#endif
 static uint32_t wfi(void) { return MATCH_WFI; }
 
+#ifdef __GNUC__
 static uint32_t fence_i(void) __attribute__ ((unused));
+#endif
 static uint32_t fence_i(void)
 {
 	return MATCH_FENCE_I;
 }
 
+#ifdef __GNUC__
 static uint32_t lui(unsigned int dest, uint32_t imm) __attribute__ ((unused));
+#endif
 static uint32_t lui(unsigned int dest, uint32_t imm)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -361,7 +437,9 @@ static uint32_t lui(unsigned int dest, uint32_t imm)
 	return imm_u(imm) | inst_rd(dest) | MATCH_LUI;
 }
 
+#ifdef __GNUC__
 static uint32_t xori(unsigned int dest, unsigned int src, int16_t imm) __attribute__ ((unused));
+#endif
 static uint32_t xori(unsigned int dest, unsigned int src, int16_t imm)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -371,7 +449,9 @@ static uint32_t xori(unsigned int dest, unsigned int src, int16_t imm)
 	return imm_i((uint16_t)imm) | inst_rs1(src) | inst_rd(dest) | MATCH_XORI;
 }
 
+#ifdef __GNUC__
 static uint32_t srli(unsigned int dest, unsigned int src, uint8_t shamt) __attribute__ ((unused));
+#endif
 static uint32_t srli(unsigned int dest, unsigned int src, uint8_t shamt)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -381,14 +461,18 @@ static uint32_t srli(unsigned int dest, unsigned int src, uint8_t shamt)
 	return inst_rs2(shamt) | inst_rs1(src) | inst_rd(dest) | MATCH_SRLI;
 }
 
+#ifdef __GNUC__
 static uint32_t fence_rw_rw(void) __attribute__((unused));
+#endif
 static uint32_t fence_rw_rw(void)
 {
 	/* fence rw,rw */
 	return MATCH_FENCE | 0x3300000;
 }
 
+#ifdef __GNUC__
 static uint32_t auipc(unsigned int dest) __attribute__((unused));
+#endif
 static uint32_t auipc(unsigned int dest)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -396,7 +480,9 @@ static uint32_t auipc(unsigned int dest)
 	return MATCH_AUIPC | inst_rd(dest);
 }
 
+#ifdef __GNUC__
 static uint32_t vsetvli(unsigned int dest, unsigned int src, uint16_t vtypei) __attribute__((unused));
+#endif
 static uint32_t vsetvli(unsigned int dest, unsigned int src, uint16_t vtypei)
 {
 	assert(dest <= MAX_GPR_NUM);
@@ -406,7 +492,9 @@ static uint32_t vsetvli(unsigned int dest, unsigned int src, uint16_t vtypei)
 	return (bits(vtypei, 10, 0) << 20) | inst_rs1(src) | inst_rd(dest) | MATCH_VSETVLI;
 }
 
+#ifdef __GNUC__
 static uint32_t vsetvl(unsigned int rd, unsigned int rs1, unsigned int rs2) __attribute__((unused));
+#endif
 static uint32_t vsetvl(unsigned int rd, unsigned int rs1, unsigned int rs2)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -416,7 +504,9 @@ static uint32_t vsetvl(unsigned int rd, unsigned int rs1, unsigned int rs2)
 	return inst_rd(rd) | inst_rs1(rs1) | inst_rs2(rs2) | MATCH_VSETVL;
 }
 
+#ifdef __GNUC__
 static uint32_t vmv_x_s(unsigned int rd, unsigned int vs2) __attribute__((unused));
+#endif
 static uint32_t vmv_x_s(unsigned int rd, unsigned int vs2)
 {
 	assert(rd <= MAX_GPR_NUM);
@@ -425,7 +515,9 @@ static uint32_t vmv_x_s(unsigned int rd, unsigned int vs2)
 	return inst_rs2(vs2) | inst_rd(rd) | MATCH_VMV_X_S;
 }
 
+#ifdef __GNUC__
 static uint32_t vmv_s_x(unsigned int vd, unsigned int rs2) __attribute__((unused));
+#endif
 static uint32_t vmv_s_x(unsigned int vd, unsigned int rs2)
 {
 	assert(vd <= MAX_VREG_NUM);
@@ -434,8 +526,10 @@ static uint32_t vmv_s_x(unsigned int vd, unsigned int rs2)
 	return inst_rs1(rs2) | inst_rd(vd) | MATCH_VMV_S_X;
 }
 
+#ifdef __GNUC__
 static uint32_t vslide1down_vx(unsigned int vd, unsigned int vs2,
 		unsigned int rs1, bool vm) __attribute__((unused));
+#endif
 static uint32_t vslide1down_vx(unsigned int vd, unsigned int vs2,
 		unsigned int rs1, bool vm)
 {

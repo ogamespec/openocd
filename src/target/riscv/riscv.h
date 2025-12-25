@@ -417,7 +417,9 @@ int riscv_get_command_timeout_sec(void);
 
 /* Everything needs the RISC-V specific info structure, so here's a nice macro
  * that provides that. */
+#ifdef __GNUC__
 static inline struct riscv_info *riscv_info(const struct target *target) __attribute__((unused));
+#endif
 static inline struct riscv_info *riscv_info(const struct target *target)
 {
 	assert(target->arch_info);

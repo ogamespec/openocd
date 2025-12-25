@@ -15,7 +15,11 @@
 #include "esp_semihosting.h"
 #include "esp_xtensa.h"
 
-static struct esp_semihost_data __attribute__((unused)) *target_to_esp_semihost_data(struct target *target)
+static struct esp_semihost_data 
+#ifdef __GNUC__
+__attribute__((unused)) 
+#endif
+*target_to_esp_semihost_data(struct target *target)
 {
 	struct xtensa *xtensa = target->arch_info;
 	if (xtensa->common_magic == XTENSA_COMMON_MAGIC)

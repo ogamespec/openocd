@@ -17,6 +17,8 @@
 
 #include <stdint.h>
 
+#pragma pack(push, 1)
+
 /**
  * @brief Arguments for transaction helper function.
  */
@@ -30,7 +32,7 @@ struct dw_spi_transaction {
 	uint64_t data_reg; ///< Pointer to DR register.
 	uint8_t read_flag;
 	///< When 1, store RX FIFO data to dw_spi_transaction::buffer.
-} __attribute__((packed));
+};
 
 /**
  * @brief Arguments for check_fill helper function.
@@ -47,7 +49,7 @@ struct dw_spi_check_fill {
 	uint8_t pattern; ///< Fill pattern.
 	uint8_t read_cmd; ///< Read data command.
 	uint8_t four_byte_mode; ///< Four byte addressing mode flag.
-} __attribute__((packed));
+};
 
 /**
  * @brief Arguments for erase helper function.
@@ -64,7 +66,7 @@ struct dw_spi_erase {
 	uint8_t write_enable_mask; ///< Write enable mask.
 	uint8_t busy_mask; ///< Busy mask.
 	uint8_t four_byte_mode; ///< Four byte addressing mode flag.
-} __attribute__((packed));
+};
 
 /**
  * @brief Arguments for program helper function.
@@ -84,7 +86,7 @@ struct dw_spi_program {
 	uint8_t write_enable_mask; ///< Write enable mask.
 	uint8_t busy_mask; ///< Busy mask.
 	uint8_t four_byte_mode; ///< Four byte addressing mode flag.
-} __attribute__((packed));
+};
 
 /**
  * @brief Arguments for read helper function.
@@ -97,6 +99,8 @@ struct dw_spi_read {
 	uint64_t data_reg; ///< Pointer to DR register.
 	uint8_t read_cmd; ///< Read data command.
 	uint8_t four_byte_mode; ///< Four byte addressing mode flag.
-} __attribute__((packed));
+};
+
+#pragma pack(pop)
 
 #endif /* OPENOCD_FLASH_NOR_DW_SPI_HELPER_H */
