@@ -135,7 +135,7 @@ static int esirisc_jtag_recv(struct esirisc_jtag *jtag_info,
 	struct scan_field fields[3];
 	/* prevent zero-size variable length array */
 	int r_size = num_in_bytes ? num_in_bytes * 2 : 1;
-	uint8_t r[r_size];
+	uint8_t *r = malloc(r_size);
 
 	esirisc_jtag_set_instr(jtag_info, INSTR_DEBUG);
 
@@ -154,8 +154,10 @@ static int esirisc_jtag_recv(struct esirisc_jtag *jtag_info,
 	jtag_add_dr_scan(jtag_info->tap, ARRAY_SIZE(fields), fields, TAP_IDLE);
 
 	int retval = jtag_execute_queue();
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(r);
 		return retval;
+	}
 
 	/* unstuff response data and write back to caller */
 	if (num_in_fields > 0) {
@@ -167,6 +169,8 @@ static int esirisc_jtag_recv(struct esirisc_jtag *jtag_info,
 			bit_count += in_fields[i].num_bits;
 		}
 	}
+
+	free(r);
 
 	return ERROR_OK;
 }

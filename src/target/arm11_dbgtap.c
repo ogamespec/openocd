@@ -17,11 +17,11 @@
 #include <helper/time_support.h>
 
 #if 0
-#define JTAG_DEBUG(expr ...)    do { if (1) \
-					     LOG_DEBUG(expr); } while (0)
+#define JTAG_DEBUG(expr, ...)    do { if (1) \
+					     LOG_DEBUG(expr, __VA_ARGS__); } while (0)
 #else
-#define JTAG_DEBUG(expr ...)    do { if (0) \
-					     LOG_DEBUG(expr); } while (0)
+#define JTAG_DEBUG(expr, ...)    do { if (0) \
+					     LOG_DEBUG(expr, __VA_ARGS__); } while (0)
 #endif
 
 /*

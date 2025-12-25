@@ -456,10 +456,40 @@ static int dpmv8_bpwp_disable(struct arm_dpm *dpm, unsigned int index_t)
 	uint32_t cr;
 
 	switch (index_t) {
-	case 0 ... 15:
+	case 0:	/* breakpoints */
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
 		cr = armv8->debug_base + CPUV8_DBG_BCR_BASE;
 		break;
-	case 16 ... 31:
+	case 16:	/* watchpoints */
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
 		cr = armv8->debug_base + CPUV8_DBG_WCR_BASE;
 		index_t -= 16;
 		break;

@@ -581,11 +581,41 @@ static int cortex_a_bpwp_enable(struct arm_dpm *dpm, unsigned int index_t,
 	int retval;
 
 	switch (index_t) {
-	case 0 ... 15:	/* breakpoints */
+	case 0:	/* breakpoints */
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
 		vr += CPUDBG_BVR_BASE;
 		cr += CPUDBG_BCR_BASE;
 		break;
-	case 16 ... 31:	/* watchpoints */
+	case 16:	/* watchpoints */
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
 		vr += CPUDBG_WVR_BASE;
 		cr += CPUDBG_WCR_BASE;
 		index_t -= 16;
@@ -613,10 +643,40 @@ static int cortex_a_bpwp_disable(struct arm_dpm *dpm, unsigned int index_t)
 	uint32_t cr;
 
 	switch (index_t) {
-	case 0 ... 15:
+	case 0:	/* breakpoints */
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
 		cr = a->armv7a_common.debug_base + CPUDBG_BCR_BASE;
 		break;
-	case 16 ... 31:
+	case 16:	/* watchpoints */
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
 		cr = a->armv7a_common.debug_base + CPUDBG_WCR_BASE;
 		index_t -= 16;
 		break;
@@ -664,7 +724,7 @@ static struct target *get_cortex_a(struct target *target, int32_t coreid)
 {
 	struct target_list *head;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if ((curr->coreid == coreid) && (curr->state == TARGET_HALTED))
 			return curr;
@@ -678,7 +738,7 @@ static int cortex_a_halt_smp(struct target *target)
 	int retval = 0;
 	struct target_list *head;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if ((curr != target) && (curr->state != TARGET_HALTED)
 			&& target_was_examined(curr))
@@ -703,7 +763,7 @@ static int update_halt_gdb(struct target *target)
 	if (target->gdb_service)
 		gdb_target = target->gdb_service->target;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		curr = head->target;
 		/* skip calling context */
 		if (curr == target)
@@ -972,7 +1032,7 @@ static int cortex_a_restore_smp(struct target *target, bool handle_breakpoints)
 	struct target_list *head;
 	target_addr_t address;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if ((curr != target) && (curr->state != TARGET_RUNNING)
 			&& target_was_examined(curr)) {

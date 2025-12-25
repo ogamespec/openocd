@@ -271,7 +271,7 @@ static int  armv8_flush_all_data(struct target *target)
 		/*  look if all the other target have been flushed in order to flush level
 		 *  2 */
 		struct target_list *head;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			if (curr->state == TARGET_HALTED) {
 				LOG_TARGET_INFO(curr, "Wait flushing data l1.");
@@ -296,7 +296,7 @@ static int  armv8_flush_all_instruction(struct target *target)
 	if (target->smp) {
 		/* look if all the other target have been flushed in order to flush icache */
 		struct target_list *head;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			if (curr->state == TARGET_HALTED) {
 				LOG_TARGET_INFO(curr, "Wait flushing instruction l1.");

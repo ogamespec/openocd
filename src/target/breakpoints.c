@@ -220,7 +220,7 @@ int breakpoint_add(struct target *target,
 {
 	if (target->smp && type == BKPT_HARD) {
 		struct target_list *list_node;
-		foreach_smp_target(list_node, target->smp_targets) {
+		foreach_smp_target(list_node, struct target_list, target->smp_targets) {
 			struct target *curr = list_node->target;
 			int retval = breakpoint_add_internal(curr, address, length, type);
 			if (retval != ERROR_OK)
@@ -241,7 +241,7 @@ int context_breakpoint_add(struct target *target,
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			int retval = context_breakpoint_add_internal(curr, asid, length, type);
 			if (retval != ERROR_OK)
@@ -263,7 +263,7 @@ int hybrid_breakpoint_add(struct target *target,
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			int retval = hybrid_breakpoint_add_internal(curr, address, asid, length, type);
 			if (retval != ERROR_OK)
@@ -350,7 +350,7 @@ int breakpoint_remove(struct target *target, target_addr_t address)
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			int status = breakpoint_remove_internal(curr, address);
 
@@ -437,7 +437,7 @@ static int breakpoint_watchpoint_remove_all(struct target *target, enum breakpoi
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 
 			int status = ERROR_OK;
@@ -554,7 +554,7 @@ int watchpoint_add(struct target *target, target_addr_t address,
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			int retval = watchpoint_add_internal(curr, address, length, rw, value, mask);
 			if (retval != ERROR_OK)
@@ -592,7 +592,7 @@ int watchpoint_remove(struct target *target, target_addr_t address)
 	if (target->smp) {
 		struct target_list *head;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			int status = watchpoint_remove_internal(curr, address);
 

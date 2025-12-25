@@ -24,7 +24,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 
 #include "armv8_opcodes.h"
 #include "target.h"
@@ -145,7 +144,7 @@ static uint8_t armv8_pa_size(uint32_t ps)
 	return ret;
 }
 
-static __attribute__((unused)) int armv8_read_ttbcr32(struct target *target)
+static int armv8_read_ttbcr32(struct target *target)
 {
 	struct armv8_common *armv8 = target_to_armv8(target);
 	struct arm_dpm *dpm = armv8->arm.dpm;
@@ -1051,7 +1050,7 @@ done:
 	dpm->finish(dpm);
 }
 
-static __attribute__((unused)) void armv8_show_fault_registers(struct target *target)
+static void armv8_show_fault_registers(struct target *target)
 {
 	struct armv8_common *armv8 = target_to_armv8(target);
 

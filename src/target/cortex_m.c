@@ -289,12 +289,12 @@ static int cortex_m_fast_read_all_regs(struct target *target)
 	}
 
 	const unsigned int num_regs = armv7m->arm.core_cache->num_regs;
-	const unsigned int n_r32 = ARMV7M_LAST_REG - ARMV7M_CORE_FIRST_REG + 1
-							   + ARMV7M_FPU_LAST_REG - ARMV7M_FPU_FIRST_REG + 1;
+	#define N_R32 (ARMV7M_LAST_REG - ARMV7M_CORE_FIRST_REG + 1 + ARMV7M_FPU_LAST_REG - ARMV7M_FPU_FIRST_REG + 1)
+	const unsigned int n_r32 = N_R32;
 	/* we need one 32-bit word for each register except FP D0..D15, which
 	 * need two words */
-	uint32_t r_vals[n_r32];
-	uint32_t dhcsr[n_r32];
+	uint32_t r_vals[N_R32];
+	uint32_t dhcsr[N_R32];
 
 	unsigned int wi = 0; /* write index to r_vals and dhcsr arrays */
 	unsigned int reg_id; /* register index in the reg_list, ARMV7M_R0... */
@@ -1129,7 +1129,7 @@ static int cortex_m_smp_halt_all(struct list_head *smp_targets)
 	int retval = ERROR_OK;
 	struct target_list *head;
 
-	foreach_smp_target(head, smp_targets) {
+	foreach_smp_target(head, struct target_list, smp_targets) {
 		struct target *curr = head->target;
 		if (!target_was_examined(curr))
 			continue;
@@ -1148,7 +1148,7 @@ static int cortex_m_smp_post_halt_poll(struct list_head *smp_targets)
 	int retval = ERROR_OK;
 	struct target_list *head;
 
-	foreach_smp_target(head, smp_targets) {
+	foreach_smp_target(head, struct target_list, smp_targets) {
 		struct target *curr = head->target;
 		if (!target_was_examined(curr))
 			continue;
@@ -1169,7 +1169,7 @@ static int cortex_m_poll_smp(struct list_head *smp_targets)
 	struct target_list *head;
 	bool halted = false;
 
-	foreach_smp_target(head, smp_targets) {
+	foreach_smp_target(head, struct target_list, smp_targets) {
 		struct target *curr = head->target;
 		if (curr->smp_halt_event_postponed) {
 			halted = true;
@@ -1184,7 +1184,7 @@ static int cortex_m_poll_smp(struct list_head *smp_targets)
 		if (retval == ERROR_OK)
 			retval = ret2;	/* store the first error code ignore others */
 
-		foreach_smp_target(head, smp_targets) {
+		foreach_smp_target(head, struct target_list, smp_targets) {
 			struct target *curr = head->target;
 			if (!curr->smp_halt_event_postponed)
 				continue;
@@ -1455,7 +1455,7 @@ static int cortex_m_restore_smp(struct target *target, bool handle_breakpoints)
 {
 	struct target_list *head;
 	target_addr_t address;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		/* skip calling target */
 		if (curr == target)
