@@ -269,7 +269,7 @@ COMMAND_HANDLER(handle_pld_load_command)
 		return ERROR_PLD_FILE_LOAD_FAILED;
 	}
 
-	if (S_ISDIR(input_stat.st_mode)) {
+	if ( (input_stat.st_mode & S_IFDIR) != 0 ) {
 		LOG_ERROR("%s is a directory", CMD_ARGV[1]);
 		return ERROR_PLD_FILE_LOAD_FAILED;
 	}

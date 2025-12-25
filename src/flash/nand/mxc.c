@@ -36,6 +36,17 @@
 #include "mxc.h"
 #include <target/target.h>
 
+int custom_ffs(int i) {
+	if (i == 0) return 0;
+	// Fallback for other compilers (simple loop implementation)
+	for (int bit = 0; bit < 32; ++bit) {
+		if ((i >> bit) & 1) {
+			return bit + 1;
+		}
+	}
+	return 0; // Should be unreachable if i != 0
+}
+
 #define OOB_SIZE        64
 
 #define nfc_is_v1() (mxc_nf_info->mxc_version == MXC_VERSION_MX27 || \
@@ -719,7 +730,7 @@ static int initialize_nf_controller(struct nand_device *nand)
 		target_write_u16(target, MXC_NF_V2_SPAS, OOB_SIZE / 2);
 		if (nand->page_size) {
 			uint16_t pages_per_block = nand->erase_size / nand->page_size;
-			work_mode |= MXC_NF_V2_CFG1_PPB(ffs(pages_per_block) - 6);
+			work_mode |= MXC_NF_V2_CFG1_PPB(custom_ffs(pages_per_block) - 6);
 		}
 		work_mode |= MXC_NF_BIT_ECC_4BIT;
 	}

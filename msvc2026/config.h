@@ -28,3 +28,8 @@ typedef SSIZE_T ssize_t;
 #define BUILD_CMSIS_DAP_USB 1
 #define BUILD_CMSIS_DAP_HID 0
 #define BUILD_CMSIS_DAP_TCP 1
+
+#ifdef _MSC_VER 
+#define strncasecmp _strnicmp
+#define strcasecmp _stricmp
+#endif

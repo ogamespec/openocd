@@ -24,6 +24,7 @@
     <ClCompile Include="..\src\main.c" />
     <ClCompile Include="..\src\openocd.c" />
     <ClCompile Include="getopt.c" />
+    <ClCompile Include="getopt_long.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\hello.h" />
