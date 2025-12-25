@@ -30,8 +30,6 @@
 // system includes
 #include <string.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
 #include <time.h>
 
 /*
@@ -169,7 +167,7 @@ static void angie_read_queue_execute(struct read_queue *queue,
 	struct read_queue_entry *entry;
 	struct read_queue_entry *tmp;
 
-	list_for_each_entry_safe(entry, tmp, &queue->list, list) {
+	list_for_each_entry_safe(entry, struct read_queue_entry, tmp, struct read_queue_entry, &queue->list, list) {
 		int scan_size = jtag_scan_size(entry->cmd);
 
 		// iterate over each bit in scan data
@@ -204,7 +202,7 @@ static void angie_read_queue_clean(struct read_queue *queue)
 	struct read_queue_entry *entry;
 	struct read_queue_entry *tmp;
 
-	list_for_each_entry_safe(entry, tmp, &queue->list, list) {
+	list_for_each_entry_safe(entry, struct read_queue_entry, tmp, struct read_queue_entry, &queue->list, list) {
 		list_del(&entry->list);
 		free(entry->buffer);
 		free(entry);

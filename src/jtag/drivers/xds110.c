@@ -351,7 +351,7 @@ static bool usb_connect(void)
 				result = libusb_open(list[i], &dev);
 				if (result == 0) {
 					const int max_data = 256;
-					unsigned char data[max_data + 1];
+					unsigned char data[256 + 1];
 					*data = '\0';
 
 					/* May be the requested device if serial number matches */

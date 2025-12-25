@@ -33,10 +33,10 @@
     <ClCompile Include="..\src\jtag\interfaces.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\jtag\jtag_core.c">
+    <ClCompile Include="..\src\jtag\core.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\jtag\jtag_tcl.c">
+    <ClCompile Include="..\src\jtag\tcl.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src\jtag\swim.c">

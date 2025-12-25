@@ -24,10 +24,12 @@
 // You need to manually call all methods marked as __attribute__ ((constructor))
 void hl_constructor(void);
 void jtag_constructor(void);
+void swim_constructor(void);
 void init_ctors()
 {
 	hl_constructor();
 	jtag_constructor();
+	swim_constructor();
 }
 #endif
 

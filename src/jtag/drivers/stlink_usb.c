@@ -4374,7 +4374,7 @@ static int stlink_dap_op_queue_ap_abort(struct adiv5_dap *dap, uint8_t *ack)
 
 static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, unsigned int len, unsigned int items)
 {
-	uint8_t buf[2 * 4 * items];
+	uint8_t *buf = malloc (2 * 4 * items);
 
 	LOG_DEBUG("Queue: %u commands in %u items", len, items);
 
@@ -4405,6 +4405,7 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 			break;
 		default:
 			/* Not supposed to happen */
+			free(buf);
 			return ERROR_FAIL;
 		}
 	}
@@ -4413,12 +4414,16 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 		buf[cmd_index++] = 0;
 
 	int retval = stlink_usb_rw_misc_out(handle, items, buf);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(buf);
 		return retval;
+	}
 
 	retval = stlink_usb_rw_misc_in(handle, items, buf);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(buf);
 		return retval;
+	}
 
 	ap_num = DP_APSEL_INVALID;
 	val_index = 0;
@@ -4426,6 +4431,7 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 	for (unsigned int i = 0; i < len; i++) {
 		uint32_t errcode = le_to_h_u32(&buf[err_index]);
 		if (errcode != STLINK_DEBUG_ERR_OK) {
+			free(buf);
 			LOG_ERROR("unknown/unexpected STLINK status code 0x%x", errcode);
 			return ERROR_FAIL;
 		}
@@ -4435,6 +4441,7 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 			val_index += 4;
 			errcode = le_to_h_u32(&buf[err_index]);
 			if (errcode != STLINK_DEBUG_ERR_OK) {
+				free(buf);
 				LOG_ERROR("unknown/unexpected STLINK status code 0x%x", errcode);
 				return ERROR_FAIL;
 			}
@@ -4447,6 +4454,7 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 			val_index += 4;
 			errcode = le_to_h_u32(&buf[err_index]);
 			if (errcode != STLINK_DEBUG_ERR_OK) {
+				free(buf);
 				LOG_ERROR("unknown/unexpected STLINK status code 0x%x", errcode);
 				return ERROR_FAIL;
 			}
@@ -4455,45 +4463,56 @@ static int stlink_usb_misc_rw_segment(void *handle, const struct dap_queue *q, u
 		val_index += 4;
 	}
 
+	free(buf);
+
 	return ERROR_OK;
 }
 
 static int stlink_usb_buf_rw_segment(void *handle, const struct dap_queue *q, unsigned int count)
 {
 	uint32_t bufsize = count * CMD_MEM_AP_2_SIZE(q[0].cmd);
-	uint8_t buf[bufsize];
+	uint8_t *buf = malloc(bufsize);
 	uint8_t ap_num = q[0].mem_ap.ap->ap_num;
 	uint32_t addr = q[0].mem_ap.addr;
 	uint32_t csw = q[0].mem_ap.csw;
 
 	int retval = stlink_dap_open_ap(ap_num);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(buf);
 		return retval;
+	}
 
 	switch (q[0].cmd) {
 	case CMD_MEM_AP_WRITE8:
 		for (unsigned int i = 0; i < count; i++)
 			buf[i] = q[i].mem_ap.data >> 8 * (q[i].mem_ap.addr & 3);
-		return stlink_usb_write_mem8(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+		retval = stlink_usb_write_mem8(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+		free(buf);
+		return retval;
 
 	case CMD_MEM_AP_WRITE16:
 		for (unsigned int i = 0; i < count; i++)
 			h_u16_to_le(&buf[2 * i], q[i].mem_ap.data >> 8 * (q[i].mem_ap.addr & 2));
-		return stlink_usb_write_mem16(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+		retval = stlink_usb_write_mem16(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+		free(buf);
+		return retval;
 
 	case CMD_MEM_AP_WRITE32:
 		for (unsigned int i = 0; i < count; i++)
 			h_u32_to_le(&buf[4 * i], q[i].mem_ap.data);
 		if (count > 1 && q[0].mem_ap.addr == q[1].mem_ap.addr)
-			return stlink_usb_write_mem32_noaddrinc(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+			retval = stlink_usb_write_mem32_noaddrinc(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
 		else
-			return stlink_usb_write_mem32(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+			retval = stlink_usb_write_mem32(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
+		free(buf);
+		return retval;
 
 	case CMD_MEM_AP_READ8:
 		retval = stlink_usb_read_mem8(stlink_dap_handle, ap_num, csw, addr, bufsize, buf);
 		if (retval == ERROR_OK)
 			for (unsigned int i = 0; i < count; i++)
 				*q[i].mem_ap.p_data = buf[i] << 8 * (q[i].mem_ap.addr & 3);
+		free(buf);
 		return retval;
 
 	case CMD_MEM_AP_READ16:
@@ -4501,6 +4520,7 @@ static int stlink_usb_buf_rw_segment(void *handle, const struct dap_queue *q, un
 		if (retval == ERROR_OK)
 			for (unsigned int i = 0; i < count; i++)
 				*q[i].mem_ap.p_data = le_to_h_u16(&buf[2 * i]) << 8 * (q[i].mem_ap.addr & 2);
+		free(buf);
 		return retval;
 
 	case CMD_MEM_AP_READ32:
@@ -4511,9 +4531,11 @@ static int stlink_usb_buf_rw_segment(void *handle, const struct dap_queue *q, un
 		if (retval == ERROR_OK)
 			for (unsigned int i = 0; i < count; i++)
 				*q[i].mem_ap.p_data = le_to_h_u32(&buf[4 * i]);
+		free(buf);
 		return retval;
 
 	default:
+		free(buf);
 		return ERROR_FAIL;
 	};
 }

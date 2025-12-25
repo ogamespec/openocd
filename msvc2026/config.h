@@ -24,3 +24,7 @@ typedef SSIZE_T ssize_t;
 
 #define BINDIR "bin"
 #define PKGDATADIR "pkgdata"
+
+#define BUILD_CMSIS_DAP_USB 1
+#define BUILD_CMSIS_DAP_HID 0
+#define BUILD_CMSIS_DAP_TCP 1

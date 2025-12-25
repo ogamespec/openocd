@@ -41,7 +41,7 @@ static inline threadid_t threadid_from_target(const struct target *target)
 
 	threadid_t threadid = 1;
 	struct target_list *head;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (target == head->target)
 			return threadid;
 		++threadid;
@@ -107,7 +107,7 @@ static int hwthread_update_threads(struct rtos *rtos)
 
 	/* determine the number of "threads" */
 	if (target->smp) {
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 
 			if (!target_was_examined(curr) ||
@@ -133,7 +133,7 @@ static int hwthread_update_threads(struct rtos *rtos)
 
 	if (target->smp) {
 		/* loop over all threads */
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 
 			if (!target_was_examined(curr) ||
@@ -228,7 +228,7 @@ static struct target *hwthread_find_thread(struct target *target, threadid_t thr
 		return target;
 	struct target_list *head;
 	threadid_t tid = 1;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (thread_id == tid)
 			return head->target;
 		++tid;

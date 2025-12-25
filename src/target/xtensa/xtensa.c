@@ -533,7 +533,7 @@ static void xtensa_queue_exec_ins_wide(struct xtensa *xtensa, uint8_t *ops, uint
 {
 	const int max_oplen = 64;	/* 8 DIRx regs: max width 64B */
 	if ((oplen > 0) && (oplen <= max_oplen)) {
-		uint8_t ops_padded[max_oplen];
+		uint8_t ops_padded[64];
 		memcpy(ops_padded, ops, oplen);
 		memset(ops_padded + oplen, 0, max_oplen - oplen);
 		unsigned int oplenw = DIV_ROUND_UP(oplen, sizeof(uint32_t));

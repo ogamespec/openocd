@@ -968,7 +968,7 @@ static int vdebug_jtag_tms_seq(const uint8_t *tms, int num, uint8_t f_flush)
 
 static int vdebug_jtag_path_move(struct pathmove_command *cmd, uint8_t f_flush)
 {
-	uint8_t tms[DIV_ROUND_UP(cmd->num_states, 8)];
+	uint8_t *tms = malloc(DIV_ROUND_UP(cmd->num_states, 8));
 	LOG_DEBUG_IO("path num states %u", cmd->num_states);
 
 	memset(tms, 0, DIV_ROUND_UP(cmd->num_states, 8));
@@ -979,7 +979,9 @@ static int vdebug_jtag_path_move(struct pathmove_command *cmd, uint8_t f_flush)
 		tap_set_state(cmd->path[i]);
 	}
 
-	return vdebug_jtag_tms_seq(tms, cmd->num_states, f_flush);
+	int ret = vdebug_jtag_tms_seq(tms, cmd->num_states, f_flush);
+	free(tms);
+	return ret;
 }
 
 static int vdebug_jtag_tlr(enum tap_state state, uint8_t f_flush)

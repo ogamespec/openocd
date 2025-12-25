@@ -310,7 +310,7 @@ void bit_copy_execute(struct bit_copy_queue *q)
 {
 	struct bit_copy_queue_entry *qe;
 	struct bit_copy_queue_entry *tmp;
-	list_for_each_entry_safe(qe, tmp, &q->list, list) {
+	list_for_each_entry_safe(qe, struct bit_copy_queue_entry, tmp, struct bit_copy_queue_entry, &q->list, list) {
 		bit_copy(qe->dst, qe->dst_offset, qe->src, qe->src_offset, qe->bit_count);
 		list_del(&qe->list);
 		free(qe);
@@ -321,7 +321,7 @@ void bit_copy_discard(struct bit_copy_queue *q)
 {
 	struct bit_copy_queue_entry *qe;
 	struct bit_copy_queue_entry *tmp;
-	list_for_each_entry_safe(qe, tmp, &q->list, list) {
+	list_for_each_entry_safe(qe, struct bit_copy_queue_entry, tmp, struct bit_copy_queue_entry, &q->list, list) {
 		list_del(&qe->list);
 		free(qe);
 	}

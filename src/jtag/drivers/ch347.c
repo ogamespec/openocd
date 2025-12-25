@@ -58,9 +58,7 @@
 // system includes
 #include <stdlib.h>
 #include <string.h>
-#include <sys/time.h>
 #include <time.h>
-#include <unistd.h>
 
 #define TDI_H	BIT(4)
 #define TDI_L	0
@@ -602,7 +600,7 @@ static int ch347_scan_data_to_fields(uint8_t *decoded_buf, int decoded_buf_len)
 	struct ch347_scan *scan;
 	struct ch347_scan *tmp;
 	int bit_offset = 0;
-	list_for_each_entry_safe(scan, tmp, &ch347.scan_queue, queue) {
+	list_for_each_entry_safe(scan, struct ch347_scan, tmp, struct ch347_scan, &ch347.scan_queue, queue) {
 		for (int i = 0; i < scan->fields_len; i++) {
 			int num_bits = scan->fields[i].num_bits;
 			LOG_DEBUG("fields[%d].in_value[%d], read from bit offset: %d", i, num_bits, bit_offset);
@@ -672,7 +670,7 @@ static int ch347_cmd_transmit_queue(void)
 	// calculate the needed buffer length for all decoded bytes
 	struct ch347_cmd *cmd;
 	int decoded_buf_len = 0;
-	list_for_each_entry(cmd, &ch347.cmd_queue, queue)
+	list_for_each_entry(cmd, struct ch347_cmd, &ch347.cmd_queue, queue)
 		if (cmd->read_len > 0)
 			decoded_buf_len += ch347_is_single_cmd_type(cmd->type) ?
 				cmd->read_len : DIV_ROUND_UP(cmd->tdo_bit_count, 8);
@@ -694,7 +692,7 @@ static int ch347_cmd_transmit_queue(void)
 		int total_tdo_count = 0;
 		int bytes_to_write = 0;
 
-		list_for_each_entry(cmd, &ch347.cmd_queue, queue) {
+		list_for_each_entry(cmd, struct ch347_cmd, &ch347.cmd_queue, queue) {
 			total_len += CH347_CMD_HEADER + cmd->write_data_len;
 			total_tdo_count += cmd->tdo_bit_count;
 			// don't exceed max length or max TDO bit count
@@ -725,7 +723,7 @@ static int ch347_cmd_transmit_queue(void)
 		int current_decoded_buf_len = 0;
 		struct ch347_cmd *tmp;
 
-		list_for_each_entry_safe(cmd, tmp, &ch347.cmd_queue, queue) {
+		list_for_each_entry_safe(cmd, struct ch347_cmd, tmp, struct ch347_cmd, &ch347.cmd_queue, queue) {
 			// copy command to buffer
 			write_buf[idx++] = cmd->type;
 			h_u16_to_le(&write_buf[idx], cmd->write_data_len);

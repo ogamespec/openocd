@@ -728,7 +728,7 @@ static void telnet_auto_complete(struct connection *connection)
 		telnet_write(connection, "\n\r", 2);
 
 		struct cmd_match *match;
-		list_for_each_entry(match, &matches, lh) {
+		list_for_each_entry(match, struct cmd_match, &matches, lh) {
 			telnet_write(connection, match->cmd, strlen(match->cmd));
 			telnet_write(connection, "\n\r", 2);
 		}
@@ -743,7 +743,7 @@ static void telnet_auto_complete(struct connection *connection)
 
 	/* destroy the command_list */
 	struct cmd_match *tmp, *match;
-	list_for_each_entry_safe(match, tmp, &matches, lh)
+	list_for_each_entry_safe(match, struct cmd_match, tmp, struct cmd_match, &matches, lh)
 		free(match);
 
 	Jim_DecrRefCount(command_context->interp, list);

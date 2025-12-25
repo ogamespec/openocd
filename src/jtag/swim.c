@@ -141,8 +141,11 @@ static struct transport swim_transport = {
 	.init = swim_transport_init,
 };
 
+#ifdef __GNUC__
 static void swim_constructor(void) __attribute__ ((constructor));
-static void swim_constructor(void)
+static 
+#endif
+void swim_constructor(void)
 {
 	transport_register(&swim_transport);
 }

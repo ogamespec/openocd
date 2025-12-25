@@ -21,15 +21,35 @@
   <ItemGroup>
     <ClCompile Include="..\src\jtag\adapter.c" />
     <ClCompile Include="..\src\jtag\commands.c" />
-    <ClCompile Include="..\src\jtag\drivers\am335xgpio.c" />
+    <ClCompile Include="..\src\jtag\drivers\am335xgpio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\amt_jtagaccel.c" />
     <ClCompile Include="..\src\jtag\drivers\angie.c" />
     <ClCompile Include="..\src\jtag\drivers\arm-jtag-ew.c" />
-    <ClCompile Include="..\src\jtag\drivers\at91rm9200.c" />
-    <ClCompile Include="..\src\jtag\drivers\bcm2835gpio.c" />
+    <ClCompile Include="..\src\jtag\drivers\at91rm9200.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\bcm2835gpio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\bitbang.c" />
     <ClCompile Include="..\src\jtag\drivers\bitq.c" />
-    <ClCompile Include="..\src\jtag\drivers\buspirate.c" />
+    <ClCompile Include="..\src\jtag\drivers\buspirate.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\ch347.c" />
     <ClCompile Include="..\src\jtag\drivers\cmsis_dap.c" />
     <ClCompile Include="..\src\jtag\drivers\cmsis_dap_tcp.c" />
@@ -47,17 +67,37 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\dummy.c" />
-    <ClCompile Include="..\src\jtag\drivers\ep93xx.c" />
+    <ClCompile Include="..\src\jtag\drivers\ep93xx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\esp_usb_jtag.c" />
     <ClCompile Include="..\src\jtag\drivers\ft232r.c" />
     <ClCompile Include="..\src\jtag\drivers\ftdi.c" />
     <ClCompile Include="..\src\jtag\drivers\gw16012.c" />
-    <ClCompile Include="..\src\jtag\drivers\imx_gpio.c" />
-    <ClCompile Include="..\src\jtag\drivers\jlink.c" />
+    <ClCompile Include="..\src\jtag\drivers\imx_gpio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\jlink.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\jtag_dpi.c" />
     <ClCompile Include="..\src\jtag\drivers\jtag_driver.c" />
     <ClCompile Include="..\src\jtag\drivers\jtag_vpi.c" />
-    <ClCompile Include="..\src\jtag\drivers\kitprog.c" />
+    <ClCompile Include="..\src\jtag\drivers\kitprog.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\libusb_helper.c" />
     <ClCompile Include="..\src\jtag\drivers\linuxgpiod.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
@@ -79,10 +119,20 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\opendous.c" />
-    <ClCompile Include="..\src\jtag\drivers\openjtag.c" />
+    <ClCompile Include="..\src\jtag\drivers\openjtag.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\osbdm.c" />
     <ClCompile Include="..\src\jtag\drivers\parport.c" />
-    <ClCompile Include="..\src\jtag\drivers\presto.c" />
+    <ClCompile Include="..\src\jtag\drivers\presto.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\remote_bitbang.c" />
     <ClCompile Include="..\src\jtag\drivers\rlink.c" />
     <ClCompile Include="..\src\jtag\drivers\rlink_speed_table.c" />
@@ -116,8 +166,8 @@
     <ClCompile Include="..\src\jtag\hla\hla_transport.c" />
     <ClCompile Include="..\src\jtag\interface.c" />
     <ClCompile Include="..\src\jtag\interfaces.c" />
-    <ClCompile Include="..\src\jtag\jtag_core.c" />
-    <ClCompile Include="..\src\jtag\jtag_tcl.c" />
+    <ClCompile Include="..\src\jtag\core.c" />
+    <ClCompile Include="..\src\jtag\tcl.c" />
     <ClCompile Include="..\src\jtag\swim.c" />
   </ItemGroup>
   <ItemGroup>

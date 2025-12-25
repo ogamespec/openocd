@@ -152,14 +152,14 @@ list_del_init(struct list_head *entry)
 #define	list_for_each_safe(p, n, head)					\
 	for (p = (head)->next, n = (p)->next; p != (head); p = n, n = (p)->next)
 
-#define list_for_each_entry(p, h, field)				\
-	for (p = list_entry((h)->next, typeof(*p), field); &(p)->field != (h); \
-	    p = list_entry((p)->field.next, typeof(*p), field))
+#define list_for_each_entry(p, tp, h, field)				\
+	for (p = list_entry((h)->next, tp, field); &(p)->field != (h); \
+	    p = list_entry((p)->field.next, tp, field))
 
-#define list_for_each_entry_safe(p, n, h, field)			\
-	for (p = list_entry((h)->next, typeof(*p), field),		\
-	    n = list_entry((p)->field.next, typeof(*p), field); &(p)->field != (h);\
-	    p = n, n = list_entry(n->field.next, typeof(*n), field))
+#define list_for_each_entry_safe(p, tp, n, tn, h, field)			\
+	for (p = list_entry((h)->next, tp, field),		\
+	    n = list_entry((p)->field.next, tp, field); &(p)->field != (h);\
+	    p = n, n = list_entry(n->field.next, tn, field))
 
 #define	list_for_each_entry_from(p, h, field) \
 	for ( ; &(p)->field != (h); \
@@ -174,9 +174,9 @@ list_del_init(struct list_head *entry)
 	     &(pos)->member != (head);						\
 	     pos = n, n = list_entry(n->member.next, typeof(*n), member))
 
-#define	list_for_each_entry_reverse(p, h, field)			\
-	for (p = list_entry((h)->prev, typeof(*p), field); &(p)->field != (h); \
-	    p = list_entry((p)->field.prev, typeof(*p), field))
+#define	list_for_each_entry_reverse(p, tp, h, field)			\
+	for (p = list_entry((h)->prev, tp, field); &(p)->field != (h); \
+	    p = list_entry((p)->field.prev, tp, field))
 
 #define	list_for_each_entry_safe_reverse(p, n, h, field)		\
 	for (p = list_entry((h)->prev, typeof(*p), field),		\

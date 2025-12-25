@@ -182,7 +182,7 @@ static int linux_os_thread_reg_list(struct rtos *rtos,
 	struct reg **gdb_reg_list;
 	struct target_list *head;
 	found = 0;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (head->target->coreid == next->core_id) {
 			target = head->target;
 			found = 1;
@@ -400,7 +400,7 @@ static int get_current(struct target *target, int create)
 		ctt = ctt->next;
 	}
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct reg **reg_list;
 		int reg_list_size;
 		int retval;
@@ -1367,7 +1367,7 @@ static int linux_os_smp_init(struct target *target)
 		(struct linux_os *)rtos->rtos_specific_params;
 	struct current_thread *ct;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (head->target->rtos != rtos) {
 			struct linux_os *smp_os_linux =
 				(struct linux_os *)head->target->rtos->rtos_specific_params;

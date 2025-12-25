@@ -250,7 +250,7 @@ static int jtag_vpi_tms_seq(const uint8_t *bits, int nb_bits)
 
 static int jtag_vpi_path_move(struct pathmove_command *cmd)
 {
-	uint8_t trans[DIV_ROUND_UP(cmd->num_states, 8)];
+	uint8_t *trans = malloc(DIV_ROUND_UP(cmd->num_states, 8));
 
 	memset(trans, 0, DIV_ROUND_UP(cmd->num_states, 8));
 
@@ -260,7 +260,9 @@ static int jtag_vpi_path_move(struct pathmove_command *cmd)
 		tap_set_state(cmd->path[i]);
 	}
 
-	return jtag_vpi_tms_seq(trans, cmd->num_states);
+	int ret = jtag_vpi_tms_seq(trans, cmd->num_states);
+	free(trans);
+	return ret;
 }
 
 /**

@@ -12,8 +12,8 @@
 #include <helper/list.h>
 #include "server/server.h"
 
-#define foreach_smp_target(pos, head) \
-	list_for_each_entry(pos, head, lh)
+#define foreach_smp_target(pos, tpos, head) \
+	list_for_each_entry(pos, tpos, head, lh)
 
 #define foreach_smp_target_direction(forward, pos, head) \
 	list_for_each_entry_direction(forward, pos, head, lh)

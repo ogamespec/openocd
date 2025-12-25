@@ -672,7 +672,7 @@ static COMMAND_HELPER(command_help_show_list, bool show_help, const char *cmd_ma
 {
 	struct help_entry *entry;
 
-	list_for_each_entry(entry, CMD_CTX->help_list, lh)
+	list_for_each_entry(entry, struct help_entry, CMD_CTX->help_list, lh)
 		CALL_COMMAND_HANDLER(command_help_show, entry, show_help, cmd_match);
 	return ERROR_OK;
 }
@@ -935,7 +935,7 @@ int help_del_all_commands(struct command_context *cmd_ctx)
 {
 	struct help_entry *curr, *n;
 
-	list_for_each_entry_safe(curr, n, cmd_ctx->help_list, lh) {
+	list_for_each_entry_safe(curr, struct help_entry, n, struct help_entry, cmd_ctx->help_list, lh) {
 		list_del(&curr->lh);
 		free(curr->cmd_name);
 		free(curr->help);
@@ -949,7 +949,7 @@ static int help_del_command(struct command_context *cmd_ctx, const char *cmd_nam
 {
 	struct help_entry *curr;
 
-	list_for_each_entry(curr, cmd_ctx->help_list, lh) {
+	list_for_each_entry(curr, struct help_entry, cmd_ctx->help_list, lh) {
 		if (!strcmp(cmd_name, curr->cmd_name)) {
 			list_del(&curr->lh);
 			free(curr->cmd_name);
@@ -969,7 +969,7 @@ static int help_add_command(struct command_context *cmd_ctx,
 	int cmp = -1; /* add after curr */
 	struct help_entry *curr;
 
-	list_for_each_entry_reverse(curr, cmd_ctx->help_list, lh) {
+	list_for_each_entry_reverse(curr, struct help_entry, cmd_ctx->help_list, lh) {
 		cmp = strcmp(cmd_name, curr->cmd_name);
 		if (cmp >= 0)
 			break;

@@ -83,12 +83,14 @@
  * request and response before being sent over the socket. Little endian format
  * is used for multibyte values.
  */
-struct __attribute__((packed)) cmsis_dap_tcp_packet_hdr {
+#pragma pack(push, 1)
+struct cmsis_dap_tcp_packet_hdr {
 	uint32_t signature;		// "DAP"
 	uint16_t length;		// Not including header length.
 	uint8_t packet_type;
 	uint8_t reserved;		// Reserved for future use.
 };
+#pragma pack(pop)
 
 /* Defines for struct cmsis_dap_tcp_packet_hdr requested by reviewer. */
 #define HEADER_SIGNATURE_OFFSET		0
@@ -113,9 +115,9 @@ static int cmsis_dap_tcp_alloc(struct cmsis_dap *dap, unsigned int pkt_sz);
 static void cmsis_dap_tcp_free(struct cmsis_dap *dap);
 
 static int cmsis_dap_tcp_open(struct cmsis_dap *dap,
-		uint16_t vids[] __attribute__((unused)),
-		uint16_t pids[] __attribute__((unused)),
-		const char *serial __attribute__((unused)))
+		uint16_t vids[],
+		uint16_t pids[],
+		const char *serial)
 {
 	// Skip the open if the user has not provided a hostname.
 	if (!cmsis_dap_tcp_host) {
@@ -403,7 +405,7 @@ static int cmsis_dap_tcp_read(struct cmsis_dap *dap, int transfer_timeout_ms,
 }
 
 static int cmsis_dap_tcp_write(struct cmsis_dap *dap, int txlen,
-		int timeout_ms __attribute__((unused)))
+		int timeout_ms)
 {
 	const unsigned int len = txlen + HEADER_SIZE;
 	if (len > dap->packet_buffer_size) {
