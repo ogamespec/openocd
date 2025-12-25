@@ -1977,7 +1977,7 @@ static int rtp_cs_component(enum coresight_access_mode mode, const struct rtp_op
 
 			/* SoC-600 APv1 Adapter */
 			if ((v.devarch & DEVARCH_ID_MASK) == DEVARCH_UNKNOWN_V2 &&
-					ARM_CS_PIDR_DESIGNER(v.pid) == ARM_ID &&
+					ARM_CS_PIDR_DESIGNER(v.pid, uint64_t) == ARM_ID &&
 					ARM_CS_PIDR_PART(v.pid) == 0x9e5)
 				*is_mem_ap = true;
 		}
@@ -2150,7 +2150,7 @@ static int dap_info_cs_component(int retval, struct cs_component_vals *v, int de
 	command_print(cmd, "\t\tPeripheral ID 0x%010" PRIx64, v->pid);
 
 	const unsigned int part_num = ARM_CS_PIDR_PART(v->pid);
-	unsigned int designer_id = ARM_CS_PIDR_DESIGNER(v->pid);
+	unsigned int designer_id = ARM_CS_PIDR_DESIGNER(v->pid, uint64_t);
 
 	if (v->pid & ARM_CS_PIDR_JEDEC) {
 		/* JEP106 code */

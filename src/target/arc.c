@@ -183,7 +183,7 @@ int arc_reg_add(struct target *target, struct arc_reg_desc *arc_reg,
 	/* Find register type */
 	{
 		struct arc_reg_data_type *type;
-		list_for_each_entry(type, &arc->reg_data_types, list)
+		list_for_each_entry(type, struct arc_reg_data_type, &arc->reg_data_types, list)
 			if (!strncmp(type->data_type.id, type_name, type_name_len)) {
 				arc_reg->data_type = &(type->data_type);
 				break;
@@ -372,7 +372,7 @@ static int arc_build_reg_cache(struct target *target)
 		goto fail;
 	}
 
-	list_for_each_entry(reg_desc, &arc->core_reg_descriptions, list) {
+	list_for_each_entry(reg_desc, struct arc_reg_desc, &arc->core_reg_descriptions, list) {
 		CHECK_RETVAL(arc_init_reg(target, &reg_list[i], reg_desc, i));
 
 		LOG_TARGET_DEBUG(target, "reg n=%3li name=%3s group=%s feature=%s", i,
@@ -387,7 +387,7 @@ static int arc_build_reg_cache(struct target *target)
 		goto fail;
 	}
 
-	list_for_each_entry(reg_desc, &arc->aux_reg_descriptions, list) {
+	list_for_each_entry(reg_desc, struct arc_reg_desc, &arc->aux_reg_descriptions, list) {
 		CHECK_RETVAL(arc_init_reg(target, &reg_list[i], reg_desc, i));
 
 		LOG_TARGET_DEBUG(target, "reg n=%3li name=%3s group=%s feature=%s", i,
@@ -463,7 +463,7 @@ static int arc_build_bcr_reg_cache(struct target *target)
 		goto fail;
 	}
 
-	list_for_each_entry(reg_desc, &arc->bcr_reg_descriptions, list) {
+	list_for_each_entry(reg_desc, struct arc_reg_desc, &arc->bcr_reg_descriptions, list) {
 		CHECK_RETVAL(arc_init_reg(target, &reg_list[i], reg_desc, gdb_regnum));
 		/* BCRs always semantically, they are just read-as-zero, if there is
 		 * not real register. */
@@ -1394,7 +1394,7 @@ static void arc_deinit_target(struct target *target)
 	struct arc_reg_desc *desc, *k;
 
 	/* Free arc-specific reg_data_types allocations*/
-	list_for_each_entry_safe_reverse(type, n, &arc->reg_data_types, list) {
+	list_for_each_entry_safe_reverse(type, struct arc_reg_data_type, n, struct arc_reg_data_type, &arc->reg_data_types, list) {
 		if (type->data_type.type_class == REG_TYPE_CLASS_STRUCT) {
 			free(type->reg_type_struct_field);
 			free(type->bitfields);
@@ -1410,13 +1410,13 @@ static void arc_deinit_target(struct target *target)
 	type = list_first_entry(&arc->reg_data_types, struct arc_reg_data_type, list);
 	free(type);
 
-	list_for_each_entry_safe(desc, k, &arc->aux_reg_descriptions, list)
+	list_for_each_entry_safe(desc, struct arc_reg_desc, k, struct arc_reg_desc, &arc->aux_reg_descriptions, list)
 		free_reg_desc(desc);
 
-	list_for_each_entry_safe(desc, k, &arc->core_reg_descriptions, list)
+	list_for_each_entry_safe(desc, struct arc_reg_desc, k, struct arc_reg_desc, &arc->core_reg_descriptions, list)
 		free_reg_desc(desc);
 
-	list_for_each_entry_safe(desc, k, &arc->bcr_reg_descriptions, list)
+	list_for_each_entry_safe(desc, struct arc_reg_desc, k, struct arc_reg_desc, &arc->bcr_reg_descriptions, list)
 		free_reg_desc(desc);
 
 	free(arc->actionpoints_list);

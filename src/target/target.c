@@ -1725,7 +1725,7 @@ int target_unregister_reset_callback(int (*callback)(struct target *target,
 	if (!callback)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(entry, &target_reset_callback_list, list) {
+	list_for_each_entry(entry, struct target_reset_callback, &target_reset_callback_list, list) {
 		if (entry->callback == callback && entry->priv == priv) {
 			list_del(&entry->list);
 			free(entry);
@@ -1744,7 +1744,7 @@ int target_unregister_trace_callback(int (*callback)(struct target *target,
 	if (!callback)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(entry, &target_trace_callback_list, list) {
+	list_for_each_entry(entry, struct target_reset_callback, &target_trace_callback_list, list) {
 		if (entry->callback == callback && entry->priv == priv) {
 			list_del(&entry->list);
 			free(entry);
@@ -1803,7 +1803,7 @@ int target_call_reset_callbacks(struct target *target, enum target_reset_mode re
 	LOG_DEBUG("target reset %i (%s)", reset_mode,
 			nvp_value2name(nvp_reset_modes, reset_mode)->name);
 
-	list_for_each_entry(callback, &target_reset_callback_list, list)
+	list_for_each_entry(callback, struct target_reset_callback, &target_reset_callback_list, list)
 		callback->callback(target, reset_mode, callback->priv);
 
 	return ERROR_OK;
@@ -1813,7 +1813,7 @@ int target_call_trace_callbacks(struct target *target, size_t len, uint8_t *data
 {
 	struct target_trace_callback *callback;
 
-	list_for_each_entry(callback, &target_trace_callback_list, list)
+	list_for_each_entry(callback, struct target_reset_callback, &target_trace_callback_list, list)
 		callback->callback(target, len, data, callback->priv);
 
 	return ERROR_OK;
@@ -2204,7 +2204,7 @@ static void target_destroy(struct target *target)
 	jtag_unregister_event_callback(jtag_enable_callback, target);
 
 	struct target_event_action *teap, *temp;
-	list_for_each_entry_safe(teap, temp, &target->events_action, list) {
+	list_for_each_entry_safe(teap, struct target_event_action, temp, struct target_event_action, &target->events_action, list) {
 		list_del(&teap->list);
 		Jim_DecrRefCount(teap->interp, teap->body);
 		free(teap);
@@ -2216,7 +2216,7 @@ static void target_destroy(struct target *target)
 	if (target->smp) {
 		struct target_list *head, *tmp;
 
-		list_for_each_entry_safe(head, tmp, target->smp_targets, lh) {
+		list_for_each_entry_safe(head, struct target_list, tmp, struct target_list, target->smp_targets, lh) {
 			list_del(&head->lh);
 			head->target->smp = 0;
 			free(head);
@@ -3354,7 +3354,7 @@ void target_handle_md_output(struct command_invocation *cmd,
 	const unsigned int line_bytecnt = 32;
 	unsigned int line_modulo = line_bytecnt / size;
 
-	char output[line_bytecnt * 4 + 1];
+	char output[32 * 4 + 1];
 	unsigned int output_len = 0;
 
 	const char *value_fmt;
@@ -4666,7 +4666,7 @@ void target_handle_event(struct target *target, enum target_event e)
 	struct target_event_action *teap, *tmp;
 	int retval;
 
-	list_for_each_entry_safe(teap, tmp, &target->events_action, list) {
+	list_for_each_entry_safe(teap, struct target_event_action, tmp, struct target_event_action, &target->events_action, list) {
 		if (teap->event == e) {
 			/*
 			 * The event can be destroyed by its own handler.
@@ -4842,7 +4842,7 @@ bool target_has_event_action(const struct target *target, enum target_event even
 {
 	struct target_event_action *teap;
 
-	list_for_each_entry(teap, &target->events_action, list) {
+	list_for_each_entry(teap, struct target_event_action, &target->events_action, list) {
 		if (teap->event == event)
 			return true;
 	}
@@ -4960,7 +4960,7 @@ static COMMAND_HELPER(target_configure, struct target *target, unsigned int inde
 				struct target_event_action *teap;
 
 				/* replace existing? */
-				list_for_each_entry(teap, &target->events_action, list)
+				list_for_each_entry(teap, struct target_event_action, &target->events_action, list)
 					if (teap->event == (enum target_event)n->value)
 						break;
 
@@ -5468,7 +5468,7 @@ COMMAND_HANDLER(handle_target_event_list)
 	command_print(CMD, "------------------------- | "
 			"----------------------------------------");
 
-	list_for_each_entry(teap, &target->events_action, list)
+	list_for_each_entry(teap, struct target_event_action, &target->events_action, list)
 		command_print(CMD, "%-25s | %s",
 				target_event_name(teap->event),
 				Jim_GetString(teap->body, NULL));
@@ -5971,7 +5971,9 @@ COMMAND_HANDLER(handle_target_names)
 }
 
 static struct target_list *
+#ifdef __GNUC__
 __attribute__((warn_unused_result))
+#endif
 create_target_list_node(const char *targetname)
 {
 	struct target *target = get_target(targetname);
@@ -5994,7 +5996,7 @@ static int get_target_with_common_rtos_type(struct command_invocation *cmd,
 {
 	struct target *target = NULL;
 	struct target_list *curr;
-	foreach_smp_target(curr, lh) {
+	foreach_smp_target(curr, struct target_list, lh) {
 		struct rtos *curr_rtos = curr->target->rtos;
 		if (curr_rtos) {
 			if (target && target->rtos && target->rtos->type != curr_rtos->type) {
@@ -6036,7 +6038,7 @@ COMMAND_HANDLER(handle_target_smp)
 	}
 	/*  now parse the list of cpu and put the target in smp mode*/
 	struct target_list *curr;
-	foreach_smp_target(curr, lh) {
+	foreach_smp_target(curr, struct target_list, lh) {
 		struct target *target = curr->target;
 		target->smp = smp_group;
 		target->smp_targets = lh;

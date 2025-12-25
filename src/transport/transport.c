@@ -120,7 +120,7 @@ static int transport_select(struct command_context *ctx, unsigned int transport_
 	/* name may only identify a known transport;
 	 * caller guarantees session's transport isn't yet set.*/
 	struct transport *t;
-	list_for_each_entry(t, &transport_list, lh) {
+	list_for_each_entry(t, struct transport, &transport_list, lh) {
 		if (t->id == transport_id) {
 			int retval = t->select(ctx);
 			/* select() registers commands specific to this
@@ -217,7 +217,7 @@ int transport_register(struct transport *new_transport)
 		return ERROR_FAIL;
 	}
 
-	list_for_each_entry(t, &transport_list, lh) {
+	list_for_each_entry(t, struct transport, &transport_list, lh) {
 		if (t->id == new_transport->id) {
 			LOG_ERROR("transport '%s' already registered",
 					  transport_name(t->id));
@@ -230,7 +230,7 @@ int transport_register(struct transport *new_transport)
 				  transport_full_name(new_transport->id));
 
 	/* splice this into the list, sorted in alphabetic order */
-	list_for_each_entry(t, &transport_list, lh) {
+	list_for_each_entry(t, struct transport, &transport_list, lh) {
 		if (strcmp(transport_name(t->id),
 				   transport_name(new_transport->id)) >= 0)
 			break;
@@ -302,7 +302,7 @@ COMMAND_HANDLER(handle_transport_list)
 	struct transport *t;
 	const char *prev_name = NULL;
 	/* list is sorted, don't print duplicated transport names */
-	list_for_each_entry(t, &transport_list, lh) {
+	list_for_each_entry(t, struct transport, &transport_list, lh) {
 		const char *name = transport_name(t->id);
 		if (!prev_name || strcmp(prev_name, name))
 			command_print(CMD, "\t%s", name);

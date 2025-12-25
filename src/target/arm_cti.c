@@ -40,7 +40,7 @@ struct arm_cti *cti_instance_by_jim_obj(Jim_Interp *interp, Jim_Obj *o)
 
 	name = Jim_GetString(o, NULL);
 
-	list_for_each_entry(obj, &all_cti, lh) {
+	list_for_each_entry(obj, struct arm_cti, &all_cti, lh) {
 		if (!strcmp(name, obj->name)) {
 			found = true;
 			break;
@@ -207,7 +207,7 @@ int arm_cti_cleanup_all(void)
 {
 	struct arm_cti *obj, *tmp;
 
-	list_for_each_entry_safe(obj, tmp, &all_cti, lh) {
+	list_for_each_entry_safe(obj, struct arm_cti, tmp, struct arm_cti, &all_cti, lh) {
 		if (obj->ap)
 			dap_put_ap(obj->ap);
 		free(obj->name);
@@ -520,7 +520,7 @@ COMMAND_HANDLER(cti_handle_names)
 	if (CMD_ARGC != 0)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(obj, &all_cti, lh)
+	list_for_each_entry(obj, struct arm_cti, &all_cti, lh)
 		command_print(CMD, "%s", obj->name);
 
 	return ERROR_OK;

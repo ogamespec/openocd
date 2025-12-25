@@ -108,14 +108,14 @@ COMMAND_HANDLER(default_handle_smp_command)
 	}
 
 	if (!strcmp(CMD_ARGV[0], "on")) {
-		foreach_smp_target(head, target->smp_targets)
+		foreach_smp_target(head, struct target_list, target->smp_targets)
 			head->target->smp = 1;
 
 		return ERROR_OK;
 	}
 
 	if (!strcmp(CMD_ARGV[0], "off")) {
-		foreach_smp_target(head, target->smp_targets)
+		foreach_smp_target(head, struct target_list, target->smp_targets)
 			head->target->smp = 0;
 
 		/* fixes the target display to the debugger */

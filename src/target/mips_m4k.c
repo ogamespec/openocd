@@ -122,7 +122,7 @@ static struct target *get_mips_m4k(struct target *target, int32_t coreid)
 {
 	struct target_list *head;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if ((curr->coreid == coreid) && (curr->state == TARGET_HALTED))
 			return curr;
@@ -135,7 +135,7 @@ static int mips_m4k_halt_smp(struct target *target)
 	int retval = ERROR_OK;
 	struct target_list *head;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		int ret = ERROR_OK;
 		struct target *curr = head->target;
 		if ((curr != target) && (curr->state != TARGET_HALTED))
@@ -404,7 +404,7 @@ static int mips_m4k_restore_smp(struct target *target, uint32_t address,
 	int retval = ERROR_OK;
 	struct target_list *head;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		int ret = ERROR_OK;
 		struct target *curr = head->target;
 		if ((curr != target) && (curr->state != TARGET_RUNNING)) {

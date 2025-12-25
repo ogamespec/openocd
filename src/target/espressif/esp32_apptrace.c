@@ -416,7 +416,7 @@ int esp32_apptrace_cmd_ctx_init(struct esp32_apptrace_cmd_ctx *cmd_ctx, struct c
 		struct target *curr;
 		unsigned int i = 0;
 		cmd_ctx->cores_num = 0;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			if (i == ESP32_APPTRACE_MAX_CORES_NUM) {
 				command_print(cmd, "Too many cores configured! Max %d cores are supported.",
@@ -1447,7 +1447,7 @@ static int esp32_cmd_apptrace_generic(struct command_invocation *cmd, int mode, 
 		struct target_list *head;
 		struct target *curr;
 		LOG_WARNING("Current target '%s' was not examined!", target_name(target));
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			if (target_was_examined(curr)) {
 				target = curr;

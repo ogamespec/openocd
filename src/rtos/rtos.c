@@ -722,7 +722,7 @@ struct rtos *rtos_from_target(struct target *target)
 		return target->rtos;
 
 	struct target_list *pos;
-	foreach_smp_target(pos, target->smp_targets)
+	foreach_smp_target(pos, struct target_list, target->smp_targets)
 		if (pos->target->rtos && pos->target->rtos->type)
 			return pos->target->rtos;
 

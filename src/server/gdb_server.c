@@ -163,7 +163,7 @@ struct target *get_available_target_from_connection(struct connection *connectio
 	struct target *target = gdb_service->target;
 	if (target->state == TARGET_UNAVAILABLE && target->smp) {
 		struct target_list *tlist;
-		foreach_smp_target(tlist, target->smp_targets) {
+		foreach_smp_target(tlist, struct target_list, target->smp_targets) {
 			struct target *t = tlist->target;
 			if (t->state != TARGET_UNAVAILABLE)
 				return t;
@@ -2353,7 +2353,7 @@ static int smp_reg_list_noread(struct target *target,
 	unsigned int local_list_size = 0;
 
 	struct target_list *head;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (!target_was_examined(head->target))
 			continue;
 
@@ -2413,7 +2413,7 @@ static int smp_reg_list_noread(struct target *target,
 	}
 
 	/* Now warn the user about any registers that weren't found in every target. */
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		if (!target_was_examined(head->target))
 			continue;
 
@@ -3905,7 +3905,7 @@ static int gdb_target_start(struct target *target, const char *port)
 	/* initialize all targets gdb service with the same pointer */
 	{
 		struct target_list *head;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			if (curr != target)
 				curr->gdb_service = gdb_service;

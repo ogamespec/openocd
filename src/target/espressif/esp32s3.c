@@ -135,7 +135,7 @@ static int esp32s3_soc_reset(struct target *target)
 	}
 
 	if (target->smp) {
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			xtensa = target_to_xtensa(head->target);
 			/* if any of the cores is stalled unstall them */
 			if (xtensa_dm_core_is_stalled(&xtensa->dbg_mod)) {

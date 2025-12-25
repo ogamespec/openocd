@@ -1334,7 +1334,7 @@ static void handle_iod_output(struct command_invocation *cmd,
 	const unsigned int line_bytecnt = 32;
 	unsigned int line_modulo = line_bytecnt / size;
 
-	char output[line_bytecnt * 4 + 1];
+	char output[32 * 4 + 1];
 	unsigned int output_len = 0;
 
 	const char *value_fmt;
@@ -1429,7 +1429,7 @@ static int target_fill_io(struct target *target,
 {
 	LOG_DEBUG("address=0x%08" PRIx32 ", data_size=%u, b=0x%08" PRIx32,
 			address, data_size, b);
-	uint8_t target_buf[data_size];
+	uint8_t target_buf[0x10];	// > max. datasize
 	switch (data_size) {
 	case 4:
 		target_buffer_set_u32(target, target_buf, b);

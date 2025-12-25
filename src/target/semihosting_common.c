@@ -309,6 +309,14 @@ static char *semihosting_user_op_params;
  */
 static const char *semihosting_opcode_to_str(const uint64_t opcode)
 {
+	if (opcode >= SEMIHOSTING_USER_CMD_0X100 && opcode <= SEMIHOSTING_USER_CMD_0X1FF) {
+		return "USER_CMD";
+	}
+	
+	if (opcode >= SEMIHOSTING_ARM_RESERVED_START && opcode <= SEMIHOSTING_ARM_RESERVED_END) {
+		return "ARM_RESERVED_CMD";
+	}
+
 	switch (opcode) {
 	case SEMIHOSTING_SYS_CLOSE:
 		return "CLOSE";
@@ -358,10 +366,6 @@ static const char *semihosting_opcode_to_str(const uint64_t opcode)
 		return "WRITEC";
 	case SEMIHOSTING_SYS_WRITE0:
 		return "WRITE0";
-	case SEMIHOSTING_USER_CMD_0X100 ... SEMIHOSTING_USER_CMD_0X1FF:
-		return "USER_CMD";
-	case SEMIHOSTING_ARM_RESERVED_START ... SEMIHOSTING_ARM_RESERVED_END:
-		return "ARM_RESERVED_CMD";
 	default:
 		return "<unknown>";
 	}
@@ -966,15 +970,15 @@ int semihosting_common(struct target *target)
 						 * - 8-11 ("a") for stderr */
 						int fd;
 						if (mode < 4) {
-							fd = dup(STDIN_FILENO);
+							fd = dup(_fileno(stdin));
 							semihosting->stdin_fd = fd;
 							LOG_DEBUG("dup(STDIN)=%d", fd);
 						} else if (mode < 8) {
-							fd = dup(STDOUT_FILENO);
+							fd = dup(_fileno(stdout));
 							semihosting->stdout_fd = fd;
 							LOG_DEBUG("dup(STDOUT)=%d", fd);
 						} else {
-							fd = dup(STDERR_FILENO);
+							fd = dup(_fileno(stderr));
 							semihosting->stderr_fd = fd;
 							LOG_DEBUG("dup(STDERR)=%d", fd);
 						}
@@ -1486,7 +1490,14 @@ int semihosting_common(struct target *target)
 		}
 		break;
 
-	case SEMIHOSTING_USER_CMD_0X100 ... SEMIHOSTING_USER_CMD_0X107:
+	case SEMIHOSTING_USER_CMD_0X100:
+	case SEMIHOSTING_USER_CMD_0X100 + 1:
+	case SEMIHOSTING_USER_CMD_0X100 + 2:
+	case SEMIHOSTING_USER_CMD_0X100 + 3:
+	case SEMIHOSTING_USER_CMD_0X100 + 4:
+	case SEMIHOSTING_USER_CMD_0X100 + 5:
+	case SEMIHOSTING_USER_CMD_0X100 + 6:
+	case SEMIHOSTING_USER_CMD_0X107:
 		/**
 		 * This is a user defined operation (while user cmds 0x100-0x1ff
 		 * are possible, only 0x100-0x107 are currently implemented).
@@ -1894,7 +1905,7 @@ COMMAND_HANDLER(handle_common_semihosting_redirect_command)
 	}
 
 	enum semihosting_redirect_config cfg;
-	const char *port;
+	const char *port = "0";
 
 	if (CMD_ARGC < 1)
 		return ERROR_COMMAND_SYNTAX_ERROR;

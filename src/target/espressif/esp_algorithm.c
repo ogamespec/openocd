@@ -249,7 +249,7 @@ static int load_section_from_image(struct target *target,
 
 		if (reverse) {
 			size_t aligned_len = ALIGN_UP(size_read, 4);
-			uint8_t reversed_buf[aligned_len];
+			uint8_t *reversed_buf = malloc(aligned_len);
 
 			/* Send original size to allow padding */
 			reverse_binary(buf, reversed_buf, size_read);
@@ -270,6 +270,7 @@ static int load_section_from_image(struct target *target,
 				For more details, please refer to ESP32 TRM, Internal SRAM1 section.
 			*/
 			retval = target_write_buffer(target, run->image.dram_org - sec_wr - aligned_len, aligned_len, reversed_buf);
+			free(reversed_buf);
 			if (retval != ERROR_OK) {
 				LOG_ERROR("Failed to write stub section!");
 				return retval;
@@ -400,13 +401,14 @@ int esp_algorithm_load_func_image(struct target *target, struct esp_algorithm_ru
 
 		if (run->image.reverse) {
 			target_addr_t reversed_tramp_addr = run->image.dram_org - code_size;
-			uint8_t reversed_tramp[al_tramp_size];
+			uint8_t *reversed_tramp = malloc(al_tramp_size);
 
 			/* Send original size to allow padding */
 			reverse_binary(tramp, reversed_tramp, tramp_sz);
 			run->stub.tramp_addr = reversed_tramp_addr - al_tramp_size;
 			LOG_DEBUG("Write reversed tramp to addr " TARGET_ADDR_FMT ", sz %zu", run->stub.tramp_addr, al_tramp_size);
 			retval = target_write_buffer(target, run->stub.tramp_addr, al_tramp_size, reversed_tramp);
+			free(reversed_tramp);
 		} else {
 			LOG_DEBUG("Write tramp to addr " TARGET_ADDR_FMT ", sz %zu", run->stub.tramp_addr, tramp_sz);
 			retval = target_write_buffer(target, run->stub.tramp_addr, tramp_sz, tramp);

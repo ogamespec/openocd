@@ -1255,7 +1255,7 @@ COMMAND_HANDLER(or1k_tap_select_command_handler)
 	if (CMD_ARGC != 1)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(or1k_tap, &tap_list, list) {
+	list_for_each_entry(or1k_tap, struct or1k_tap_ip, &tap_list, list) {
 		if (or1k_tap->name) {
 			if (!strcmp(CMD_ARGV[0], or1k_tap->name)) {
 				jtag->tap_ip = or1k_tap;
@@ -1276,7 +1276,7 @@ COMMAND_HANDLER(or1k_tap_list_command_handler)
 	if (CMD_ARGC != 0)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(or1k_tap, &tap_list, list) {
+	list_for_each_entry(or1k_tap, struct or1k_tap_ip, &tap_list, list) {
 		if (or1k_tap->name)
 			command_print(CMD, "%s", or1k_tap->name);
 	}
@@ -1294,7 +1294,7 @@ COMMAND_HANDLER(or1k_du_select_command_handler)
 	if (CMD_ARGC > 2)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(or1k_du, &du_list, list) {
+	list_for_each_entry(or1k_du, struct or1k_du, &du_list, list) {
 		if (or1k_du->name) {
 			if (!strcmp(CMD_ARGV[0], or1k_du->name)) {
 				jtag->du_core = or1k_du;
@@ -1324,7 +1324,7 @@ COMMAND_HANDLER(or1k_du_list_command_handler)
 	if (CMD_ARGC != 0)
 		return ERROR_COMMAND_SYNTAX_ERROR;
 
-	list_for_each_entry(or1k_du, &du_list, list) {
+	list_for_each_entry(or1k_du, struct or1k_du, &du_list, list) {
 		if (or1k_du->name)
 			command_print(CMD, "%s", or1k_du->name);
 	}

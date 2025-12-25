@@ -222,7 +222,7 @@ static void flush_journal(struct adiv5_dap *dap, struct list_head *lh)
 {
 	struct dap_cmd *el, *tmp;
 
-	list_for_each_entry_safe(el, tmp, lh, lh) {
+	list_for_each_entry_safe(el, struct dap_cmd, tmp, struct dap_cmd, lh, lh) {
 		list_del(&el->lh);
 		dap_cmd_release(dap, el);
 	}
@@ -233,7 +233,7 @@ static void jtag_quit(struct adiv5_dap *dap)
 	struct dap_cmd_pool *el, *tmp;
 	struct list_head *lh = &dap->cmd_pool;
 
-	list_for_each_entry_safe(el, tmp, lh, lh) {
+	list_for_each_entry_safe(el, struct dap_cmd_pool, tmp, struct dap_cmd_pool, lh, lh) {
 		list_del(&el->lh);
 		free(el);
 	}
@@ -439,7 +439,7 @@ static int jtagdp_overrun_check(struct adiv5_dap *dap)
 		goto done;
 
 	/* skip all completed transactions up to the first WAIT */
-	list_for_each_entry(el, &dap->cmd_journal, lh) {
+	list_for_each_entry(el, struct dap_cmd, &dap->cmd_journal, lh) {
 		/*
 		 * JTAG_ACK_OK_FAULT (ADIv5) and JTAG_ACK_FAULT (ADIv6) are equal so
 		 * the following statement is checking to see if an acknowledgment of
@@ -469,7 +469,7 @@ static int jtagdp_overrun_check(struct adiv5_dap *dap)
 			/* search for the next OK transaction, it contains
 			 * the result of the previous READ */
 			tmp = el;
-			list_for_each_entry_from(tmp, &dap->cmd_journal, lh) {
+			list_for_each_entry_from(tmp, struct dap_cmd, &dap->cmd_journal, lh) {
 				/* The following check covers OK and FAULT ACKs for both ADIv5 and ADIv6 */
 				if (tmp->ack == JTAG_ACK_OK_FAULT || (is_adiv6(dap) && tmp->ack == JTAG_ACK_OK)) {
 					/* recover the read value */
@@ -556,7 +556,7 @@ static int jtagdp_overrun_check(struct adiv5_dap *dap)
 	}
 
 	/* move all remaining transactions over to the replay list */
-	list_for_each_entry_safe_from(el, tmp, &dap->cmd_journal, lh) {
+	list_for_each_entry_safe_from(el, struct dap_cmd, tmp, struct dap_cmd, &dap->cmd_journal, lh) {
 		log_dap_cmd(dap, "REP", el);
 		list_move_tail(&el->lh, &replay_list);
 	}
@@ -594,7 +594,7 @@ static int jtagdp_overrun_check(struct adiv5_dap *dap)
 			dap->select_valid = false;
 		}
 
-		list_for_each_entry_safe(el, tmp, &replay_list, lh) {
+		list_for_each_entry_safe(el, struct dap_cmd, tmp, struct dap_cmd, &replay_list, lh) {
 			time_now = timeval_ms();
 			do {
 				retval = adi_jtag_dp_scan_cmd_sync(dap, el, NULL);

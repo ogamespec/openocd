@@ -340,7 +340,7 @@ static int aarch64_prepare_halt_smp(struct target *target, bool exc_target, stru
 
 	LOG_DEBUG("target %s exc %i", target_name(target), exc_target);
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		struct armv8_common *armv8 = target_to_armv8(curr);
 
@@ -431,7 +431,7 @@ static int aarch64_halt_smp(struct target *target, bool exc_target)
 		struct target_list *head;
 		struct target *curr;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			int halted;
 
 			curr = head->target;
@@ -481,7 +481,7 @@ static int update_halt_gdb(struct target *target, enum target_debug_reason debug
 	}
 
 	/* poll all targets in the group, but skip the target that serves GDB */
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		curr = head->target;
 		/* skip calling context */
 		if (curr == target)
@@ -761,7 +761,7 @@ static int aarch64_prep_restart_smp(struct target *target,
 	struct target *first = NULL;
 	uint64_t address;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 
 		/* skip calling target */
@@ -817,7 +817,7 @@ static int aarch64_step_restart_smp(struct target *target)
 		struct target *curr = target;
 		bool all_resumed = true;
 
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			uint32_t prsr;
 			int resumed;
 
@@ -907,7 +907,7 @@ static int aarch64_resume(struct target *target, bool current,
 			struct target_list *head;
 			bool all_resumed = true;
 
-			foreach_smp_target(head, target->smp_targets) {
+			foreach_smp_target(head, struct target_list, target->smp_targets) {
 				uint32_t prsr;
 				int resumed;
 

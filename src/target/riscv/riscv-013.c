@@ -284,7 +284,7 @@ static dm013_info_t *get_dm(struct target *target)
 
 	dm013_info_t *entry;
 	dm013_info_t *dm = NULL;
-	list_for_each_entry(entry, &dm_list, list) {
+	list_for_each_entry(entry, dm013_info_t, &dm_list, list) {
 		if (entry->abs_chain_position == abs_chain_position
 				&& entry->base == target->dbgbase) {
 			dm = entry;
@@ -311,7 +311,7 @@ static dm013_info_t *get_dm(struct target *target)
 
 	info->dm = dm;
 	target_list_t *target_entry;
-	list_for_each_entry(target_entry, &dm->target_list, list) {
+	list_for_each_entry(target_entry, target_list_t, &dm->target_list, list) {
 		if (target_entry->target == target)
 			return dm;
 	}
@@ -334,7 +334,7 @@ static void riscv013_dm_free(struct target *target)
 		return;
 
 	target_list_t *target_entry;
-	list_for_each_entry(target_entry, &dm->target_list, list) {
+	list_for_each_entry(target_entry, target_list_t, &dm->target_list, list) {
 		if (target_entry->target == target) {
 			list_del(&target_entry->list);
 			free(target_entry);
@@ -596,7 +596,7 @@ static int increase_ac_busy_delay(struct target *target)
 			RISCV_DELAY_ABSTRACT_COMMAND);
 }
 
-static uint32_t __attribute__((unused)) abstract_register_size(unsigned int width)
+static uint32_t abstract_register_size(unsigned int width)
 {
 	switch (width) {
 	case 32:
@@ -2207,7 +2207,7 @@ static int riscv013_authdata_write(struct target *target, uint32_t value, unsign
 		if (!dm)
 			return ERROR_FAIL;
 		target_list_t *entry;
-		list_for_each_entry(entry, &dm->target_list, list) {
+		list_for_each_entry(entry, target_list_t, &dm->target_list, list) {
 			if (target_examine_one(entry->target) != ERROR_OK)
 				result = ERROR_FAIL;
 		}
@@ -5194,7 +5194,7 @@ static int select_prepped_harts(struct target *target)
 	target_list_t *entry;
 	unsigned int total_selected = 0;
 	unsigned int selected_index = 0;
-	list_for_each_entry(entry, &dm->target_list, list) {
+	list_for_each_entry(entry, target_list_t, &dm->target_list, list) {
 		struct target *t = entry->target;
 		struct riscv_info *info = riscv_info(t);
 		riscv013_info_t *info_013 = get_info(t);
@@ -5290,7 +5290,7 @@ static int riscv013_halt_go(struct target *target)
 
 	if (dm->current_hartid == HART_INDEX_MULTIPLE) {
 		target_list_t *entry;
-		list_for_each_entry(entry, &dm->target_list, list) {
+		list_for_each_entry(entry, target_list_t, &dm->target_list, list) {
 			struct target *t = entry->target;
 			uint32_t t_dmstatus;
 			if (get_field(dmstatus, DM_DMSTATUS_ALLHALTED) ||

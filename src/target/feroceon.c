@@ -495,10 +495,11 @@ static int feroceon_bulk_write_memory(struct target *target,
 
 	/* regrab previously allocated working_area, or allocate a new one */
 	if (!arm7_9->dcc_working_area) {
-		uint8_t dcc_code_buf[dcc_size];
+		uint8_t *dcc_code_buf = malloc(dcc_size);
 
 		/* make sure we have a working area */
 		if (target_alloc_working_area(target, dcc_size, &arm7_9->dcc_working_area) != ERROR_OK) {
+			free(dcc_code_buf);
 			LOG_INFO("no working area available, falling back to memory writes");
 			return ERROR_TARGET_RESOURCE_NOT_AVAILABLE;
 		}
@@ -510,6 +511,7 @@ static int feroceon_bulk_write_memory(struct target *target,
 		 * memory write to avoid ending up here again */
 		retval = arm7_9_write_memory_no_opt(target,
 				arm7_9->dcc_working_area->address, 4, dcc_size/4, dcc_code_buf);
+		free(dcc_code_buf);
 		if (retval != ERROR_OK)
 			return retval;
 	}

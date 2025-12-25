@@ -108,7 +108,7 @@ int esp_xtensa_smp_soft_reset_halt(struct target *target)
 	if (!target->smp)
 		return xtensa_assert_reset(target);
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		res = xtensa_assert_reset(head->target);
 		if (res != ERROR_OK)
 			return res;
@@ -123,7 +123,7 @@ int esp_xtensa_smp_on_halt(struct target *target)
 	if (!target->smp)
 		return esp_xtensa_on_halt(target);
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		int res = esp_xtensa_on_halt(head->target);
 		if (res != ERROR_OK)
 			return res;
@@ -136,7 +136,7 @@ static struct target *get_halted_esp_xtensa_smp(struct target *target, int32_t c
 	struct target_list *head;
 	struct target *curr;
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		curr = head->target;
 		if ((curr->coreid == coreid) && (curr->state == TARGET_HALTED))
 			return curr;
@@ -170,7 +170,7 @@ int esp_xtensa_smp_poll(struct target *target)
 
 	if (esp_xtensa->esp.dbg_stubs.base && old_dbg_stubs_base != esp_xtensa->esp.dbg_stubs.base) {
 		/* debug stubs base is set only in PRO-CPU TRAX register, so sync this info */
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			if (curr == target)
 				continue;
@@ -185,7 +185,7 @@ int esp_xtensa_smp_poll(struct target *target)
 			(target->state == TARGET_RUNNING || target->state == TARGET_HALTED)) {
 			LOG_TARGET_DEBUG(target, "Check for unexamined cores after reset");
 			bool all_examined = true;
-			foreach_smp_target(head, target->smp_targets) {
+			foreach_smp_target(head, struct target_list, target->smp_targets) {
 				curr = head->target;
 				if (curr == target)
 					continue;
@@ -268,7 +268,7 @@ static int esp_xtensa_smp_update_halt_gdb(struct target *target, bool *need_resu
 		gdb_target = target->gdb_service->target;
 
 	/* due to smpbreak config other cores can also go to HALTED state */
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		curr = head->target;
 		LOG_DEBUG("Check target '%s'", target_name(curr));
 		/* skip calling context */
@@ -341,7 +341,7 @@ static int esp_xtensa_smp_resume_cores(struct target *target,
 
 	LOG_TARGET_DEBUG(target, "begin");
 
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		curr = head->target;
 		/* in single-core mode disabled core cannot be examined, but need to be resumed too*/
 		if ((curr != target) && (curr->state != TARGET_RUNNING) && target_was_examined(curr)) {
@@ -459,7 +459,7 @@ int esp_xtensa_smp_watchpoint_add(struct target *target, struct watchpoint *watc
 		return ERROR_OK;
 
 	struct target_list *head;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if (curr == target || !target_was_examined(curr))
 			continue;
@@ -486,7 +486,7 @@ int esp_xtensa_smp_watchpoint_remove(struct target *target, struct watchpoint *w
 		return ERROR_OK;
 
 	struct target_list *head;
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if (curr == target)
 			continue;
@@ -508,7 +508,7 @@ int esp_xtensa_smp_run_func_image(struct target *target, struct esp_algorithm_ru
 
 	if (target->smp) {
 		/* find first HALTED and examined core */
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			run_target = head->target;
 			if (target_was_examined(run_target) && run_target->state == TARGET_HALTED)
 				break;
@@ -549,7 +549,7 @@ int esp_xtensa_smp_run_onboard_func(struct target *target,
 
 	if (target->smp) {
 		/* find first HALTED and examined core */
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			run_target = head->target;
 			if (target_was_examined(run_target) && run_target->state == TARGET_HALTED)
 				break;
@@ -597,7 +597,7 @@ int esp_xtensa_smp_target_init(struct command_context *cmd_ctx, struct target *t
 
 	if (target->smp) {
 		struct target_list *head;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			ret = esp_xtensa_semihosting_init(curr);
 			if (ret != ERROR_OK)
@@ -617,7 +617,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtdef)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtdef_do,
 				target_to_xtensa(curr));
@@ -636,7 +636,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtopt)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtopt_do,
 				target_to_xtensa(curr));
@@ -655,7 +655,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtmem)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtmem_do,
 				target_to_xtensa(curr));
@@ -674,7 +674,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtmpu)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtmpu_do,
 				target_to_xtensa(curr));
@@ -693,7 +693,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtmmu)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtmmu_do,
 				target_to_xtensa(curr));
@@ -712,7 +712,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtreg)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtreg_do,
 				target_to_xtensa(curr));
@@ -731,7 +731,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_xtregfmt)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_xtregfmt_do,
 				target_to_xtensa(curr));
@@ -750,7 +750,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_permissive_mode)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_permissive_mode_do,
 				target_to_xtensa(curr));
@@ -769,7 +769,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_smpbreak)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_smpbreak_do, curr);
 			if (ret != ERROR_OK)
@@ -786,7 +786,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_mask_interrupts)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_mask_interrupts_do,
 				target_to_xtensa(curr));
@@ -805,7 +805,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_perfmon_enable)
 	if (target->smp && CMD_ARGC > 0) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_perfmon_enable_do,
 				target_to_xtensa(curr));
@@ -824,7 +824,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_perfmon_dump)
 	if (target->smp) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			LOG_TARGET_INFO(curr, ":");
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_perfmon_dump_do,
@@ -844,7 +844,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_tracestart)
 	if (target->smp) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_tracestart_do,
 				target_to_xtensa(curr));
@@ -863,7 +863,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_tracestop)
 	if (target->smp) {
 		struct target_list *head;
 		struct target *curr;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_tracestop_do,
 				target_to_xtensa(curr));
@@ -884,7 +884,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_tracedump)
 		struct target *curr;
 		int32_t cores_max_id = 0;
 		/* assume that core IDs are assigned to SMP targets sequentially: 0,1,2... */
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			if (cores_max_id < curr->coreid)
 				cores_max_id = curr->coreid;
@@ -895,7 +895,7 @@ COMMAND_HANDLER(esp_xtensa_smp_cmd_tracedump)
 				cores_max_id + 1);
 			return ERROR_FAIL;
 		}
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			curr = head->target;
 			int ret = CALL_COMMAND_HANDLER(xtensa_cmd_tracedump_do,
 				target_to_xtensa(curr), CMD_ARGV[curr->coreid]);
