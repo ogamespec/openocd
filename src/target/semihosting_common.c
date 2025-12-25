@@ -1784,7 +1784,7 @@ static int semihosting_service_input_handler(struct connection *connection)
 	if (!connection->input_pending) {
 		/* consume received data, not for semihosting IO */
 		const int buf_len = 100;
-		char buf[buf_len];
+		char buf[100];
 		int bytes_read = connection_read(connection, buf, buf_len);
 
 		if (bytes_read == 0) {
