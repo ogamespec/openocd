@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="espressif">
+      <UniqueIdentifier>{62ad68a2-aa03-43b2-900c-ec48a7315736}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="openrisc">
+      <UniqueIdentifier>{24fc8d9b-e3cd-463b-bf54-287d8b5166bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="riscv">
+      <UniqueIdentifier>{a9773d72-9f7f-4596-b72a-782213011d5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="xtensa">
+      <UniqueIdentifier>{9c1434ba-ce57-4666-99d2-d6abcf1196f6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\target\a64_disassembler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\aarch64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_dapdirect.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_jtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\adi_v5_swd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\algorithm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_cmd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_jtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arc_mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_adi_v5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_cti.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_dap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_disassembler.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_dpm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_jtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_semihosting.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_simulator.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm_tpiu_swo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm7_9_common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm7tdmi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm9tdmi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm11.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm11_dbgtap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm720t.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm920t.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm926ejs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm946e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\arm966e.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5_cache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv4_5_mmu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_cache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_cache_l2x.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7a_mmu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m_cache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv7m_trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_cache.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_dpm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\armv8_opcodes.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_ap7k.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_jtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_mem.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avr32_regs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\avrt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\breakpoints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\cortex_a.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\cortex_m.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp563xx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp563xx_once.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\dsp5680xx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\embeddedice.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc_jtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\esirisc_trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\etm_dummy.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\fa526.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\feroceon.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\hla_target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\image.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\lakemont.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\ls1_sap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mem_ap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_ejtag.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_m4k.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips_mips64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32_dmaacc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips32_pracc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips64.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\mips64_pracc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\quark_d20xx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\quark_x10xx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\register.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\semihosting_common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\smp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\stm8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target_request.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\target_rtt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\testee.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\trace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\x86_32_common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xscale.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_algorithm.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_semihosting.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_xtensa.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_xtensa_algorithm.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_xtensa_apptrace.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_xtensa_semihosting.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp_xtensa_smp.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp32.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp32_apptrace.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp32_sysview.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp32s2.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\espressif\esp32s3.c">
+      <Filter>espressif</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xtensa\xtensa.c">
+      <Filter>xtensa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xtensa\xtensa_chip.c">
+      <Filter>xtensa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xtensa\xtensa_debug_module.c">
+      <Filter>xtensa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\xtensa\xtensa_fileio.c">
+      <Filter>xtensa</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\batch.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\debug_defines.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\debug_reg_printer.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\program.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv_reg.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv_semihosting.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv-011.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv-011_reg.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv-013.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\riscv\riscv-013_reg.c">
+      <Filter>riscv</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\jsp_server.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\or1k.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\or1k_du_adv.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\or1k_tap_mohor.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\or1k_tap_vjtag.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\target\openrisc\or1k_tap_xilinx_bscan.c">
+      <Filter>openrisc</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\target\a64_disassembler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\aarch64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\algorithm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_cmd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_jtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arc_mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_adi_v5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_coresight.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_cti.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_disassembler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_dpm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_jtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_opcodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_semihosting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_simulator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm_tpiu_swo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm7_9_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm7tdmi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm9tdmi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm11.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm11_dbgtap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm720t.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm920t.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm926ejs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm946e.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\arm966e.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv4_5_mmu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_cache_l2x.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7a_mmu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv7m_trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_cache.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_dpm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\armv8_opcodes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_ap7k.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_jtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_mem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avr32_regs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\avrt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\breakpoints.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\cortex_a.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\cortex_m.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp563xx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp563xx_once.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\dsp5680xx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\embeddedice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_jtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_regs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\esirisc_trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etb.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\etm_dummy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\image.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\lakemont.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_cpu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_ejtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_m4k.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips_mips64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32_dmaacc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips32_pracc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips64.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\mips64_pracc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\register.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\rtt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\semihosting_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\smp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target_request.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\target_type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\trace.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\x86_32_common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xscale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_algorithm.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_semihosting.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_xtensa.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_xtensa_algorithm.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_xtensa_apptrace.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_xtensa_semihosting.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp_xtensa_smp.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp32_apptrace.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\esp32_sysview.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\espressif\segger_sysview.h">
+      <Filter>espressif</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xtensa\xtensa.h">
+      <Filter>xtensa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xtensa\xtensa_chip.h">
+      <Filter>xtensa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xtensa\xtensa_debug_module.h">
+      <Filter>xtensa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xtensa\xtensa_fileio.h">
+      <Filter>xtensa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\xtensa\xtensa_regs.h">
+      <Filter>xtensa</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\batch.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\debug_defines.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\debug_reg_printer.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\encoding.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\field_helpers.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\gdb_regs.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\opcodes.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\program.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv_reg.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv_reg_impl.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv-011.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv-011_reg.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv-013.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\riscv\riscv-013_reg.h">
+      <Filter>riscv</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\openrisc\jsp_server.h">
+      <Filter>openrisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\openrisc\or1k.h">
+      <Filter>openrisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\openrisc\or1k_du.h">
+      <Filter>openrisc</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\target\openrisc\or1k_tap.h">
+      <Filter>openrisc</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\target\Makefile.am" />
+    <None Include="..\src\target\startup.tcl" />
+    <None Include="..\src\target\espressif\Makefile.am">
+      <Filter>espressif</Filter>
+    </None>
+    <None Include="..\src\target\xtensa\Makefile.am">
+      <Filter>xtensa</Filter>
+    </None>
+    <None Include="..\src\target\riscv\Makefile.am">
+      <Filter>riscv</Filter>
+    </None>
+    <None Include="..\src\target\riscv\startup.tcl">
+      <Filter>riscv</Filter>
+    </None>
+    <None Include="..\src\target\openrisc\Makefile.am">
+      <Filter>openrisc</Filter>
+    </None>
+  </ItemGroup>
+</Project>

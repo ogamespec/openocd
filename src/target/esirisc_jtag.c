@@ -492,7 +492,11 @@ int esirisc_jtag_enable_debug(struct esirisc_jtag *jtag_info)
 	return esirisc_jtag_send_ctrl(jtag_info, DEBUG_ENABLE_DEBUG);
 }
 
-static __attribute__((unused)) int esirisc_jtag_disable_debug(struct esirisc_jtag *jtag_info)
+static 
+#ifdef __GNUC__
+__attribute__((unused)) 
+#endif
+int esirisc_jtag_disable_debug(struct esirisc_jtag *jtag_info)
 {
 	return esirisc_jtag_send_ctrl(jtag_info, DEBUG_DISABLE_DEBUG);
 }

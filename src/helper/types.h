@@ -65,9 +65,12 @@
  *
  * This is a mechanism which is used throughout the Linux kernel.
  */
-#define container_of(ptr, type, member) ({			\
-	const typeof( ((type *)0)->member ) *__mptr = (ptr);	\
-	(type *)( (void *) ( (char *)__mptr - offsetof(type,member) ) );})
+#define container_of(ptr, type, member) \
+    ((type *) ((char *) (ptr) - offsetof(type, member)))
+
+//#define container_of(ptr, type, member) ({			\
+//	const typeof( ((type *)0)->member ) *__mptr = (ptr);	\
+//	(type *)( (void *) ( (char *)__mptr - offsetof(type,member) ) );})
 
 
 /**

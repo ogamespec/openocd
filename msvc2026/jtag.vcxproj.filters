@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="hla">
+      <UniqueIdentifier>{c3c6e3d7-e901-4519-84bd-b05ce6efbfb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="drivers">
+      <UniqueIdentifier>{6e551ee3-ba7c-499e-b61d-0d3e8ef1121c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\jtag\adapter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\commands.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\interface.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\interfaces.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\jtag_core.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\jtag_tcl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\swim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\hla\hla_interface.c">
+      <Filter>hla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\hla\hla_layout.c">
+      <Filter>hla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\hla\hla_transport.c">
+      <Filter>hla</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\am335xgpio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\amt_jtagaccel.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\angie.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\arm-jtag-ew.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\at91rm9200.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\bcm2835gpio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\bitbang.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\bitq.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\buspirate.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ch347.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\cmsis_dap.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\cmsis_dap_tcp.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\cmsis_dap_usb_bulk.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\cmsis_dap_usb_hid.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\dmem.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\dummy.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ep93xx.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\esp_usb_jtag.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ft232r.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ftdi.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\gw16012.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\imx_gpio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\jlink.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\jtag_dpi.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\jtag_driver.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\jtag_vpi.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\kitprog.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\libusb_helper.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\linuxgpiod.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\linuxspidev.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\mpsse.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\nulink_usb.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\opendous.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\openjtag.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\osbdm.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\parport.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\presto.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\remote_bitbang.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\rlink.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\rlink_speed_table.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\rshim.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\stlink_usb.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\sysfsgpio.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ti_icdi_usb.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\ulink.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\usbprog.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\vdebug.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\vsllink.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\xds110.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\xlnx-xvc.c">
+      <Filter>drivers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\jtag\adapter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\commands.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\interface.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\interfaces.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\jtag.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\minidriver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\swd.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\swim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\tcl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\hla\hla_interface.h">
+      <Filter>hla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\hla\hla_layout.h">
+      <Filter>hla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\hla\hla_transport.h">
+      <Filter>hla</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\bitbang.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\bitq.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\cmsis_dap.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\libftdi_helper.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\libusb_helper.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\minidriver_imp.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\mpsse.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\rlink.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\rlink_dtc_cmd.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\rlink_ep1_cmd.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\jtag\drivers\rlink_st7.h">
+      <Filter>drivers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\jtag\Makefile.am" />
+    <None Include="..\src\jtag\startup.tcl" />
+    <None Include="..\src\jtag\hla\Makefile.am">
+      <Filter>hla</Filter>
+    </None>
+    <None Include="..\src\jtag\drivers\Makefile.am">
+      <Filter>drivers</Filter>
+    </None>
+    <None Include="..\src\jtag\drivers\Makefile.rlink">
+      <Filter>drivers</Filter>
+    </None>
+    <None Include="..\src\jtag\drivers\rlink_call.m4">
+      <Filter>drivers</Filter>
+    </None>
+    <None Include="..\src\jtag\drivers\rlink_init.m4">
+      <Filter>drivers</Filter>
+    </None>
+  </ItemGroup>
+</Project>

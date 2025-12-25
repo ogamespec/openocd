@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\flash\common.c" />
+    <ClCompile Include="..\src\flash\nand\arm_io.c" />
+    <ClCompile Include="..\src\flash\nand\at91sam9.c" />
+    <ClCompile Include="..\src\flash\nand\davinci.c" />
+    <ClCompile Include="..\src\flash\nand\ecc.c" />
+    <ClCompile Include="..\src\flash\nand\ecc_kw.c" />
+    <ClCompile Include="..\src\flash\nand\lpc3180.c" />
+    <ClCompile Include="..\src\flash\nand\lpc32xx.c" />
+    <ClCompile Include="..\src\flash\nand\mx3.c" />
+    <ClCompile Include="..\src\flash\nand\mxc.c" />
+    <ClCompile Include="..\src\flash\nand\nand_core.c" />
+    <ClCompile Include="..\src\flash\nand\nand_driver.c" />
+    <ClCompile Include="..\src\flash\nand\nand_fileio.c" />
+    <ClCompile Include="..\src\flash\nand\nand_tcl.c" />
+    <ClCompile Include="..\src\flash\nand\nonce.c" />
+    <ClCompile Include="..\src\flash\nand\nuc910.c" />
+    <ClCompile Include="..\src\flash\nand\orion.c" />
+    <ClCompile Include="..\src\flash\nand\s3c2410.c" />
+    <ClCompile Include="..\src\flash\nand\s3c2412.c" />
+    <ClCompile Include="..\src\flash\nand\s3c2440.c" />
+    <ClCompile Include="..\src\flash\nand\s3c2443.c" />
+    <ClCompile Include="..\src\flash\nand\s3c24xx.c" />
+    <ClCompile Include="..\src\flash\nand\s3c6400.c" />
+    <ClCompile Include="..\src\flash\nor\aduc702x.c" />
+    <ClCompile Include="..\src\flash\nor\aducm360.c" />
+    <ClCompile Include="..\src\flash\nor\ambiqmicro.c" />
+    <ClCompile Include="..\src\flash\nor\artery.c" />
+    <ClCompile Include="..\src\flash\nor\at91sam3.c" />
+    <ClCompile Include="..\src\flash\nor\at91sam4.c" />
+    <ClCompile Include="..\src\flash\nor\at91sam4l.c" />
+    <ClCompile Include="..\src\flash\nor\at91sam7.c" />
+    <ClCompile Include="..\src\flash\nor\at91samd.c" />
+    <ClCompile Include="..\src\flash\nor\ath79.c" />
+    <ClCompile Include="..\src\flash\nor\atsame5.c" />
+    <ClCompile Include="..\src\flash\nor\atsamv.c" />
+    <ClCompile Include="..\src\flash\nor\avrf.c" />
+    <ClCompile Include="..\src\flash\nor\bluenrg-x.c" />
+    <ClCompile Include="..\src\flash\nor\cc26xx.c" />
+    <ClCompile Include="..\src\flash\nor\cc3220sf.c" />
+    <ClCompile Include="..\src\flash\nor\cfi.c" />
+    <ClCompile Include="..\src\flash\nor\drivers.c" />
+    <ClCompile Include="..\src\flash\nor\dsp5680xx_flash.c" />
+    <ClCompile Include="..\src\flash\nor\dw-spi.c" />
+    <ClCompile Include="..\src\flash\nor\efm32.c" />
+    <ClCompile Include="..\src\flash\nor\em357.c" />
+    <ClCompile Include="..\src\flash\nor\eneispif.c" />
+    <ClCompile Include="..\src\flash\nor\esirisc_flash.c" />
+    <ClCompile Include="..\src\flash\nor\faux.c" />
+    <ClCompile Include="..\src\flash\nor\fespi.c" />
+    <ClCompile Include="..\src\flash\nor\fm3.c" />
+    <ClCompile Include="..\src\flash\nor\fm4.c" />
+    <ClCompile Include="..\src\flash\nor\hpm_xpi.c" />
+    <ClCompile Include="..\src\flash\nor\jtagspi.c" />
+    <ClCompile Include="..\src\flash\nor\kinetis.c" />
+    <ClCompile Include="..\src\flash\nor\kinetis_ke.c" />
+    <ClCompile Include="..\src\flash\nor\lpc2000.c" />
+    <ClCompile Include="..\src\flash\nor\lpc288x.c" />
+    <ClCompile Include="..\src\flash\nor\lpc2900.c" />
+    <ClCompile Include="..\src\flash\nor\lpcspifi.c" />
+    <ClCompile Include="..\src\flash\nor\max32xxx.c" />
+    <ClCompile Include="..\src\flash\nor\mdr.c" />
+    <ClCompile Include="..\src\flash\nor\mrvlqspi.c" />
+    <ClCompile Include="..\src\flash\nor\msp432.c" />
+    <ClCompile Include="..\src\flash\nor\mspm0.c" />
+    <ClCompile Include="..\src\flash\nor\niietcm4.c" />
+    <ClCompile Include="..\src\flash\nor\non_cfi.c" />
+    <ClCompile Include="..\src\flash\nor\nor_core.c" />
+    <ClCompile Include="..\src\flash\nor\nor_tcl.c" />
+    <ClCompile Include="..\src\flash\nor\npcx.c" />
+    <ClCompile Include="..\src\flash\nor\nrf5.c" />
+    <ClCompile Include="..\src\flash\nor\numicro.c" />
+    <ClCompile Include="..\src\flash\nor\ocl.c" />
+    <ClCompile Include="..\src\flash\nor\pic32mx.c" />
+    <ClCompile Include="..\src\flash\nor\psoc4.c" />
+    <ClCompile Include="..\src\flash\nor\psoc5lp.c" />
+    <ClCompile Include="..\src\flash\nor\psoc6.c" />
+    <ClCompile Include="..\src\flash\nor\qn908x.c" />
+    <ClCompile Include="..\src\flash\nor\renesas_rpchf.c" />
+    <ClCompile Include="..\src\flash\nor\rp2xxx.c" />
+    <ClCompile Include="..\src\flash\nor\rsl10.c" />
+    <ClCompile Include="..\src\flash\nor\sfdp.c" />
+    <ClCompile Include="..\src\flash\nor\sh_qspi.c" />
+    <ClCompile Include="..\src\flash\nor\sim3x.c" />
+    <ClCompile Include="..\src\flash\nor\spi.c" />
+    <ClCompile Include="..\src\flash\nor\stellaris.c" />
+    <ClCompile Include="..\src\flash\nor\stm32f1x.c" />
+    <ClCompile Include="..\src\flash\nor\stm32f2x.c" />
+    <ClCompile Include="..\src\flash\nor\stm32h7x.c" />
+    <ClCompile Include="..\src\flash\nor\stm32l4x.c" />
+    <ClCompile Include="..\src\flash\nor\stm32lx.c" />
+    <ClCompile Include="..\src\flash\nor\stmqspi.c" />
+    <ClCompile Include="..\src\flash\nor\stmsmi.c" />
+    <ClCompile Include="..\src\flash\nor\str7x.c" />
+    <ClCompile Include="..\src\flash\nor\str9x.c" />
+    <ClCompile Include="..\src\flash\nor\str9xpec.c" />
+    <ClCompile Include="..\src\flash\nor\swm050.c" />
+    <ClCompile Include="..\src\flash\nor\tms470.c" />
+    <ClCompile Include="..\src\flash\nor\virtual.c" />
+    <ClCompile Include="..\src\flash\nor\w600.c" />
+    <ClCompile Include="..\src\flash\nor\xcf.c" />
+    <ClCompile Include="..\src\flash\nor\xmc1xxx.c" />
+    <ClCompile Include="..\src\flash\nor\xmc4xxx.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\flash\common.h" />
+    <ClInclude Include="..\src\flash\nand\arm_io.h" />
+    <ClInclude Include="..\src\flash\nand\core.h" />
+    <ClInclude Include="..\src\flash\nand\driver.h" />
+    <ClInclude Include="..\src\flash\nand\fileio.h" />
+    <ClInclude Include="..\src\flash\nand\imp.h" />
+    <ClInclude Include="..\src\flash\nand\lpc3180.h" />
+    <ClInclude Include="..\src\flash\nand\lpc32xx.h" />
+    <ClInclude Include="..\src\flash\nand\mx3.h" />
+    <ClInclude Include="..\src\flash\nand\mxc.h" />
+    <ClInclude Include="..\src\flash\nand\nuc910.h" />
+    <ClInclude Include="..\src\flash\nand\s3c24xx.h" />
+    <ClInclude Include="..\src\flash\nand\s3c24xx_regs.h" />
+    <ClInclude Include="..\src\flash\nor\artery.h" />
+    <ClInclude Include="..\src\flash\nor\bluenrg-x.h" />
+    <ClInclude Include="..\src\flash\nor\cc26xx.h" />
+    <ClInclude Include="..\src\flash\nor\cc3220sf.h" />
+    <ClInclude Include="..\src\flash\nor\cfi.h" />
+    <ClInclude Include="..\src\flash\nor\core.h" />
+    <ClInclude Include="..\src\flash\nor\driver.h" />
+    <ClInclude Include="..\src\flash\nor\dw-spi-helper.h" />
+    <ClInclude Include="..\src\flash\nor\imp.h" />
+    <ClInclude Include="..\src\flash\nor\msp432.h" />
+    <ClInclude Include="..\src\flash\nor\non_cfi.h" />
+    <ClInclude Include="..\src\flash\nor\ocl.h" />
+    <ClInclude Include="..\src\flash\nor\sfdp.h" />
+    <ClInclude Include="..\src\flash\nor\spi.h" />
+    <ClInclude Include="..\src\flash\nor\stm32l4x.h" />
+    <ClInclude Include="..\src\flash\nor\stmqspi.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\flash\Makefile.am" />
+    <None Include="..\src\flash\nand\Makefile.am" />
+    <None Include="..\src\flash\nor\Makefile.am" />
+    <None Include="..\src\flash\startup.tcl" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>18.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{ee572083-8d2d-4784-bf93-87af32152533}</ProjectGuid>
+    <RootNamespace>flash</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v145</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\Output\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\Output\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\Output\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\Output\</OutDir>
+    <IntDir>$(SolutionDir)Output\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -20,3 +20,4 @@ typedef SSIZE_T ssize_t;
 #define GITVERSION "0.12"
 
 #include <WinSock2.h>
+#include <fcntl.h>

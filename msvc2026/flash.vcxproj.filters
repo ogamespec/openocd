@@ -1,0 +1,430 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="NAND">
+      <UniqueIdentifier>{0823ea75-1525-49e6-9ffe-cbd9beedac1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="NOR">
+      <UniqueIdentifier>{ed4c9324-f4eb-4a0e-9189-2f3091d2463a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\flash\common.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\arm_io.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\at91sam9.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\davinci.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\ecc.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\ecc_kw.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\lpc32xx.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\lpc3180.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\mx3.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\mxc.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nand_core.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nand_driver.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nand_fileio.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nand_tcl.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nonce.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\nuc910.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\orion.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c24xx.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c2410.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c2412.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c2440.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c2443.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nand\s3c6400.c">
+      <Filter>NAND</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\aduc702x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\aducm360.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\ambiqmicro.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\artery.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\at91sam3.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\at91sam4.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\at91sam4l.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\at91sam7.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\at91samd.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\ath79.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\atsame5.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\atsamv.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\avrf.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\bluenrg-x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\cc26xx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\cc3220sf.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\cfi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\drivers.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\dsp5680xx_flash.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\dw-spi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\efm32.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\em357.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\eneispif.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\esirisc_flash.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\faux.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\fespi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\fm3.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\fm4.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\hpm_xpi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\jtagspi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\kinetis.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\kinetis_ke.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\lpc288x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\lpc2000.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\lpc2900.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\lpcspifi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\max32xxx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\mdr.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\mrvlqspi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\msp432.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\mspm0.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\niietcm4.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\non_cfi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\nor_core.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\nor_tcl.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\npcx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\nrf5.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\numicro.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\ocl.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\pic32mx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\psoc4.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\psoc5lp.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\psoc6.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\qn908x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\renesas_rpchf.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\rp2xxx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\rsl10.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\sfdp.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\sh_qspi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\sim3x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\spi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stellaris.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32f1x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32f2x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32h7x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32l4x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32lx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stmqspi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stmsmi.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\str7x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\str9x.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\str9xpec.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\swm050.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\tms470.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\virtual.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\w600.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\xcf.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\xmc1xxx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\xmc4xxx.c">
+      <Filter>NOR</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\flash\common.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\arm_io.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\core.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\driver.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\fileio.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\imp.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\lpc32xx.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\lpc3180.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\mx3.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\mxc.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\nuc910.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\s3c24xx.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nand\s3c24xx_regs.h">
+      <Filter>NAND</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\artery.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\bluenrg-x.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\cc26xx.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\cc3220sf.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\cfi.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\core.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\driver.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\dw-spi-helper.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\imp.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\msp432.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\non_cfi.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\ocl.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\sfdp.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\spi.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\stm32l4x.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\flash\nor\stmqspi.h">
+      <Filter>NOR</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\flash\Makefile.am" />
+    <None Include="..\src\flash\startup.tcl" />
+    <None Include="..\src\flash\nand\Makefile.am">
+      <Filter>NAND</Filter>
+    </None>
+    <None Include="..\src\flash\nor\Makefile.am">
+      <Filter>NOR</Filter>
+    </None>
+  </ItemGroup>
+</Project>

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\libusb-static.1.0.26\build\native\libusb-static.props" Condition="Exists('packages\libusb-static.1.0.26\build\native\libusb-static.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -20,87 +19,43 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\hello.c" />
-    <ClCompile Include="..\src\main.c" />
-    <ClCompile Include="..\src\openocd.c" />
-    <ClCompile Include="getopt.c" />
+    <ClCompile Include="..\src\xsvf\xsvf.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\hello.h" />
-    <ClInclude Include="..\src\openocd.h" />
-    <ClInclude Include="config.h" />
-    <ClInclude Include="getopt.h" />
+    <ClInclude Include="..\src\xsvf\xsvf.h" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="flash.vcxproj">
-      <Project>{ee572083-8d2d-4784-bf93-87af32152533}</Project>
-    </ProjectReference>
-    <ProjectReference Include="helper.vcxproj">
-      <Project>{c472ec22-5df6-4986-9e18-b77b735918f2}</Project>
-    </ProjectReference>
-    <ProjectReference Include="jimtcl.vcxproj">
-      <Project>{ccaaf75c-ed43-467d-9946-bd6c8883e558}</Project>
-    </ProjectReference>
-    <ProjectReference Include="jtag.vcxproj">
-      <Project>{ff923929-0600-46f7-b178-16fa432b3b90}</Project>
-    </ProjectReference>
-    <ProjectReference Include="pld.vcxproj">
-      <Project>{3f24b278-b4c2-4ab4-9f5d-f4730b653b0d}</Project>
-    </ProjectReference>
-    <ProjectReference Include="rtos.vcxproj">
-      <Project>{95f4b277-3307-45f0-8043-50da1ed36887}</Project>
-    </ProjectReference>
-    <ProjectReference Include="rtt.vcxproj">
-      <Project>{beb58148-7726-4218-bd6b-5ae258879c94}</Project>
-    </ProjectReference>
-    <ProjectReference Include="server.vcxproj">
-      <Project>{f62cdcab-a511-4237-b3b5-8945709879e5}</Project>
-    </ProjectReference>
-    <ProjectReference Include="svf.vcxproj">
-      <Project>{009d6c69-39d6-4ebd-8317-880921c6d354}</Project>
-    </ProjectReference>
-    <ProjectReference Include="target.vcxproj">
-      <Project>{5e78fd69-8dd9-4e75-a245-b5608174a2a9}</Project>
-    </ProjectReference>
-    <ProjectReference Include="transport.vcxproj">
-      <Project>{6a821c86-b4be-41ca-9a12-ff967ced52f0}</Project>
-    </ProjectReference>
-    <ProjectReference Include="xsvf.vcxproj">
-      <Project>{9b2a6564-276a-4286-a4c3-346932fc7720}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="..\src\xsvf\Makefile.am" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>17.0</VCProjectVersion>
+    <VCProjectVersion>18.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{44034baf-5e7b-4296-9eb4-6c58af5c780d}</ProjectGuid>
-    <RootNamespace>openocd</RootNamespace>
+    <ProjectGuid>{9b2a6564-276a-4286-a4c3-346932fc7720}</ProjectGuid>
+    <RootNamespace>xsvf</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v145</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -144,14 +99,17 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -161,16 +119,17 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -178,14 +137,17 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
@@ -195,28 +157,21 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;HAVE_CONFIG_H;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>HAVE_CONFIG_H;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp20</LanguageStandard>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
-      <LanguageStandard>stdcpp23</LanguageStandard>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
-      <EnableCOMDATFolding>true</EnableCOMDATFolding>
-      <OptimizeReferences>true</OptimizeReferences>
+      <SubSystem>
+      </SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\libusb-static.1.0.26\build\native\libusb-static.targets" Condition="Exists('packages\libusb-static.1.0.26\build\native\libusb-static.targets')" />
   </ImportGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('packages\libusb-static.1.0.26\build\native\libusb-static.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libusb-static.1.0.26\build\native\libusb-static.props'))" />
-    <Error Condition="!Exists('packages\libusb-static.1.0.26\build\native\libusb-static.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libusb-static.1.0.26\build\native\libusb-static.targets'))" />
-  </Target>
 </Project>

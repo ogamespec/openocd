@@ -116,7 +116,7 @@ static bool nuttx_detect_rtos(struct target *target)
 
 static int nuttx_create(struct target *target)
 {
-	const struct nuttx_params *param;
+	const struct nuttx_params *param = NULL;
 	unsigned int i;
 
 	for (i = 0; i < ARRAY_SIZE(nuttx_params_list); i++) {
