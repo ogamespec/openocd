@@ -162,7 +162,7 @@ int win_select(int max_fd, fd_set *rfds, fd_set *wfds, fd_set *efds, struct time
 	if (efds && efds->fd_count == 0)
 		efds = NULL;
 	if (!rfds && !wfds && !efds && tv) {
-		sleep(tv->tv_sec);
+		Sleep(tv->tv_sec * 1000);
 		usleep(tv->tv_usec);
 		return 0;
 	}
