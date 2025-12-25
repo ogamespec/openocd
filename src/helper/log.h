@@ -49,14 +49,16 @@ enum log_levels {
 	LOG_LVL_DEBUG_IO = 4,
 };
 
-void log_printf(enum log_levels level, const char *file, unsigned int line,
-		const char *function, const char *format, ...)
-__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)));
+void log_printf(enum log_levels level, const char* file, unsigned int line,
+	const char* function, const char* format, ...)
+	//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)))
+	;
 void log_vprintf_lf(enum log_levels level, const char *file, unsigned int line,
 		const char *function, const char *format, va_list args);
-void log_printf_lf(enum log_levels level, const char *file, unsigned int line,
-		const char *function, const char *format, ...)
-__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)));
+void log_printf_lf(enum log_levels level, const char* file, unsigned int line,
+	const char* function, const char* format, ...)
+	//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)));
+	;
 
 /**
  * Initialize logging module.  Call during program startup.
@@ -86,10 +88,12 @@ struct log_callback {
 int log_add_callback(log_callback_fn fn, void *priv);
 int log_remove_callback(log_callback_fn fn, void *priv);
 
-char *alloc_vprintf(const char *fmt, va_list ap)
-	__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 0))) __nonnull((1));
-char *alloc_printf(const char *fmt, ...)
-	__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 2))) __nonnull((1));
+char* alloc_vprintf(const char* fmt, va_list ap)
+//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 0))) __nonnull((1));
+;
+char* alloc_printf(const char* fmt, ...)
+//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 2))) __nonnull((1))
+;
 
 const char *find_nonprint_char(const char *buf, unsigned int buf_len);
 
@@ -100,48 +104,48 @@ extern int debug_level;
 
 #define LOG_LEVEL_IS(FOO)  ((debug_level) >= (FOO))
 
-#define LOG_DEBUG_IO(expr ...) \
+#define LOG_DEBUG_IO(expr, ...) \
 	do { \
 		if (LOG_LEVEL_IS(LOG_LVL_DEBUG_IO)) \
 			log_printf_lf(LOG_LVL_DEBUG, \
 				__FILE__, __LINE__, __func__, \
-				expr); \
+				expr, ##__VA_ARGS__); \
 	} while (0)
 
-#define LOG_DEBUG(expr ...) \
+#define LOG_DEBUG(expr, ...) \
 	do { \
 		if (LOG_LEVEL_IS(LOG_LVL_DEBUG)) \
 			log_printf_lf(LOG_LVL_DEBUG, \
 				__FILE__, __LINE__, __func__, \
-				expr); \
+				expr, ##__VA_ARGS__); \
 	} while (0)
 
-#define LOG_CUSTOM_LEVEL(level, expr ...) \
+#define LOG_CUSTOM_LEVEL(level, expr, ...) \
 	do { \
 		enum log_levels _level = level; \
 		if (LOG_LEVEL_IS(_level)) \
 			log_printf_lf(_level, \
 				__FILE__, __LINE__, __func__, \
-				expr); \
+				expr, ##__VA_ARGS__); \
 	} while (0)
 
-#define LOG_INFO(expr ...) \
-	log_printf_lf(LOG_LVL_INFO, __FILE__, __LINE__, __func__, expr)
+#define LOG_INFO(expr, ...) \
+	log_printf_lf(LOG_LVL_INFO, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
-#define LOG_WARNING(expr ...) \
-	log_printf_lf(LOG_LVL_WARNING, __FILE__, __LINE__, __func__, expr)
+#define LOG_WARNING(expr, ...) \
+	log_printf_lf(LOG_LVL_WARNING, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
-#define LOG_ERROR(expr ...) \
-	log_printf_lf(LOG_LVL_ERROR, __FILE__, __LINE__, __func__, expr)
+#define LOG_ERROR(expr, ...) \
+	log_printf_lf(LOG_LVL_ERROR, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
-#define LOG_USER(expr ...) \
-	log_printf_lf(LOG_LVL_USER, __FILE__, __LINE__, __func__, expr)
+#define LOG_USER(expr, ...) \
+	log_printf_lf(LOG_LVL_USER, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
-#define LOG_USER_N(expr ...) \
-	log_printf(LOG_LVL_USER, __FILE__, __LINE__, __func__, expr)
+#define LOG_USER_N(expr, ...) \
+	log_printf(LOG_LVL_USER, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
-#define LOG_OUTPUT(expr ...) \
-	log_printf(LOG_LVL_OUTPUT, __FILE__, __LINE__, __func__, expr)
+#define LOG_OUTPUT(expr, ...) \
+	log_printf(LOG_LVL_OUTPUT, __FILE__, __LINE__, __func__, expr, ##__VA_ARGS__)
 
 /* Output a log entry that is related to a given target */
 
