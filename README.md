@@ -337,3 +337,103 @@ the repository or to download arbitrary snapshots using HTTP:
 
 Snapshots are compressed tarballs of the source tree, about 1.3 MBytes
 each at this writing.
+
+Building OpenOCD for macOS
+--------------------------
+
+There are a few prerequisites you will need first:
+
+- Xcode (install from the AppStore)
+- Command Line Tools (install from Xcode -> Preferences -> Downloads)
+- Gentoo Prefix (http://www.gentoo.org/proj/en/gentoo-alt/prefix/bootstrap.xml)
+  or
+- Homebrew (http://mxcl.github.io/homebrew/)
+  or
+- MacPorts (http://www.macports.org/install.php)
+
+
+If you're building manually you need Texinfo version 5.0 or later. The
+simplest way to get it is to use Homebrew (brew install texinfo) and
+then ``export PATH=/usr/local/opt/texinfo/bin:$PATH``.
+
+
+With Gentoo Prefix you can build the release version or the latest
+devel version (-9999) the usual way described in the Gentoo
+documentation. Alternatively, install the prerequisites and build
+manually from the sources.
+
+
+With Homebrew you can either run:
+  brew install [--HEAD] openocd (where optional --HEAD asks brew to
+                                 install the current git version)
+    or
+  brew install libtool automake libusb [hidapi] [libftdi]
+    (to install the needed dependencies and then proceed with the
+     manual building procedure)
+
+
+For building with MacPorts you need to run:
+  sudo port install libtool automake autoconf pkgconfig \
+    libusb [libftdi1]
+
+You should also specify LDFLAGS and CPPFLAGS to allow configure to use
+MacPorts' libraries, so run configure like this:
+  LDFLAGS=-L/opt/local/lib CPPFLAGS=-I/opt/local/include ./configure [options]
+
+
+See README for the generic building instructions.
+
+If you're using a USB adapter and have a driver kext matched to it,
+you will need to unload it prior to running OpenOCD. E.g. with Apple
+driver (OS X 10.9 or later) for FTDI run:
+  sudo kextunload -b com.apple.driver.AppleUSBFTDI
+for FTDI vendor driver use:
+  sudo kextunload FTDIUSBSerialDriver.kext
+
+To learn more on the topic please refer to the official libusb FAQ:
+https://github.com/libusb/libusb/wiki/FAQ
+
+
+Building OpenOCD for Windows
+----------------------------
+
+You can build OpenOCD for Windows natively with either MinGW-w64/MSYS
+or Cygwin (plain MinGW might work with --disable-werror but is not
+recommended as it doesn't provide enough C99 compatibility).
+Alternatively, one can cross-compile it using MinGW-w64 on a \*nix
+host. See README for the generic instructions.
+
+Also, the MSYS2 project provides both ready-made binaries and an easy
+way to self-compile from their software repository out of the box.
+
+USB adapters
+------------
+
+For the adapters that use a HID-based protocol, e.g. CMSIS-DAP, you do
+not need to perform any additional configuration.
+
+For all the others you usually need to have WinUSB.sys (or
+libusbK.sys) driver installed. Some vendor software (e.g. for
+ST-LINKv2) does it on its own. For the other cases the easiest way to
+assign WinUSB to a device is to use the latest Zadig installer:
+
+  http://zadig.akeo.ie
+
+When using a composite USB device, it's often necessary to assign
+WinUSB.sys to the composite parent instead of the specific
+interface. To do that one needs to activate an advanced option in the
+Zadig installer.
+
+If you need to use the same adapter with other applications that may
+require another driver, a solution for Windows Vista and above is to
+activate the IgnoreHWSerNum registry setting for the USB device.
+
+That setting forces Windows to associate the driver per port instead of
+per serial number, the same behaviour as when the device does not contain
+a serial number. So different drivers can be installed for the adapter on
+different ports and you just need to plug the adapter into the correct
+port depending on which application to use.
+
+For more information, see:
+- https://learn.microsoft.com/en-us/windows-hardware/drivers/usbcon/usb-device-specific-registry-settings
+- http://www.ftdichip.com/Support/Knowledgebase/index.html?ignorehardwareserialnumber.htm
