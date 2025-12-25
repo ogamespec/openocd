@@ -21,3 +21,6 @@ typedef SSIZE_T ssize_t;
 
 #include <WinSock2.h>
 #include <fcntl.h>
+
+#define BINDIR "bin"
+#define PKGDATADIR "pkgdata"
