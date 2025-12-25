@@ -947,13 +947,17 @@ dw_spi_read_id(const struct flash_bank *const bank)
 	struct dw_spi_driver *const driver = bank->driver_priv;
 
 	const size_t buffer_size = 1 + 3 + 1;
-	uint8_t buffer[buffer_size];
+	uint8_t *buffer = malloc(buffer_size);
+	if (!buffer) {
+		return ERROR_BUF_TOO_SMALL;
+	}
 
 	memset(buffer, 0, buffer_size);
 	buffer[0] = SPIFLASH_READ_ID;
 
 	int ret = dw_spi_ctrl_transaction(bank, buffer, buffer_size, true);
 	if (ret) {
+		free(buffer);
 		LOG_ERROR("DW SPI flash ID read error");
 		return ret;
 	}
@@ -961,6 +965,7 @@ dw_spi_read_id(const struct flash_bank *const bank)
 	buffer[buffer_size - 1] = 0;
 	// use le_to_h_u32 to decode flash ID as per JEDEC SFDP
 	driver->id = le_to_h_u32(buffer + 1);
+	free(buffer);
 	LOG_DEBUG("DW SPI read flash ID %" PRIx32, driver->id);
 
 	return ERROR_OK;
@@ -977,18 +982,23 @@ static int
 dw_spi_read_status(const struct flash_bank *const bank, uint8_t *const status)
 {
 	const int buffer_size = 2;
-	uint8_t buffer[buffer_size];
+	uint8_t *buffer = malloc(buffer_size);
+	if (!buffer) {
+		return ERROR_BUF_TOO_SMALL;
+	}
 
 	memset(buffer, 0, buffer_size);
 	buffer[0] = SPIFLASH_READ_STATUS;
 
 	int ret = dw_spi_ctrl_transaction(bank, buffer, buffer_size, true);
 	if (ret) {
+		free(buffer);
 		LOG_ERROR("DW SPI flash status read error");
 		return ret;
 	}
 
 	*status = buffer[1];
+	free(buffer);
 
 	return ERROR_OK;
 }
@@ -1031,21 +1041,29 @@ static int
 dw_spi_write_enable(const struct flash_bank *const bank)
 {
 	const int buffer_size = 1;
-	uint8_t buffer[buffer_size];
+	uint8_t *buffer = malloc(buffer_size);
+	if (!buffer) {
+		return ERROR_BUF_TOO_SMALL;
+	}
 
 	memset(buffer, 0, buffer_size);
 	buffer[0] = SPIFLASH_WRITE_ENABLE;
 
 	int ret = dw_spi_ctrl_transaction(bank, buffer, buffer_size, false);
 	if (ret) {
+		free(buffer);
 		LOG_ERROR("DW SPI flash write enable error");
 		return ret;
 	}
 
 	uint8_t status;
 	ret = dw_spi_read_status(bank, &status);
-	if (ret)
+	if (ret) {
+		free(buffer);
 		return ret;
+	}
+
+	free(buffer);
 
 	return status & SPIFLASH_WE_BIT ? ERROR_OK : ERROR_FAIL;
 }
@@ -1062,26 +1080,35 @@ dw_spi_erase_chip(const struct flash_bank *const bank)
 	const struct dw_spi_driver *const driver = bank->driver_priv;
 
 	const int buffer_size = 1;
-	uint8_t buffer[buffer_size];
+	uint8_t *buffer = malloc(buffer_size);
+	if (!buffer) {
+		return ERROR_BUF_TOO_SMALL;
+	}
 
 	int ret = dw_spi_write_enable(bank);
-	if (ret)
+	if (ret) {
+		free(buffer);
 		return ret;
+	}
 
 	memset(buffer, 0, buffer_size);
 	buffer[0] = driver->spi_flash->chip_erase_cmd;
 
 	ret = dw_spi_ctrl_transaction(bank, buffer, buffer_size, false);
 	if (ret) {
+		free(buffer);
 		LOG_ERROR("DW SPI erase flash error");
 		return ret;
 	}
 
 	ret = dw_spi_wait_finish(bank, driver->timeout);
 	if (ret) {
+		free(buffer);
 		LOG_ERROR("DW SPI erase flash timeout");
 		return ret;
 	}
+
+	free(buffer);
 
 	return ERROR_OK;
 }
