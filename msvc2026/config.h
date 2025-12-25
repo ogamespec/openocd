@@ -13,9 +13,9 @@ typedef SSIZE_T ssize_t;
 
 #define VERSION "0.12"
 #ifdef _DEBUG
-#define RELSTR " Debug"
+#define RELSTR " Debug MSVC"
 #else
-#define RELSTR " Release"
+#define RELSTR " Release MSVC"
 #endif
 #define GITVERSION "0.12"
 
