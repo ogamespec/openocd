@@ -257,7 +257,7 @@ int __register_commands(struct command_context *cmd_ctx, const char *cmd_prefix,
 	return retval;
 }
 
-static __attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)))
+//static __attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)))
 int unregister_commands_match(struct command_context *cmd_ctx, const char *format, ...)
 {
 	Jim_Interp *interp = cmd_ctx->interp;
