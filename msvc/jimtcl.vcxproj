@@ -31,7 +31,12 @@
     <ClCompile Include="..\jimtcl\jim-interp.c" />
     <ClCompile Include="..\jimtcl\jim-json.c" />
     <ClCompile Include="..\jimtcl\jim-load.c" />
-    <ClCompile Include="..\jimtcl\jim-mk.cpp" />
+    <ClCompile Include="..\jimtcl\jim-mk.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\jimtcl\jim-namespace.c" />
     <ClCompile Include="..\jimtcl\jim-nosignal.c" />
     <ClCompile Include="..\jimtcl\jim-pack.c" />
