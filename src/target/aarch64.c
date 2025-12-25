@@ -429,7 +429,7 @@ static int aarch64_halt_smp(struct target *target, bool exc_target)
 	for (;;) {
 		bool all_halted = true;
 		struct target_list *head;
-		struct target *curr;
+		struct target *curr = NULL;
 
 		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			int halted;

@@ -5,12 +5,12 @@ noinst_LTLIBRARIES += %D%/libocdflashnand.la
 %C%_libocdflashnand_la_SOURCES = \
 	%D%/ecc.c \
 	%D%/ecc_kw.c \
-	%D%/core.c \
-	%D%/fileio.c \
-	%D%/tcl.c \
+	%D%/nand_core.c \
+	%D%/nand_fileio.c \
+	%D%/nand_tcl.c \
 	%D%/arm_io.c \
 	$(NAND_DRIVERS) \
-	%D%/driver.c \
+	%D%/nand_driver.c \
 	$(NANDHEADERS)
 
 NAND_DRIVERS = \

@@ -93,7 +93,7 @@ struct esirisc_flash_bank {
 	uint32_t wait_states;
 };
 
-static const struct command_registration esirisc_flash_command_handlers[];
+extern const struct command_registration esirisc_flash_command_handlers[];
 
 FLASH_BANK_COMMAND_HANDLER(esirisc_flash_bank_command)
 {
@@ -548,7 +548,7 @@ static const struct command_registration esirisc_flash_exec_command_handlers[] =
 	COMMAND_REGISTRATION_DONE
 };
 
-static const struct command_registration esirisc_flash_command_handlers[] = {
+const struct command_registration esirisc_flash_command_handlers[] = {
 	{
 		.name = "flash",
 		.mode = COMMAND_EXEC,

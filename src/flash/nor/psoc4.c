@@ -220,7 +220,7 @@ static int psoc4_sysreq(struct flash_bank *bank, uint8_t cmd,
 	struct psoc4_flash_bank *psoc4_info = bank->driver_priv;
 
 	struct working_area *sysreq_wait_algorithm;
-	struct working_area *sysreq_mem;
+	struct working_area *sysreq_mem = NULL;
 
 	struct reg_param reg_params[1];
 	struct armv7m_algorithm armv7m_info;

@@ -87,7 +87,12 @@
     <ClCompile Include="..\src\flash\nor\non_cfi.c" />
     <ClCompile Include="..\src\flash\nor\nor_core.c" />
     <ClCompile Include="..\src\flash\nor\nor_tcl.c" />
-    <ClCompile Include="..\src\flash\nor\npcx.c" />
+    <ClCompile Include="..\src\flash\nor\npcx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\flash\nor\nrf5.c" />
     <ClCompile Include="..\src\flash\nor\numicro.c" />
     <ClCompile Include="..\src\flash\nor\ocl.c" />
@@ -107,8 +112,18 @@
     <ClCompile Include="..\src\flash\nor\stm32f1x.c" />
     <ClCompile Include="..\src\flash\nor\stm32f2x.c" />
     <ClCompile Include="..\src\flash\nor\stm32h7x.c" />
-    <ClCompile Include="..\src\flash\nor\stm32l4x.c" />
-    <ClCompile Include="..\src\flash\nor\stm32lx.c" />
+    <ClCompile Include="..\src\flash\nor\stm32l4x.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\flash\nor\stm32lx.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\flash\nor\stmqspi.c" />
     <ClCompile Include="..\src\flash\nor\stmsmi.c" />
     <ClCompile Include="..\src\flash\nor\str7x.c" />

@@ -2,8 +2,8 @@
 
 noinst_LTLIBRARIES += %D%/libocdflashnor.la
 %C%_libocdflashnor_la_SOURCES = \
-	%D%/core.c \
-	%D%/tcl.c \
+	%D%/nor_core.c \
+	%D%/nor_tcl.c \
 	$(NOR_DRIVERS) \
 	%D%/drivers.c \
 	$(NORHEADERS)

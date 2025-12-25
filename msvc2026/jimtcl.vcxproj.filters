@@ -150,6 +150,9 @@
     <ClCompile Include="..\jimtcl\utf8.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="jim_static_extensions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jimtcl\sqlite3\sqlite3.h">

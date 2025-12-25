@@ -1061,11 +1061,42 @@ static int arm11_bpwp_enable(struct arm_dpm *dpm, unsigned int index_t,
 	action[1].value = control;
 
 	switch (index_t) {
-	case 0 ... 15:
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
 	    action[0].address = ARM11_SC7_BVR0 + index_t;
 	    action[1].address = ARM11_SC7_BCR0 + index_t;
 	    break;
-	case 16 ... 32:
+	case 16:
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
+	case 32:
 	    index_t -= 16;
 	    action[0].address = ARM11_SC7_WVR0 + index_t;
 	    action[1].address = ARM11_SC7_WCR0 + index_t;
@@ -1090,10 +1121,41 @@ static int arm11_bpwp_disable(struct arm_dpm *dpm, unsigned int index_t)
 	action[0].value = 0;
 
 	switch (index_t) {
-	case 0 ... 15:
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
+	case 15:
 	    action[0].address = ARM11_SC7_BCR0 + index_t;
 	    break;
-	case 16 ... 32:
+	case 16:
+	case 17:
+	case 18:
+	case 19:
+	case 20:
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
+	case 30:
+	case 31:
+	case 32:
 	    index_t -= 16;
 	    action[0].address = ARM11_SC7_WCR0 + index_t;
 	    break;

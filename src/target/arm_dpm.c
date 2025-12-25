@@ -171,7 +171,38 @@ static int dpm_read_reg_u64(struct arm_dpm *dpm, struct reg *r, unsigned int reg
 	uint32_t value_r0, value_r1;
 
 	switch (regnum) {
-	case ARM_VFP_V3_D0 ... ARM_VFP_V3_D31:
+	case ARM_VFP_V3_D0:
+	case ARM_VFP_V3_D1:
+	case ARM_VFP_V3_D2:
+	case ARM_VFP_V3_D3:
+	case ARM_VFP_V3_D4:
+	case ARM_VFP_V3_D5:
+	case ARM_VFP_V3_D6:
+	case ARM_VFP_V3_D7:
+	case ARM_VFP_V3_D8:
+	case ARM_VFP_V3_D9:
+	case ARM_VFP_V3_D10:
+	case ARM_VFP_V3_D11:
+	case ARM_VFP_V3_D12:
+	case ARM_VFP_V3_D13:
+	case ARM_VFP_V3_D14:
+	case ARM_VFP_V3_D15:
+	case ARM_VFP_V3_D16:
+	case ARM_VFP_V3_D17:
+	case ARM_VFP_V3_D18:
+	case ARM_VFP_V3_D19:
+	case ARM_VFP_V3_D20:
+	case ARM_VFP_V3_D21:
+	case ARM_VFP_V3_D22:
+	case ARM_VFP_V3_D23:
+	case ARM_VFP_V3_D24:
+	case ARM_VFP_V3_D25:
+	case ARM_VFP_V3_D26:
+	case ARM_VFP_V3_D27:
+	case ARM_VFP_V3_D28:
+	case ARM_VFP_V3_D29:
+	case ARM_VFP_V3_D30:
+	case ARM_VFP_V3_D31:
 		/* move from double word register to r0:r1: "vmov r0, r1, vm"
 		 * then read r0 via dcc
 		 */
@@ -209,7 +240,21 @@ int arm_dpm_read_reg(struct arm_dpm *dpm, struct reg *r, unsigned int regnum)
 	int retval;
 
 	switch (regnum) {
-	case 0 ... 14:
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
 		/* return via DCC:  "MCR p14, 0, Rnum, c0, c5, 0" */
 		retval = dpm->instr_read_data_dcc(dpm,
 			ARMV4_5_MCR(14, 0, regnum, 0, 5, 0),
@@ -242,7 +287,38 @@ int arm_dpm_read_reg(struct arm_dpm *dpm, struct reg *r, unsigned int regnum)
 			break;
 		}
 		break;
-	case ARM_VFP_V3_D0 ... ARM_VFP_V3_D31:
+	case ARM_VFP_V3_D0:
+	case ARM_VFP_V3_D1:
+	case ARM_VFP_V3_D2:
+	case ARM_VFP_V3_D3:
+	case ARM_VFP_V3_D4:
+	case ARM_VFP_V3_D5:
+	case ARM_VFP_V3_D6:
+	case ARM_VFP_V3_D7:
+	case ARM_VFP_V3_D8:
+	case ARM_VFP_V3_D9:
+	case ARM_VFP_V3_D10:
+	case ARM_VFP_V3_D11:
+	case ARM_VFP_V3_D12:
+	case ARM_VFP_V3_D13:
+	case ARM_VFP_V3_D14:
+	case ARM_VFP_V3_D15:
+	case ARM_VFP_V3_D16:
+	case ARM_VFP_V3_D17:
+	case ARM_VFP_V3_D18:
+	case ARM_VFP_V3_D19:
+	case ARM_VFP_V3_D20:
+	case ARM_VFP_V3_D21:
+	case ARM_VFP_V3_D22:
+	case ARM_VFP_V3_D23:
+	case ARM_VFP_V3_D24:
+	case ARM_VFP_V3_D25:
+	case ARM_VFP_V3_D26:
+	case ARM_VFP_V3_D27:
+	case ARM_VFP_V3_D28:
+	case ARM_VFP_V3_D29:
+	case ARM_VFP_V3_D30:
+	case ARM_VFP_V3_D31:
 		return dpm_read_reg_u64(dpm, r, regnum);
 	case ARM_VFP_V3_FPSCR:
 		/* "VMRS r0, FPSCR"; then return via DCC */
@@ -278,7 +354,38 @@ static int dpm_write_reg_u64(struct arm_dpm *dpm, struct reg *r, unsigned int re
 	uint32_t value_r1 = buf_get_u32(r->value + 4, 0, 32);
 
 	switch (regnum) {
-	case ARM_VFP_V3_D0 ... ARM_VFP_V3_D31:
+	case ARM_VFP_V3_D0:
+	case ARM_VFP_V3_D1:
+	case ARM_VFP_V3_D2:
+	case ARM_VFP_V3_D3:
+	case ARM_VFP_V3_D4:
+	case ARM_VFP_V3_D5:
+	case ARM_VFP_V3_D6:
+	case ARM_VFP_V3_D7:
+	case ARM_VFP_V3_D8:
+	case ARM_VFP_V3_D9:
+	case ARM_VFP_V3_D10:
+	case ARM_VFP_V3_D11:
+	case ARM_VFP_V3_D12:
+	case ARM_VFP_V3_D13:
+	case ARM_VFP_V3_D14:
+	case ARM_VFP_V3_D15:
+	case ARM_VFP_V3_D16:
+	case ARM_VFP_V3_D17:
+	case ARM_VFP_V3_D18:
+	case ARM_VFP_V3_D19:
+	case ARM_VFP_V3_D20:
+	case ARM_VFP_V3_D21:
+	case ARM_VFP_V3_D22:
+	case ARM_VFP_V3_D23:
+	case ARM_VFP_V3_D24:
+	case ARM_VFP_V3_D25:
+	case ARM_VFP_V3_D26:
+	case ARM_VFP_V3_D27:
+	case ARM_VFP_V3_D28:
+	case ARM_VFP_V3_D29:
+	case ARM_VFP_V3_D30:
+	case ARM_VFP_V3_D31:
 		/* write value_r1 to r1 via dcc */
 		retval = dpm->instr_write_data_dcc(dpm,
 			ARMV4_5_MRC(14, 0, 1, 0, 5, 0),
@@ -313,7 +420,21 @@ static int dpm_write_reg(struct arm_dpm *dpm, struct reg *r, unsigned int regnum
 	uint32_t value = buf_get_u32(r->value, 0, 32);
 
 	switch (regnum) {
-	case 0 ... 14:
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
+	case 13:
+	case 14:
 		/* load register from DCC:  "MRC p14, 0, Rnum, c0, c5, 0" */
 		retval = dpm->instr_write_data_dcc(dpm,
 			ARMV4_5_MRC(14, 0, regnum, 0, 5, 0),
@@ -323,7 +444,38 @@ static int dpm_write_reg(struct arm_dpm *dpm, struct reg *r, unsigned int regnum
 		 * read r0 from DCC; then "MOV pc, r0" */
 		retval = dpm->instr_write_data_r0(dpm, 0xe1a0f000, value);
 		break;
-	case ARM_VFP_V3_D0 ... ARM_VFP_V3_D31:
+	case ARM_VFP_V3_D0:
+	case ARM_VFP_V3_D1:
+	case ARM_VFP_V3_D2:
+	case ARM_VFP_V3_D3:
+	case ARM_VFP_V3_D4:
+	case ARM_VFP_V3_D5:
+	case ARM_VFP_V3_D6:
+	case ARM_VFP_V3_D7:
+	case ARM_VFP_V3_D8:
+	case ARM_VFP_V3_D9:
+	case ARM_VFP_V3_D10:
+	case ARM_VFP_V3_D11:
+	case ARM_VFP_V3_D12:
+	case ARM_VFP_V3_D13:
+	case ARM_VFP_V3_D14:
+	case ARM_VFP_V3_D15:
+	case ARM_VFP_V3_D16:
+	case ARM_VFP_V3_D17:
+	case ARM_VFP_V3_D18:
+	case ARM_VFP_V3_D19:
+	case ARM_VFP_V3_D20:
+	case ARM_VFP_V3_D21:
+	case ARM_VFP_V3_D22:
+	case ARM_VFP_V3_D23:
+	case ARM_VFP_V3_D24:
+	case ARM_VFP_V3_D25:
+	case ARM_VFP_V3_D26:
+	case ARM_VFP_V3_D27:
+	case ARM_VFP_V3_D28:
+	case ARM_VFP_V3_D29:
+	case ARM_VFP_V3_D30:
+	case ARM_VFP_V3_D31:
 		return dpm_write_reg_u64(dpm, r, regnum);
 	case ARM_VFP_V3_FPSCR:
 		/* move to r0 from DCC, then "VMSR FPSCR, r0" */
@@ -561,7 +713,11 @@ int arm_dpm_write_dirty_registers(struct arm_dpm *dpm, bool bpwp)
 
 				/* cope with special cases */
 				switch (regnum) {
-				case 8 ... 12:
+				case 8:
+				case 9:
+				case 10:
+				case 11:
+				case 12:
 					/* r8..r12 "anything but FIQ" case;
 					 * we "know" core mode is accurate
 					 * since we haven't changed it yet
@@ -654,19 +810,62 @@ static enum arm_mode dpm_mapmode(struct arm *arm,
 
 	switch (num) {
 	/* don't switch for non-shadowed registers (r0..r7, r15/pc, cpsr) */
-	case 0 ... 7:
+	case 0:
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
 	case 15:
 	case 16:
 		break;
 	/* r8..r12 aren't shadowed for anything except FIQ */
-	case 8 ... 12:
+	case 8:
+	case 9:
+	case 10:
+	case 11:
+	case 12:
 		if (mode == ARM_MODE_FIQ)
 			return mode;
 		break;
 	/* r13/sp, and r14/lr are always shadowed */
 	case 13:
 	case 14:
-	case ARM_VFP_V3_D0 ... ARM_VFP_V3_FPSCR:
+	case ARM_VFP_V3_D0:
+	case ARM_VFP_V3_D1:
+	case ARM_VFP_V3_D2:
+	case ARM_VFP_V3_D3:
+	case ARM_VFP_V3_D4:
+	case ARM_VFP_V3_D5:
+	case ARM_VFP_V3_D6:
+	case ARM_VFP_V3_D7:
+	case ARM_VFP_V3_D8:
+	case ARM_VFP_V3_D9:
+	case ARM_VFP_V3_D10:
+	case ARM_VFP_V3_D11:
+	case ARM_VFP_V3_D12:
+	case ARM_VFP_V3_D13:
+	case ARM_VFP_V3_D14:
+	case ARM_VFP_V3_D15:
+	case ARM_VFP_V3_D16:
+	case ARM_VFP_V3_D17:
+	case ARM_VFP_V3_D18:
+	case ARM_VFP_V3_D19:
+	case ARM_VFP_V3_D20:
+	case ARM_VFP_V3_D21:
+	case ARM_VFP_V3_D22:
+	case ARM_VFP_V3_D23:
+	case ARM_VFP_V3_D24:
+	case ARM_VFP_V3_D25:
+	case ARM_VFP_V3_D26:
+	case ARM_VFP_V3_D27:
+	case ARM_VFP_V3_D28:
+	case ARM_VFP_V3_D29:
+	case ARM_VFP_V3_D30:
+	case ARM_VFP_V3_D31:
+	case ARM_VFP_V3_FPSCR:
 		return mode;
 	default:
 		LOG_TARGET_WARNING(arm->target, "invalid register #%u", num);

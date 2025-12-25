@@ -47,7 +47,12 @@
     <ClCompile Include="..\src\target\armv7a_cache_l2x.c" />
     <ClCompile Include="..\src\target\armv7a_mmu.c" />
     <ClCompile Include="..\src\target\armv7m.c" />
-    <ClCompile Include="..\src\target\armv7m_cache.c" />
+    <ClCompile Include="..\src\target\armv7m_cache.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\target\armv7m_trace.c" />
     <ClCompile Include="..\src\target\armv8.c" />
     <ClCompile Include="..\src\target\armv8_cache.c" />

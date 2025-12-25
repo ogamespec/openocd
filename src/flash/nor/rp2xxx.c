@@ -1192,14 +1192,16 @@ static int rp2xxx_read_sfdp_block(struct flash_bank *bank, uint32_t addr,
 	struct rp2xxx_flash_bank *priv = bank->driver_priv;
 
 	uint8_t cmd[4] = { SPIFLASH_READ_SFDP };
-	uint8_t data[4 * words + priv->sfdp_dummy_detect];
+	uint8_t *data = malloc(4 * words + priv->sfdp_dummy_detect);
 
 	h_u24_to_be(&cmd[1], addr);
 
 	int retval = rp2xxx_spi_tx_rx(bank, cmd, sizeof(cmd), priv->sfdp_dummy,
 								  data, 4 * words + priv->sfdp_dummy_detect);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(data);
 		return retval;
+	}
 
 	if (priv->sfdp_dummy_detect) {
 		for (unsigned int i = 0; i < priv->sfdp_dummy_detect; i++)
@@ -1214,6 +1216,7 @@ static int rp2xxx_read_sfdp_block(struct flash_bank *bank, uint32_t addr,
 		for (unsigned int i = 0; i < words; i++)
 			buffer[i] = le_to_h_u32(&data[4 * i]);
 	}
+	free(data);
 	return retval;
 }
 

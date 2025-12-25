@@ -824,7 +824,7 @@ static int psoc6_program(struct flash_bank *bank,
 	const bool is_sflash = is_sflash_bank(bank);
 	int hr;
 
-	uint8_t page_buf[psoc6_info->row_sz];
+	uint8_t *page_buf = malloc(psoc6_info->row_sz);
 
 	hr = sromalgo_prepare(target);
 	if (hr != ERROR_OK)
@@ -850,6 +850,9 @@ static int psoc6_program(struct flash_bank *bank,
 	}
 
 exit:
+	if (page_buf) {
+		free(page_buf);
+	}
 	sromalgo_release(target);
 	return hr;
 }

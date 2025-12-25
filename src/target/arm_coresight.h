@@ -30,11 +30,7 @@
  * and represent a legacy ASCII Identity Code.
  */
 #define ARM_CS_PIDR_PART(pidr)                  ((pidr) & 0x0FFF)
-#define ARM_CS_PIDR_DESIGNER(pidr, tpidr)              \
-({                                              \
-	tpidr _x = (pidr);                   \
-	((_x >> 25) & 0x780) | ((_x >> 12) & 0x7F); \
-})
+#define ARM_CS_PIDR_DESIGNER(pidr)  ((pidr >> 25) & 0x780) | ((pidr >> 12) & 0x7F)
 #define ARM_CS_PIDR_JEDEC                       BIT(19)
 #define ARM_CS_PIDR_SIZE(pidr)                  (((pidr) >> 36) & 0x000F)
 

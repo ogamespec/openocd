@@ -775,29 +775,35 @@ COMMAND_HANDLER(stmqspi_handle_cmd)
 	uint8_t num_write, num_read, cmd_byte, data;
 	unsigned int count;
 	const int max = 21;
-	char temp[4], output[(2 + max + 256) * 3 + 8];
+	char temp[4], *output = malloc((2 + max + 256) * 3 + 8);
 	int retval;
 
 	LOG_DEBUG("%s", __func__);
 
-	if (CMD_ARGC < 3)
+	if (CMD_ARGC < 3) {
+		free(output);
 		return ERROR_COMMAND_SYNTAX_ERROR;
+	}
 
 	num_write = CMD_ARGC - 2;
 	if (num_write > max) {
+		free(output);
 		LOG_ERROR("at most %d bytes may be sent", max);
 		return ERROR_COMMAND_ARGUMENT_INVALID;
 	}
 
 	retval = CALL_COMMAND_HANDLER(flash_command_get_bank, 0, &bank);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(output);
 		return retval;
+	}
 
 	target = bank->target;
 	stmqspi_info = bank->driver_priv;
 	io_base = stmqspi_info->io_base;
 
 	if (target->state != TARGET_HALTED) {
+		free(output);
 		LOG_ERROR("Target not halted");
 		return ERROR_TARGET_NOT_HALTED;
 	}
@@ -810,6 +816,7 @@ COMMAND_HANDLER(stmqspi_handle_cmd)
 		 * an *even* number of data bytes to follow */
 		if (stmqspi_info->saved_cr & BIT(SPI_DUAL_FLASH)) {
 			if ((num_write & 1) == 0) {
+				free(output);
 				LOG_ERROR("number of data bytes to write must be even in dual mode");
 				return ERROR_COMMAND_ARGUMENT_INVALID;
 			}
@@ -818,11 +825,13 @@ COMMAND_HANDLER(stmqspi_handle_cmd)
 		/* read mode, one command byte and up to four following address bytes */
 		if (stmqspi_info->saved_cr & BIT(SPI_DUAL_FLASH)) {
 			if ((num_read & 1) != 0) {
+				free(output);
 				LOG_ERROR("number of bytes to read must be even in dual mode");
 				return ERROR_COMMAND_ARGUMENT_INVALID;
 			}
 		}
 		if ((num_write < 1) || (num_write > 5)) {
+			free(output);
 			LOG_ERROR("one cmd and up to four addr bytes must be send when reading");
 			return ERROR_COMMAND_ARGUMENT_INVALID;
 		}
@@ -830,13 +839,17 @@ COMMAND_HANDLER(stmqspi_handle_cmd)
 
 	/* Abort any previous operation */
 	retval = stmqspi_abort(bank);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(output);
 		return retval;
+	}
 
 	/* Wait for busy to be cleared */
 	retval = poll_busy(bank, SPI_PROBE_TIMEOUT);
-	if (retval != ERROR_OK)
+	if (retval != ERROR_OK) {
+		free(output);
 		return retval;
+	}
 
 	/* send command byte */
 	snprintf(output, sizeof(output), "spi: %02x ", cmd_byte);
@@ -915,6 +928,9 @@ COMMAND_HANDLER(stmqspi_handle_cmd)
 	command_print(CMD, "%s", output);
 
 err:
+	if (output) {
+		free(output);
+	}
 	/* Switch to memory mapped mode before return to prompt */
 	set_mm_mode(bank);
 

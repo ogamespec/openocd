@@ -274,7 +274,21 @@ static int armv7m_set_core_reg(struct reg *reg, uint8_t *buf)
 uint32_t armv7m_map_id_to_regsel(unsigned int arm_reg_id)
 {
 	switch (arm_reg_id) {
-	case ARMV7M_R0 ... ARMV7M_R14:
+	case ARMV7M_R0:
+	case ARMV7M_R1:
+	case ARMV7M_R2:
+	case ARMV7M_R3:
+	case ARMV7M_R4:
+	case ARMV7M_R5:
+	case ARMV7M_R6:
+	case ARMV7M_R7:
+	case ARMV7M_R8:
+	case ARMV7M_R9:
+	case ARMV7M_R10:
+	case ARMV7M_R11:
+	case ARMV7M_R12:
+	case ARMV7M_R13:
+	case ARMV7M_R14:
 	case ARMV7M_PC:
 	case ARMV7M_XPSR:
 	case ARMV7M_MSP:
@@ -288,7 +302,14 @@ uint32_t armv7m_map_id_to_regsel(unsigned int arm_reg_id)
 	case ARMV7M_PMSK_BPRI_FLTMSK_CTRL:
 		return ARMV7M_REGSEL_PMSK_BPRI_FLTMSK_CTRL;
 
-	case ARMV8M_MSP_NS...ARMV8M_PSPLIM_NS:
+	case ARMV8M_MSP_NS:
+	case ARMV8M_PSP_NS:
+	case ARMV8M_MSP_S:
+	case ARMV8M_PSP_S:
+	case ARMV8M_MSPLIM_S:
+	case ARMV8M_PSPLIM_S:
+	case ARMV8M_MSPLIM_NS:
+	case ARMV8M_PSPLIM_NS:
 		return arm_reg_id - ARMV8M_MSP_NS + ARMV8M_REGSEL_MSP_NS;
 
 	case ARMV8M_PSPLIM:
@@ -309,7 +330,22 @@ uint32_t armv7m_map_id_to_regsel(unsigned int arm_reg_id)
 	case ARMV8M_VPR:
 		return ARMV8M_REGSEL_VPR;
 
-	case ARMV7M_D0 ... ARMV7M_D15:
+	case ARMV7M_D0:
+	case ARMV7M_D1:
+	case ARMV7M_D2:
+	case ARMV7M_D3:
+	case ARMV7M_D4:
+	case ARMV7M_D5:
+	case ARMV7M_D6:
+	case ARMV7M_D7:
+	case ARMV7M_D8:
+	case ARMV7M_D9:
+	case ARMV7M_D10:
+	case ARMV7M_D11:
+	case ARMV7M_D12:
+	case ARMV7M_D13:
+	case ARMV7M_D14:
+	case ARMV7M_D15:
 		return ARMV7M_REGSEL_S0 + 2 * (arm_reg_id - ARMV7M_D0);
 
 	default:
@@ -324,15 +360,26 @@ bool armv7m_map_reg_packing(unsigned int arm_reg_id,
 
 	switch (arm_reg_id) {
 
-	case ARMV7M_PRIMASK...ARMV7M_CONTROL:
+	case ARMV7M_PRIMASK:
+	case ARMV7M_BASEPRI:
+	case ARMV7M_FAULTMASK:
+	case ARMV7M_CONTROL:
 		*reg32_id = ARMV7M_PMSK_BPRI_FLTMSK_CTRL;
 		*offset = arm_reg_id - ARMV7M_PRIMASK;
 		return true;
-	case ARMV8M_PRIMASK_S...ARMV8M_CONTROL_S:
+
+	case ARMV8M_PRIMASK_S:
+	case ARMV8M_BASEPRI_S:
+	case ARMV8M_FAULTMASK_S:
+	case ARMV8M_CONTROL_S:
 		*reg32_id = ARMV8M_PMSK_BPRI_FLTMSK_CTRL_S;
 		*offset = arm_reg_id - ARMV8M_PRIMASK_S;
 		return true;
-	case ARMV8M_PRIMASK_NS...ARMV8M_CONTROL_NS:
+
+	case ARMV8M_PRIMASK_NS:
+	case ARMV8M_BASEPRI_NS:
+	case ARMV8M_FAULTMASK_NS:
+	case ARMV8M_CONTROL_NS:
 		*reg32_id = ARMV8M_PMSK_BPRI_FLTMSK_CTRL_NS;
 		*offset = arm_reg_id - ARMV8M_PRIMASK_NS;
 		return true;
