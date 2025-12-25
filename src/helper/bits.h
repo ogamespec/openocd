@@ -26,6 +26,7 @@
 #define BITS_TO_LONGS(nr)           DIV_ROUND_UP(nr, BITS_PER_BYTE * sizeof(long))
 #define BIT_MASK(nr)                (1UL << ((nr) % BITS_PER_LONG))
 #define BIT_WORD(nr)                ((nr) / BITS_PER_LONG)
+#define DECLARE_STATIC_BITMAP(name, bits)  unsigned long name[BITS_TO_LONGS(bits)]
 #define DECLARE_BITMAP(name, bits)  unsigned long * name = malloc(BITS_TO_LONGS(bits) * sizeof(unsigned long))
 #define UNDECLARE_BITMAP(name)		free(name)
 

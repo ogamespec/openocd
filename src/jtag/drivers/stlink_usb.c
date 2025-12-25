@@ -4082,7 +4082,7 @@ struct hl_layout_api stlink_usb_layout_api = {
 
 static struct stlink_usb_handle *stlink_dap_handle;
 static struct hl_interface_param stlink_dap_param;
-static DECLARE_BITMAP(opened_ap, DP_APSEL_MAX + 1);
+static DECLARE_STATIC_BITMAP(opened_ap, DP_APSEL_MAX + 1);
 static uint32_t last_csw_default[DP_APSEL_MAX + 1];
 static int stlink_dap_error = ERROR_OK;
 
