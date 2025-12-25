@@ -502,7 +502,7 @@ void log_socket_error(const char *socket_desc)
 	error_code = WSAGetLastError();
 	char error_message[MAX_SOCKET_ERR_MSG_LENGTH];
 	error_message[0] = '\0';
-	DWORD retval = FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM, NULL, error_code, 0,
+	DWORD retval = FormatMessageA(FORMAT_MESSAGE_FROM_SYSTEM, NULL, error_code, 0,
 		error_message, MAX_SOCKET_ERR_MSG_LENGTH, NULL);
 	error_message[MAX_SOCKET_ERR_MSG_LENGTH - 1] = '\0';
 	const bool have_message = (retval != 0) && (error_message[0] != '\0');

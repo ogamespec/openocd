@@ -99,8 +99,8 @@ void *jimcmd_privdata(Jim_Cmd *cmd);
  * set provided by command.c.  This macro uses C99 magic to allow
  * defining all such derivative types using this macro.
  */
-#define __COMMAND_HANDLER(name, extra ...) \
-		int name(struct command_invocation *cmd, ## extra)
+#define __COMMAND_HANDLER(name, ...) \
+		int name(struct command_invocation *cmd, __VA_ARGS__)
 
 /**
  * Use this to macro to call a command helper (or a nested handler).
@@ -115,8 +115,8 @@ void *jimcmd_privdata(Jim_Cmd *cmd);
  * helper function, or care must be taken to avoid redefining the same
  * variables in intervening scope(s) by accident.
  */
-#define CALL_COMMAND_HANDLER(name, extra ...) \
-		name(cmd, ## extra)
+#define CALL_COMMAND_HANDLER(name, ...) \
+		name(cmd, __VA_ARGS__)
 
 /**
  * Always use this macro to define new command handler functions.
@@ -132,7 +132,7 @@ void *jimcmd_privdata(Jim_Cmd *cmd);
  * A helper is globally-scoped because it may be shared between several
  * source files (e.g. the s3c24xx device command helper).
  */
-#define COMMAND_HELPER(name, extra ...) __COMMAND_HANDLER(name, extra)
+#define COMMAND_HELPER __COMMAND_HANDLER
 
 /**
  * Use this macro to access the command being handled,
@@ -384,14 +384,23 @@ void command_done(struct command_context *context);
  * it explicitly with either an empty command_print() or with a '\n' in the
  * last command_print() and add a comment to document it.
  */
-void command_print(struct command_invocation *cmd, const char *format, ...)
-__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)));
-void command_print_sameline(struct command_invocation *cmd, const char *format, ...)
-__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)));
+void command_print(struct command_invocation* cmd, const char* format, ...)
+#ifdef __GNUC__
+__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)))
+#endif
+;
+void command_print_sameline(struct command_invocation* cmd, const char* format, ...)
+#ifdef __GNUC__
+__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)))
+#endif
+;
 
 int command_run_line(struct command_context *context, char *line);
-int command_run_linef(struct command_context *context, const char *format, ...)
+int command_run_linef(struct command_context* context, const char* format, ...)
+#ifdef __GNUC__
 __attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 2, 3)));
+#endif
+;
 void command_output_text(struct command_context *context, const char *data);
 
 void process_jim_events(struct command_context *cmd_ctx);

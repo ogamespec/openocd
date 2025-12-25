@@ -51,13 +51,17 @@ enum log_levels {
 
 void log_printf(enum log_levels level, const char* file, unsigned int line,
 	const char* function, const char* format, ...)
-	//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)))
+#ifdef __GNUC__
+	__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)))
+#endif
 	;
 void log_vprintf_lf(enum log_levels level, const char *file, unsigned int line,
 		const char *function, const char *format, va_list args);
 void log_printf_lf(enum log_levels level, const char* file, unsigned int line,
 	const char* function, const char* format, ...)
-	//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)));
+#ifdef __GNUC__
+	__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 5, 6)))
+#endif
 	;
 
 /**
@@ -89,10 +93,14 @@ int log_add_callback(log_callback_fn fn, void *priv);
 int log_remove_callback(log_callback_fn fn, void *priv);
 
 char* alloc_vprintf(const char* fmt, va_list ap)
-//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 0))) __nonnull((1));
+#ifdef __GNUC__
+__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 0))) __nonnull((1))
+#endif
 ;
 char* alloc_printf(const char* fmt, ...)
-//__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 2))) __nonnull((1))
+#ifdef __GNUC__
+__attribute__ ((format (PRINTF_ATTRIBUTE_FORMAT, 1, 2))) __nonnull((1))
+#endif
 ;
 
 const char *find_nonprint_char(const char *buf, unsigned int buf_len);
