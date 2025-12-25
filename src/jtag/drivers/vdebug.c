@@ -153,6 +153,7 @@ enum {
 	VD_BATCH_WR       = 2,
 };
 
+#pragma pack(push, 1)
 struct vd_shm {
 	struct {                     /* VD_CHEADER_LEN written by client */
 		uint8_t cmd;             /* 000; command */
@@ -178,7 +179,8 @@ struct vd_shm {
 	uint8_t state[4];            /* 1f98; connection state */
 	uint8_t count[4];            /* 1f9c; */
 	uint8_t dummy[96];           /* 1fa0; 48+40B+8B; */
-} __attribute__((packed));
+};
+#pragma pack(pop)
 
 struct vd_rdata {
 	struct list_head lh;

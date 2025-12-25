@@ -788,7 +788,7 @@ struct transfer_result {
 	unsigned int transferred;
 };
 
-static LIBUSB_CALL void read_cb(struct libusb_transfer *transfer)
+static void LIBUSB_CALL read_cb(struct libusb_transfer *transfer)
 {
 	struct transfer_result *res = transfer->user_data;
 	struct mpsse_ctx *ctx = res->ctx;
@@ -826,7 +826,7 @@ static LIBUSB_CALL void read_cb(struct libusb_transfer *transfer)
 			res->done = true;
 }
 
-static LIBUSB_CALL void write_cb(struct libusb_transfer *transfer)
+static void LIBUSB_CALL write_cb(struct libusb_transfer *transfer)
 {
 	struct transfer_result *res = transfer->user_data;
 	struct mpsse_ctx *ctx = res->ctx;

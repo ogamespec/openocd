@@ -573,7 +573,7 @@ static void usbprog_jtag_tms_send(struct usbprog_jtag *usbprog_jtag)
 {
 	/* LOG_INFO("TMS SEND"); */
 	if (tms_chain_index > 0) {
-		char tmp[tms_chain_index + 2];
+		char *tmp = malloc(tms_chain_index + 2);
 		tmp[0] = WRITE_TMS_CHAIN;
 		tmp[1] = (char)(tms_chain_index);
 		for (int i = 0; i < tms_chain_index + 1; i++)
@@ -581,6 +581,7 @@ static void usbprog_jtag_tms_send(struct usbprog_jtag *usbprog_jtag)
 		int transferred;
 		jtag_libusb_bulk_write(usbprog_jtag->usb_handle, 3, tmp, tms_chain_index + 2, 1000, &transferred);
 		tms_chain_index = 0;
+		free(tmp);
 	}
 }
 

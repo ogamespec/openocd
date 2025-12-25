@@ -6,3 +6,4 @@ Win32
 !startup_tcl.inc
 packages
 Output
+libusb-*

@@ -34,8 +34,18 @@
     <ClCompile Include="..\src\jtag\drivers\cmsis_dap.c" />
     <ClCompile Include="..\src\jtag\drivers\cmsis_dap_tcp.c" />
     <ClCompile Include="..\src\jtag\drivers\cmsis_dap_usb_bulk.c" />
-    <ClCompile Include="..\src\jtag\drivers\cmsis_dap_usb_hid.c" />
-    <ClCompile Include="..\src\jtag\drivers\dmem.c" />
+    <ClCompile Include="..\src\jtag\drivers\cmsis_dap_usb_hid.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\dmem.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\dummy.c" />
     <ClCompile Include="..\src\jtag\drivers\ep93xx.c" />
     <ClCompile Include="..\src\jtag\drivers\esp_usb_jtag.c" />
@@ -49,10 +59,25 @@
     <ClCompile Include="..\src\jtag\drivers\jtag_vpi.c" />
     <ClCompile Include="..\src\jtag\drivers\kitprog.c" />
     <ClCompile Include="..\src\jtag\drivers\libusb_helper.c" />
-    <ClCompile Include="..\src\jtag\drivers\linuxgpiod.c" />
-    <ClCompile Include="..\src\jtag\drivers\linuxspidev.c" />
+    <ClCompile Include="..\src\jtag\drivers\linuxgpiod.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\src\jtag\drivers\linuxspidev.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\mpsse.c" />
-    <ClCompile Include="..\src\jtag\drivers\nulink_usb.c" />
+    <ClCompile Include="..\src\jtag\drivers\nulink_usb.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\opendous.c" />
     <ClCompile Include="..\src\jtag\drivers\openjtag.c" />
     <ClCompile Include="..\src\jtag\drivers\osbdm.c" />
@@ -61,16 +86,31 @@
     <ClCompile Include="..\src\jtag\drivers\remote_bitbang.c" />
     <ClCompile Include="..\src\jtag\drivers\rlink.c" />
     <ClCompile Include="..\src\jtag\drivers\rlink_speed_table.c" />
-    <ClCompile Include="..\src\jtag\drivers\rshim.c" />
+    <ClCompile Include="..\src\jtag\drivers\rshim.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\stlink_usb.c" />
-    <ClCompile Include="..\src\jtag\drivers\sysfsgpio.c" />
+    <ClCompile Include="..\src\jtag\drivers\sysfsgpio.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\drivers\ti_icdi_usb.c" />
     <ClCompile Include="..\src\jtag\drivers\ulink.c" />
     <ClCompile Include="..\src\jtag\drivers\usbprog.c" />
     <ClCompile Include="..\src\jtag\drivers\vdebug.c" />
     <ClCompile Include="..\src\jtag\drivers\vsllink.c" />
     <ClCompile Include="..\src\jtag\drivers\xds110.c" />
-    <ClCompile Include="..\src\jtag\drivers\xlnx-xvc.c" />
+    <ClCompile Include="..\src\jtag\drivers\xlnx-xvc.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\src\jtag\hla\hla_interface.c" />
     <ClCompile Include="..\src\jtag\hla\hla_layout.c" />
     <ClCompile Include="..\src\jtag\hla\hla_transport.c" />
@@ -191,7 +231,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/libusb-1.0.29/include;$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -211,7 +251,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/libusb-1.0.29/include;$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -229,7 +269,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/libusb-1.0.29/include;$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -249,7 +289,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
-      <AdditionalIncludeDirectories>$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)/libusb-1.0.29/include;$(ProjectDir)/;$(ProjectDir)/../src;$(ProjectDir)/../jimtcl</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>

@@ -20,11 +20,26 @@
  * Those applications will have their own main() implementation
  * and use bits and pieces from openocd.c. */
 
+#ifndef __GNUC__
+// You need to manually call all methods marked as __attribute__ ((constructor))
+void hl_constructor(void);
+void jtag_constructor(void);
+void init_ctors()
+{
+	hl_constructor();
+	jtag_constructor();
+}
+#endif
+
 int main(int argc, char *argv[])
 {
 	/* disable buffering otherwise piping to logs causes problems work */
 	setvbuf(stdout, NULL, _IONBF, 0);
 	setvbuf(stderr, NULL, _IONBF, 0);
+
+#ifndef __GNUC__
+	init_ctors();
+#endif
 
 	return openocd_main(argc, argv);
 }

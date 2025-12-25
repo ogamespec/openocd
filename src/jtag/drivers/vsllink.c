@@ -790,7 +790,7 @@ static int vsllink_usb_open(struct vsllink *vsllink)
 	ssize_t num_devices, i;
 	struct libusb_device **usb_devices;
 	struct libusb_device_descriptor usb_desc;
-	struct libusb_device_handle *usb_device_handle;
+	struct libusb_device_handle *usb_device_handle = NULL;
 	int retval;
 
 	num_devices = libusb_get_device_list(vsllink->libusb_ctx, &usb_devices);
@@ -818,11 +818,12 @@ static int vsllink_usb_open(struct vsllink *vsllink)
 			break;
 
 		libusb_close(usb_device_handle);
+		usb_device_handle = NULL;
 	}
 
 	libusb_free_device_list(usb_devices, 1);
 
-	if (i == num_devices)
+	if (i == num_devices || !usb_device_handle)
 		return ERROR_FAIL;
 
 	retval = libusb_claim_interface(usb_device_handle,

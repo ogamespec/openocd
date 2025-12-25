@@ -1846,7 +1846,9 @@ static int stlink_swim_status(void *handle)
 	capabilities? anyway for swim v6 it returns
 	0001020600000000
 */
+#ifdef __GNUC__
 __attribute__((unused))
+#endif
 static int stlink_swim_cap(void *handle, uint8_t *cap)
 {
 	struct stlink_usb_handle *h = handle;

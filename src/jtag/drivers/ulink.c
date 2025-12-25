@@ -17,6 +17,7 @@
 #include <libusb.h>
 #include "libusb_helper.h"
 #include "OpenULINK/include/msgtypes.h"
+#include <stdint.h>
 
 /** USB Vendor ID of ULINK device in unconfigured state (no firmware loaded
  *  yet) or with OpenULINK firmware. */
@@ -205,7 +206,11 @@ static int ulink_append_configure_tck_cmd(struct ulink *device,
 		int delay_scan_io,
 		int delay_tck,
 		int delay_tms);
-static int __attribute__((unused)) ulink_append_led_cmd(struct ulink *device, uint8_t led_state);
+static int 
+#ifdef __GNUC__
+__attribute__((unused)) 
+#endif
+ulink_append_led_cmd(struct ulink *device, uint8_t led_state);
 static int ulink_append_test_cmd(struct ulink *device);
 
 /* OpenULINK TCK frequency helper functions */

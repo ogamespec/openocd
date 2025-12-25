@@ -231,16 +231,21 @@ static struct transport hl_jtag_transport = {
 	.override_target = hl_interface_override_target,
 };
 
+#ifdef __GNUC__
 static void hl_constructor(void) __attribute__ ((constructor));
-static void hl_constructor(void)
+static
+#endif
+void hl_constructor(void)
 {
 	transport_register(&hl_swd_transport);
 	transport_register(&hl_jtag_transport);
 }
 
+#if BUILD_HLADAPTER
 bool transport_is_hla(void)
 {
 	struct transport *t;
 	t = get_current_transport();
 	return t == &hl_swd_transport || t == &hl_jtag_transport;
 }
+#endif
