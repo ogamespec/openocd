@@ -198,7 +198,7 @@ static int armv7a_l2x_cache_init(struct target *target, uint32_t base, uint32_t 
 
 	/*  initialize all targets in this cluster (smp target)
 	 *  l2 cache must be configured after smp declaration */
-	foreach_smp_target(head, target->smp_targets) {
+	foreach_smp_target(head, struct target_list, target->smp_targets) {
 		struct target *curr = head->target;
 		if (curr != target) {
 			armv7a = target_to_armv7a(curr);

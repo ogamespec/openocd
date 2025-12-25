@@ -361,7 +361,7 @@ COMMAND_HANDLER(jtagspi_handle_cmd)
 {
 	struct flash_bank *bank;
 	const unsigned int max = 20;
-	uint8_t cmd_byte, num_read, write_buffer[max], read_buffer[1 << CHAR_BIT];
+	uint8_t cmd_byte, num_read, write_buffer[20], read_buffer[1 << CHAR_BIT];
 
 	LOG_DEBUG("%s", __func__);
 

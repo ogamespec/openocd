@@ -124,7 +124,7 @@ int armv7a_cache_flush_all_data(struct target *target)
 
 	if (target->smp) {
 		struct target_list *head;
-		foreach_smp_target(head, target->smp_targets) {
+		foreach_smp_target(head, struct target_list, target->smp_targets) {
 			struct target *curr = head->target;
 			if (curr->state == TARGET_HALTED) {
 				int retval1 = armv7a_l1_d_cache_clean_inval_all(curr);

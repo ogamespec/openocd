@@ -169,6 +169,7 @@ enum qn908x_info_page_flash_size {
 #define QN908X_FLASH_LOCK_ENABLE_MEMORY_PROTECTION	BIT(2)
 
 /* Page lock information located at the beginning of the last page. */
+#pragma pack(push, 1)
 struct qn908x_flash_page_lock {
 	uint8_t bits[QN908X_FLASH_MAX_BLOCKS * QN908X_FLASH_PAGES_PER_BLOCK / 8];
 	uint8_t protection;
@@ -176,7 +177,8 @@ struct qn908x_flash_page_lock {
 	/* nvds_size is unused here, but we need to preserve it across erases
 	 * when locking and unlocking pages. */
 	uint8_t nvds_size[4];
-} __attribute__ ((packed));
+};
+#pragma pack(pop)
 
 /* Clock configuration is stored in the SYSCON. */
 #define QN908X_SYSCON_BASE						0x40000000u
