@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="packages\libusb-static.1.0.26\build\native\libusb-static.props" Condition="Exists('packages\libusb-static.1.0.26\build\native\libusb-static.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -31,6 +30,7 @@
     <ClInclude Include="..\src\openocd.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="getopt.h" />
+    <ClInclude Include="strings.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="flash.vcxproj">
@@ -218,14 +218,9 @@
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
-  <ImportGroup Label="ExtensionTargets">
-    <Import Project="packages\libusb-static.1.0.26\build\native\libusb-static.targets" Condition="Exists('packages\libusb-static.1.0.26\build\native\libusb-static.targets')" />
-  </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('packages\libusb-static.1.0.26\build\native\libusb-static.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libusb-static.1.0.26\build\native\libusb-static.props'))" />
-    <Error Condition="!Exists('packages\libusb-static.1.0.26\build\native\libusb-static.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\libusb-static.1.0.26\build\native\libusb-static.targets'))" />
   </Target>
 </Project>

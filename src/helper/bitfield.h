@@ -16,7 +16,7 @@
  * Which does not include example usages of them.
  */
 
-#define __bf_shf(x) (__builtin_ffsll(x) - 1)
+#define __bf_shf(x) (ffsll(x) - 1)
 
 /**
  * FIELD_FIT(_mask, _value) - Check if a value fits in the specified bitfield mask
@@ -29,7 +29,7 @@
  * Return: true if the value fits, false otherwise.
  */
 #define FIELD_FIT(_mask, _value) \
-	(!(((typeof(_mask))(_value) << __bf_shf(_mask)) & ~(_mask)))
+	(!((_value) << __bf_shf(_mask)) & ~(_mask)))
 
 /**
  * FIELD_PREP(_mask, _value) - Prepare a value for insertion into a bitfield
@@ -42,7 +42,7 @@
  * Return: The prepared bitfield value.
  */
 #define FIELD_PREP(_mask, _value) \
-	(((typeof(_mask))(_value) << __bf_shf(_mask)) & (_mask))
+	(((_value) << __bf_shf(_mask)) & (_mask))
 
 /**
  * FIELD_GET(_mask, _value) - Extract a value from a bitfield
@@ -55,6 +55,6 @@
  * Return: The extracted value.
  */
 #define FIELD_GET(_mask, _value) \
-	((typeof(_mask))(((_value) & (_mask)) >> __bf_shf(_mask)))
+	((((_value) & (_mask)) >> __bf_shf(_mask)))
 
 #endif /* OPENOCD_HELPER_BITFIELD_H */

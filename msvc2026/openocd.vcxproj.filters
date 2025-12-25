@@ -35,6 +35,9 @@
     <ClInclude Include="..\src\hello.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="strings.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
